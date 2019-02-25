@@ -1,0 +1,2 @@
+INSERT INTO Customer (ID, EMAIL, PASSWORD, PHONE_NUMBER, FIRST_NAME, LAST_NAME) VALUES (1, 'abdo@gmail.com','abdo', '06123456789', 'abdo','khdime');
+INSERT INTO Customer (ID, EMAIL, PASSWORD, PHONE_NUMBER, FIRST_NAME, LAST_NAME) VALUES (2, 'monsif@gmail.com','monsif', '06123456789', 'Monsif','EL AISSOUSSI');
