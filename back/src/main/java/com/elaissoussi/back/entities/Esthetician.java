@@ -12,7 +12,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "estheticians")
 public class Esthetician extends User {
-
+  
+  // lazy loading 
+  
   @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
   @JoinTable(name = "estheticians_services", 
              joinColumns = @JoinColumn(name = "esthestician_id"),

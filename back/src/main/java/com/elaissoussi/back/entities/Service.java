@@ -24,6 +24,7 @@ public class Service {
   
   private BigDecimal price;
   
+  // lazy loading
   @ManyToMany(mappedBy="services")
   private Set<Esthetician> estheticians = new HashSet<>(); 
   
