@@ -19,4 +19,11 @@ public class Esthetician extends User {
              inverseJoinColumns = @JoinColumn(name = "service_id"))
   private Set<Service> services = new HashSet<>();
 
+  public Set<Service> getServices() {
+    return services;
+  }
+
+  public void setServices(Set<Service> services) {
+    this.services = services;
+  }
 }
