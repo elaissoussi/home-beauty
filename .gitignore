@@ -38,7 +38,7 @@ UserInterfaceState.xcuserstate
 # Back
 
 back/HELP.md
-back/target/
+back/target/**
 back/!.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
