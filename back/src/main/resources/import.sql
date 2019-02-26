@@ -2,8 +2,8 @@ INSERT INTO customers (ID, EMAIL, PASSWORD, PHONE_NUMBER, FIRST_NAME, LAST_NAME)
 INSERT INTO customers (ID, EMAIL, PASSWORD, PHONE_NUMBER, FIRST_NAME, LAST_NAME) VALUES (2, 'monsif@gmail.com','monsif', '06123456789', 'Monsif','EL AISSOUSSI');
 
 
-INSERT INTO estheticians (ID, EMAIL, PASSWORD, PHONE_NUMBER, FIRST_NAME, LAST_NAME) VALUES (1, 'est1@gmail.com','est1', '06123456789', 'est2Fname','est2Fname');
-INSERT INTO estheticians (ID, EMAIL, PASSWORD, PHONE_NUMBER, FIRST_NAME, LAST_NAME) VALUES (2, 'est2@gmail.com','est2', '06123456789', 'est1Fname','est2LName');
+INSERT INTO estheticians (ID, EMAIL, PASSWORD, PHONE_NUMBER, FIRST_NAME, LAST_NAME) VALUES (1, 'est1@gmail.com', 'est1', '06123456789', 'est2Fname','est2Fname');
+INSERT INTO estheticians (ID, EMAIL, PASSWORD, PHONE_NUMBER, FIRST_NAME, LAST_NAME) VALUES (2, 'est2@gmail.com', 'est2', '06123456789', 'est1Fname','est2LName');
 
 
 INSERT INTO services (ID, NAME,DESCRIPTION, PRICE) VALUES (1, 'Coiffures','Coiffures', 10);
