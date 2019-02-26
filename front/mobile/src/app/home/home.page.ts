@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AngularFirebase,FirebaseListObservable } from 'angularfire2';
+//import { AngularFirebase,FirebaseListObservable } from 'angularfire2';
 
 
 @Component({

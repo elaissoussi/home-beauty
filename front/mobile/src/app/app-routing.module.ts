@@ -5,6 +5,10 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'inscription', loadChildren: './inscription/inscription.module#InscriptionPageModule' },
+ 
+  { path: 'menu', loadChildren: './pages/menu/menu.module#MenuPageModule' },
+
+ 
 ];
 
 @NgModule({
