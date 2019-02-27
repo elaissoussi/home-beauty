@@ -2,6 +2,10 @@ package com.elaissoussi.back;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @SpringBootApplication
 public class BackApplication {
@@ -9,5 +13,20 @@ public class BackApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BackApplication.class, args);
 	}
-
+	
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+	  
+	  return new WebMvcConfigurerAdapter() {
+	      @Override
+	      public void addCorsMappings(CorsRegistry registry) {
+	        registry
+	        .addMapping("/**")
+	        .allowedMethods("*")
+	        .allowedOrigins("*")
+	        .allowedHeaders("*")
+	        .allowCredentials(false);
+	      }
+	  };
+	}
 }
