@@ -26,16 +26,19 @@ const routes: Routes = [
       path: 'parametres', 
       loadChildren: '../parametres/parametres.module#ParametresPageModule'
     },
-    {
-
-      
-      path: 'clients', 
-      loadChildren: '../clients/clients.module#ClientsPageModule'
-    },
-    {
+    
+   /*{
     path:'',
-    redirectTo:'/menu/clients'
-  }
+    redirectTo:'home'
+  },*/
+  { 
+    path: 'connecxion', 
+    loadChildren: '../connecxion/connecxion.module#ConnecxionPageModule' 
+  },
+  { path: 'home', 
+    loadChildren: '../home/home.module#HomePageModule' 
+  },
+
 
     ]
   }

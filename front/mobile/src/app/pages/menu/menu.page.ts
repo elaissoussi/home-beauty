@@ -12,8 +12,8 @@ export class MenuPage implements OnInit {
 
   pages = [
     {
-      title:'Clients',
-      url:'/menu/clients'
+      title:'Acceuil',
+      url:'/menu/home'
     },
     {
       title:'Aide',
@@ -26,6 +26,10 @@ export class MenuPage implements OnInit {
     {
       title:'Paramètres',
       url:'/menu/parametres'
+    },
+    {
+      title:'Connexion',
+      url:'#'//'/menu/connexion'
     }
   ];
 

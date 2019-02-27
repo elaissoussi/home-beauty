@@ -9,10 +9,10 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { AngularFireModule } from '@angular/fire';//Abdelilah
-import { IonicStorageModule  } from '@ionic/storage';//Abdelilah
+import { AngularFireModule } from '@angular/fire';//
+import { IonicStorageModule  } from '@ionic/storage';//
 //import { GoogleMaps } from '@ionic-native/google-maps/ngx';
-import { Geolocation } from '@ionic-native/geolocation/ngx';//Abdelilah
+import { Geolocation } from '@ionic-native/geolocation/ngx';//
 
 
 
@@ -35,7 +35,7 @@ const config = {
   
   providers: [
     StatusBar,
-    SplashScreen,
+    SplashScreen, 
     Geolocation,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     

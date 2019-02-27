@@ -88,5 +88,6 @@
         <variable name="API_KEY_FOR_ANDROID" value="AIzaSyBQJ9EubVkZYCOiuDNQqqi9FI7rgc_gmPo&amp;callback=initMap" />
         <variable name="API_KEY_FOR_IOS" value="AIzaSyBQJ9EubVkZYCOiuDNQqqi9FI7rgc_gmPo&amp;callback=initMap" />
     </plugin>
+    <plugin name="cordova-plugin-advanced-http" spec="^2.0.5" />
     <engine name="browser" spec="5.0.4" />
 </widget>

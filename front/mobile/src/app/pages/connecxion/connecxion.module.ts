@@ -5,14 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ClientsPage } from './clients.page';
-import { Geolocation } from '@ionic-native/geolocation';
-import { IonicStorageModule } from '@ionic/storage';
+import { ConnecxionPage } from './connecxion.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: ClientsPage
+    component: ConnecxionPage
   }
 ];
 
@@ -21,13 +19,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes),
-    IonicStorageModule.forRoot()
+    RouterModule.forChild(routes)
   ],
- /* providers: [
-  
-    Geolocation
-  ],*/
-  declarations: [ClientsPage]
+  declarations: [ConnecxionPage]
 })
-export class ClientsPageModule {}
+export class ConnecxionPageModule {}
