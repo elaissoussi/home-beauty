@@ -1,6 +1,7 @@
 package com.elaissoussi.back.repositories;
 
 import java.util.Set;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
@@ -12,4 +13,7 @@ import com.elaissoussi.back.entities.ServiceType;
 public interface ServiceRepository extends PagingAndSortingRepository<Service, Long> {
   
    Set<Service> findAllByServiceType(ServiceType serviceType);
+   
+   @Query("SELECT DISTINCT serviceType FROM Service")
+   Set<ServiceType> findAllServiceTypes();
 }

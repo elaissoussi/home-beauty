@@ -18,7 +18,12 @@ public class ServiceController {
   private ServiceRepository serviceRepository;
    
   @GetMapping("/type/{servicetype}")
-  public Set<Service> services(@PathVariable String servicetype) {
+  public Set<Service> servicesByType(@PathVariable String servicetype) {
       return serviceRepository.findAllByServiceType(ServiceType.valueOf(servicetype));
+  }
+  
+  @GetMapping("/types")
+  public Set<ServiceType> serviceTypes() {
+      return serviceRepository.findAllServiceTypes();
   }
 }
