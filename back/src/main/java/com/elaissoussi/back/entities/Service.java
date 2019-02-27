@@ -4,11 +4,15 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="services")
@@ -24,8 +28,14 @@ public class Service {
   
   private BigDecimal price;
   
-  // lazy loading
-  @ManyToMany(mappedBy="services")
+  @Enumerated(EnumType.STRING)
+  private ServiceType serviceType;
+  
+  @Enumerated(EnumType.STRING)
+  private CustomerType customerType;
+  
+  @JsonIgnore
+  @ManyToMany(mappedBy="services", fetch=FetchType.LAZY)
   private Set<Esthetician> estheticians = new HashSet<>(); 
   
   public Long getId() {
@@ -67,4 +77,21 @@ public class Service {
   public void setEstheticians(Set<Esthetician> estheticians) {
     this.estheticians = estheticians;
   }
+
+  public ServiceType getServiceType() {
+    return serviceType;
+  }
+
+  public void setServiceType(ServiceType serviceType) {
+    this.serviceType = serviceType;
+  }
+
+  public CustomerType getCustomerType() {
+    return customerType;
+  }
+
+  public void setCustomerType(CustomerType customerType) {
+    this.customerType = customerType;
+  }
+ 
 }

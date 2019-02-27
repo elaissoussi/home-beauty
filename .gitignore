@@ -63,3 +63,5 @@ back/dist/
 back/nbdist/
 back/.nb-gradle/
 back/build/
+
+*.class

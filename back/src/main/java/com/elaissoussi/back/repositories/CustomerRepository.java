@@ -10,5 +10,4 @@ import com.elaissoussi.back.entities.Customer;
 public interface CustomerRepository extends PagingAndSortingRepository<Customer, Long>{
     
     Customer findByEmailAndPassword(String email, String password);
-    
 }
