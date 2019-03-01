@@ -1,8 +1,12 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Connexion
-    </ion-title>
+      <ion-buttons slot="start">
+          <ion-menu-button>
+            
+          </ion-menu-button>
+    
+        </ion-buttons>
+    <ion-title>Connexion</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,15 +16,15 @@
 
 	<ion-item>
 	  <ion-label position="floating">Numéro de téléphone</ion-label>
-	  <ion-input type="tel"></ion-input>
+	  <ion-input type="text" [(ngModel)]="number"></ion-input>
 	</ion-item>
 
 	<ion-item>
-	  <ion-label position="floating">Mot de pass</ion-label>
-	  <ion-input type="password"></ion-input>
+	  <ion-label position="floating">Mot de passe</ion-label>
+	  <ion-input type="password" [(ngModel)]="password"></ion-input>
 	</ion-item>
 
-	<ion-button color="success" href="#" style="width:100%;" >Connexion</ion-button>
+	<ion-button color="success" (click)="login()" expand="block" style="width:100%;" >Connexion</ion-button>
 	<br><br>
 	
 	<a href="#">Oublié le mot de passe?</a>

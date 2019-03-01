@@ -8,29 +8,26 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
-import { AngularFireModule } from '@angular/fire';//
 import { IonicStorageModule  } from '@ionic/storage';//
 //import { GoogleMaps } from '@ionic-native/google-maps/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';//
 
 
 
-const config = {
-		apiKey: "AIzaSyAmJNzde8RFV1dDl4lD5mJ40THGN45bE_Y",
-		authDomain: "home-beauty-9f4a5.firebaseapp.com",
-		databaseURL: "https://home-beauty-9f4a5.firebaseio.com",
-		//projectId: "home-beauty-9f4a5",
-		storageBucket: "home-beauty-9f4a5.appspot.com",
-		messagingSenderId: "141748453462"
-	  };
+
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
-      AngularFireModule.initializeApp(config),
-      IonicStorageModule.forRoot(),
+  imports: [
+    BrowserModule, 
+    IonicModule.forRoot(), 
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    IonicStorageModule.forRoot(),
     ],
   
   providers: [

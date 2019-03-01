@@ -29,7 +29,7 @@ export class MenuPage implements OnInit {
     },
     {
       title:'Connexion',
-      url:'#'//'/menu/connexion'
+      url:'/menu/connecxion'//'/menu/connexion'
     }
   ];
 

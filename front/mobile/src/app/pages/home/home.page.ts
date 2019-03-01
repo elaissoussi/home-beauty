@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { HTTP } from '@ionic-native/http/ngx';
 
+import { AuthenticationService } from 'src/app/services/authentication.service';
+
 
 @Component({
   selector: 'app-home',
@@ -9,12 +11,31 @@ import { HTTP } from '@ionic-native/http/ngx';
 })
 export class HomePage {
 
-  constructor(private http: HTTP) {
+   customer1 = [
+     {
+    "email" : "abdo@gmail.com",
+    "password" : "abdo",
+    "firstName" : "abdo",
+    "lastName" : "khdime",
+    "phoneNumber" : "06123456789",
+    "_links" : {
+      "self" : {
+        "href" : "http://localhost:8080/customers/1"
+      },
+      "customer" : {
+        "href" : "http://localhost:8080/customers/1"
+      }
+    }
+  }
+];
+  
+
+  constructor(private http: HTTP,private authService:AuthenticationService) {
 
 
   }
 
-  sendPostRequest(){
+ /* sendPostRequest(){
 
     let postData = {
       "email": "abdo@gmail.com",
@@ -28,13 +49,13 @@ export class HomePage {
     'Content-Type': 'application/json'
    };
     this.http.setDataSerializer('json');
-    this.http.get('http://localhost:8080/customers', {},{})
+
+  this.http.get('http://localhost:8080/customers/1',{} ,{})
   .then(data => {
-    var response = JSON.parse(data.data);
+
     console.log(data.status);
     console.log(data.data); // data received by server
     console.log(data.headers);
-    console.log(response);
 
   })
   .catch(error => {
@@ -44,8 +65,10 @@ export class HomePage {
     console.log(error.headers);
 
   });
-  }
+  }*/
   
-
+  logout(){
+    this.authService.logout();
+  }
 
 }

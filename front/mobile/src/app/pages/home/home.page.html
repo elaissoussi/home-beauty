@@ -1,6 +1,7 @@
 
 <ion-header>
-  <ion-toolbar style="background-color:darkgrey;">
+	<ion-toolbar style="background-color:darkgrey;">
+			
       <ion-buttons slot="start">
           <ion-menu-button>
             
@@ -11,8 +12,16 @@
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content padding>
 	
+
+		
+				<ion-button (click)="logout()">
+					Deconnecter
+				</ion-button>
+			
+
 	<h1>Présentation de la page</h1>
 <form method="POST" >
 	<ion-item>
@@ -40,5 +49,5 @@
 <ion-footer>
 
 
-	<!--<ion-button style="width:100%;" href="inscription">Inscription</ion-button>-->
+	<ion-button style="width:100%;" href="inscription">Inscription</ion-button>
 </ion-footer>

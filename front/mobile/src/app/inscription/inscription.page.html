@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar style="--ion-background-color:#7bed9f;">
-   <ion-button color="success" href="home"><ion-icon name="arrow-back"></ion-icon></ion-button> inscription
+   <ion-button color="success" href="/menu/home"><ion-icon name="arrow-back"></ion-icon></ion-button> 
   </ion-toolbar>
 </ion-header>
 
@@ -8,22 +8,35 @@
 
 		<ion-item>
 		  <ion-label position="floating">Nom</ion-label>
-		  <ion-input type="text"></ion-input>
+		  <ion-input name="lastname" type="text"></ion-input>
 		</ion-item>
 		
 		<ion-item>
 		  <ion-label position="floating">Prenom</ion-label>
-		  <ion-input type="tel"></ion-input>
+		  <ion-input name="firstname" type="tel"></ion-input>
 		</ion-item>
 		
 		<ion-item>
 		  <ion-label position="floating">Numéro de téléphone</ion-label>
-		  <ion-input type="tel"></ion-input>
+		  <ion-input name="numerotelephone" type="tel"></ion-input>
+		</ion-item>
+
+		<ion-item>
+		  <ion-label position="floating">Adresse Email</ion-label>
+		  <ion-input name="adresseemail" type="text"></ion-input>
 		</ion-item>
 
 		<ion-item>
 		  <ion-label position="floating">Mot de pass</ion-label>
-		  <ion-input type="password"></ion-input>
+		  <ion-input name="password" type="password"></ion-input>
+		</ion-item>
+
+		<ion-item>
+      <ion-label>inscrire tant que client</ion-label>
+			<ion-radio value="client" checked></ion-radio>
+			
+			<ion-label>inscrire tant que estheticians</ion-label>
+      <ion-radio value="estheticians"></ion-radio>
 		</ion-item>
 		
 		<ion-item>
