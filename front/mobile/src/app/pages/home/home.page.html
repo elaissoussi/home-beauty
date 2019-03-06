@@ -16,32 +16,15 @@
 <ion-content padding>
 	
 
-		
-				<ion-button (click)="logout()">
+		<div >
+				<ion-button  (click)="logout()">
 					Deconnecter
 				</ion-button>
-			
+			</div>
 
 	<h1>Présentation de la page</h1>
-<form method="POST" >
-	<ion-item>
-	  <ion-label position="floating">Numéro de téléphone</ion-label>
-	  <ion-input type="tel"></ion-input>
-	</ion-item>
 
-	<ion-item>
-	  <ion-label position="floating">Mot de pass</ion-label>
-	  <ion-input type="password"></ion-input>
-	</ion-item>
 
-	<ion-button color="success"  (click)="sendPostRequest()" style="width:100%;" >Connexion</ion-button>
-	<br><br>
-	
-	<a href="#">Oublié le mot de passe?</a>
-</form>
-
-  <!-- The world is your oyster. -->
-  <!-- <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p> -->
 
 
 </ion-content>

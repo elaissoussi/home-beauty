@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HTTP } from '@ionic-native/http/ngx';
 
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { NavParams } from '@ionic/angular';
 
 
 @Component({
@@ -28,6 +29,7 @@ export class HomePage {
     }
   }
 ];
+  
   
 
   constructor(private http: HTTP,private authService:AuthenticationService) {
@@ -66,9 +68,12 @@ export class HomePage {
 
   });
   }*/
-  
+  //public hideMe = false;
   logout(){
     this.authService.logout();
+    
   }
+
+
 
 }

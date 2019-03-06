@@ -11,9 +11,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 import { IonicStorageModule  } from '@ionic/storage';//
-//import { GoogleMaps } from '@ionic-native/google-maps/ngx';
-import { Geolocation } from '@ionic-native/geolocation/ngx';//
 
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -26,7 +26,9 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';//
     IonicModule.forRoot(), 
     AppRoutingModule,
     FormsModule,
+   // BackgroundMode,
     ReactiveFormsModule,
+    HttpClientModule,
     IonicStorageModule.forRoot(),
     ],
   

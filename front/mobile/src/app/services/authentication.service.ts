@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Storage } from '@ionic/storage';
 import { Platform } from '@ionic/angular';
+import { Observable } from 'rxjs/Observable';
 
 const TOKEN_KEY="auth-token";
 
@@ -19,7 +20,7 @@ authentificationState = new BehaviorSubject(false);
 
    login(){
 
-      return this.storage.set(TOKEN_KEY,'Abdelilah Elkhdim').then(res=>{
+      return this.storage.set(TOKEN_KEY,'').then(res=>{
 
         this.authentificationState.next(true);
 
@@ -49,4 +50,17 @@ authentificationState = new BehaviorSubject(false);
 
     } );
    }
+
+
+   public register(credentials) {
+    if (credentials.email === null || credentials.password === null || credentials.lastname === null || credentials.mob === null || credentials.firstname === null) {
+      return Observable.throw("S'il vous plaît insérer les informations d'identification");
+    } else {
+      // Stockés les infos dans backend
+      return Observable.create(observer => {
+        observer.next(true);
+        observer.complete();
+      });
+    }
+  }
 }

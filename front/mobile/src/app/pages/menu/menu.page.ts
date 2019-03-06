@@ -30,7 +30,8 @@ export class MenuPage implements OnInit {
     {
       title:'Connexion',
       url:'/menu/connecxion'//'/menu/connexion'
-    }
+    },
+    
   ];
 
   selectedPath='';

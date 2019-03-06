@@ -27,16 +27,17 @@ const routes: Routes = [
       loadChildren: '../parametres/parametres.module#ParametresPageModule'
     },
     
-   /*{
-    path:'',
-    redirectTo:'home'
-  },*/
+   
   { 
     path: 'connecxion', 
     loadChildren: '../connecxion/connecxion.module#ConnecxionPageModule' 
   },
   { path: 'home', 
     loadChildren: '../home/home.module#HomePageModule' 
+  },
+  { 
+    path: 'inscription', 
+    loadChildren: '../inscription/inscription.module#InscriptionPageModule' 
   },
 
 
