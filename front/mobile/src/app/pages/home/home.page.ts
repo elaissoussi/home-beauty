@@ -35,37 +35,40 @@ export class HomePage {
 
   }
 
- /* sendPostRequest(){
+ sendPostRequest(){
 
-    let postData = {
-      "email": "abdo@gmail.com",
-      "password": "ahmed",
-      "firstName": "ahmed",
-      "lastName": "khdime",
-      "phoneNumber": "0612344444456789"
-  };
+  // server url
+  let url = 'http://localhost:8080/customers/login';
 
+  // authentification data 
+  let authData = {"email":"monsif@gmail.com","password":"monsif"};
+
+  // content type
   let headers = {
     'Content-Type': 'application/json'
    };
-    this.http.setDataSerializer('json');
 
-  this.http.get('http://localhost:8080/customers/1',{} ,{})
+  // DataSerializer
+  this.http.setDataSerializer('json');
+  
+  // send request to server 
+  this.http.post(url, authData, headers)
   .then(data => {
 
     console.log(data.status);
-    console.log(data.data); // data received by server
+    console.log(data.data); 
     console.log(data.headers);
 
   })
   .catch(error => {
 
     console.log(error);
-    console.log(error.error); // error message as string
+    console.log(error.error);
     console.log(error.headers);
 
   });
-  }*/
+
+  }
   
   logout(){
     this.authService.logout();
