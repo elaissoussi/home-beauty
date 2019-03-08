@@ -12,7 +12,7 @@ import { NavParams } from '@ionic/angular';
 })
 export class HomePage {
 
-   customer1 = [
+ /*  customer1 = [
      {
     "email" : "abdo@gmail.com",
     "password" : "abdo",
@@ -28,7 +28,7 @@ export class HomePage {
       }
     }
   }
-];
+];*/
   
   
 
@@ -37,7 +37,7 @@ export class HomePage {
 
   }
 
- sendPostRequest(){
+ /*sendPostRequest(){
 
   // server url
   let url = 'http://localhost:8080/customers/login';
@@ -72,11 +72,12 @@ export class HomePage {
 <<<<<<< HEAD
   }*/
   //public hideMe = false;
-=======
+//}
+//=======
 
-  }
   
->>>>>>> 5ce9ed1d96925a62d9a938793b5d869ba61a7bab
+  
+//>>>>>>> 5ce9ed1d96925a62d9a938793b5d869ba61a7bab
   logout(){
     this.authService.logout();
     
