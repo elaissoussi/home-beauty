@@ -13,7 +13,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { IonicStorageModule  } from '@ionic/storage';//
 
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 
 
@@ -28,7 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
    // BackgroundMode,
     ReactiveFormsModule,
-    HttpClientModule,
+    //HttpClientModule,
     IonicStorageModule.forRoot(),
     ],
   
