@@ -1,7 +1,7 @@
 package com.elaissoussi.back.entities;
 
 public enum ServiceType {
-  HEAR, 
+  HAIR, 
   BEAUTY,
   MASSAGE;
 }
