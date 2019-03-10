@@ -8,33 +8,34 @@ import { RouterEvent,Router } from '@angular/router';
 })
 export class MenuPage implements OnInit {
 
- 
-
-  pages = [
-    {
-      title:'Acceuil',
-      url:'/menu/home'
-    },
-    {
-      title:'Aide',
-      url:'/menu/aide'
-    },
-    {
-      title:'Paiment',
-      url:'/menu/paiment'
-    },
-    {
-      title:'Paramètres',
-      url:'/menu/parametres'
-    },
-    {
-      title:'Connexion',
-      url:'/menu/connecxion'//'/menu/connexion'
-    },
-    
-  ];
-
   selectedPath='';
+
+  public pages = [
+      {
+        title:'Acceuil',
+        url:'/menu/home'
+      },
+      {
+        title:'Aide',
+        url:'/menu/aide'
+      },
+      {
+        title:'Paiment',
+        url:'/menu/paiment'
+      },
+      {
+        title:'Paramètres',
+        url:'/menu/parametres'
+      },
+      {
+        title:'Connexion',
+        url:'/menu/connecxion'//'/menu/connexion'
+      },
+      {
+        title:'Coiffure',
+        url:'/menu/haircare'//'/menu/connexion'
+      }
+  ];
 
 
   constructor(private router: Router) { 

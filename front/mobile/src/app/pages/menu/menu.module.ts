@@ -10,37 +10,35 @@ import { MenuPage } from './menu.page';
 const routes: Routes = [
   {
     path: '',
-    
     component: MenuPage,
     children:[
-      {
-      path: 'aide', 
-      loadChildren: '../aide/aide.module#AidePageModule'
-    },
-    {
-      path: 'paiment',
-       loadChildren: '../paiment/paiment.module#PaimentPageModule'
-    },
-    {
-
-      path: 'parametres', 
-      loadChildren: '../parametres/parametres.module#ParametresPageModule'
-    },
-    
-   
-  { 
-    path: 'connecxion', 
-    loadChildren: '../connecxion/connecxion.module#ConnecxionPageModule' 
-  },
-  { path: 'home', 
-    loadChildren: '../home/home.module#HomePageModule' 
-  },
-  { 
-    path: 'inscription', 
-    loadChildren: '../inscription/inscription.module#InscriptionPageModule' 
-  },
-
-
+        {
+          path: 'aide', 
+          loadChildren: '../aide/aide.module#AidePageModule'
+        },
+        {
+          path: 'paiment',
+          loadChildren: '../paiment/paiment.module#PaimentPageModule'
+        },
+        {
+          path: 'parametres', 
+          loadChildren: '../parametres/parametres.module#ParametresPageModule'
+        },
+        { 
+          path: 'connecxion', 
+          loadChildren: '../connecxion/connecxion.module#ConnecxionPageModule' 
+        },
+        {  path: 'home', 
+          loadChildren: '../home/home.module#HomePageModule' 
+        },
+        { 
+          path: 'inscription', 
+          loadChildren: '../inscription/inscription.module#InscriptionPageModule' 
+        },
+        {
+          path: 'haircare', 
+          loadChildren: '../haircare/haircare.module#HaircarePageModule' 
+        }
     ]
   }
 ];
