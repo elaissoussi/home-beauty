@@ -3,14 +3,51 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'menu/connecxion', pathMatch: 'full' },
-  { path: 'home', loadChildren: './pages/home/home.module#HomePageModule' },
-  { path: 'menu', loadChildren: './pages/menu/menu.module#MenuPageModule' },  { path: 'haircare', loadChildren: './pages/haircare/haircare.module#HaircarePageModule' }
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { 
+    path: 'login', 
+    loadChildren: './pages/login/login.module#loginPageModule' 
+  },
+  { 
+    path: 'inscription', 
+    loadChildren: './pages/inscription/inscription.module#InscriptionPageModule' 
+  },
+ 
+  { path: 'home', canActivate: [AuthGuardService],
+  children:[
+    {
+      path:'',
+      loadChildren: './pages/menu/home/home.module#HomePageModule'
+    },
+    {
+      path: 'aide', 
+      loadChildren: './pages/menu/aide/aide.module#AidePageModule'
+    },
+    {
+      path: 'paiment',
+      loadChildren: './pages/menu/paiment/paiment.module#PaimentPageModule'
+    },
+    {
+      path: 'parametres', 
+      loadChildren: './pages/menu/parametres/parametres.module#ParametresPageModule'
+    },
+    
+    {
+      path: 'haircare', 
+      loadChildren: './pages/menu/haircare/haircare.module#HaircarePageModule' 
+    }
+]
+
+
+}
+  
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    useHash: true
+    })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

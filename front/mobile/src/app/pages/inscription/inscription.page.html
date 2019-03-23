@@ -1,58 +1,59 @@
 <ion-header>
-	<ion-toolbar style="background-color:darkgrey;">
+	<ion-toolbar color="primary">
 			
-      <ion-buttons slot="start">
-          <ion-menu-button>
-            
-          </ion-menu-button>
-    
-        </ion-buttons>
+		
+				<ion-buttons slot="start">
+					<ion-back-button defaultHref="login"></ion-back-button>
+				</ion-buttons>
+			
     <ion-title>Inscription</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-	<form (ngSubmit)="register()" #registerForm="ngForm">
+	<form (ngSubmit)="onSignUp()" [formGroup]="signupForm" #registerForm="ngForm">
 		<ion-item>
 		  <ion-label position="floating">Nom</ion-label>
-		  <ion-input name="lastname" type="text" [(ngModel)]="lastname" required></ion-input>
+		  <ion-input formControlName="lastname" type="text" [(ngModel)]="registerCredentials.lastname" required></ion-input>
 		</ion-item>
 		
 		<ion-item>
 		  <ion-label position="floating">Prenom</ion-label>
-		  <ion-input name="firstname" type="text" [(ngModel)]="firstname" required></ion-input>
+		  <ion-input formControlName="firstname" type="text" [(ngModel)]="registerCredentials.firstname" required></ion-input>
 		</ion-item>
 		
 		<ion-item>
 		  <ion-label position="floating">Numéro de téléphone</ion-label>
-		  <ion-input name="numerotelephone" type="number" [(ngModel)]="mob" required></ion-input>
+		  <ion-input formControlName="phonenumber" type="number" [(ngModel)]="registerCredentials.mobile" required></ion-input>
 		</ion-item>
 
 		<ion-item>
 		  <ion-label position="floating">Adresse Email</ion-label>
-		  <ion-input name="adresseemail" type="text" [(ngModel)]="email" required></ion-input>
+		  <ion-input formControlName="email" type="text" [(ngModel)]="registerCredentials.email" required></ion-input>
 		</ion-item>
 
 		<ion-item>
 		  <ion-label position="floating">Mot de passe</ion-label>
-		  <ion-input name="password" type="password" [(ngModel)]="password" required></ion-input>
+		  <ion-input formControlName="password" type="password" [(ngModel)]="registerCredentials.password" required></ion-input>
 		</ion-item>
 		<ion-item>
 		  <ion-label position="floating">Confirmer mot de passe</ion-label>
-		  <ion-input name="password2" type="password" ></ion-input>
+		  <ion-input formControlName="confirmPassword" type="password" ></ion-input>
 		</ion-item>
-		<ion-list radio-group>
+		<ion-list >
+				<ion-radio-group formControlName="type"[(ngModel)]="registerCredentials.type" >
 			<ion-item>
 				<ion-label>Inscrire tant que client</ion-label>
-				<ion-radio  value="client" checked></ion-radio>
+				<ion-radio  value="1" checked></ion-radio>
 			</ion-item>
-			<!--<ion-item>
+			<ion-item>
 				<ion-label>Inscrire tant que estheticians</ion-label>
-				<ion-radio  value="estheticians"></ion-radio>
-			</ion-item>-->
-	
+				<ion-radio  value="2"></ion-radio>
+			</ion-item>
+			</ion-radio-group>
 		</ion-list>
+		
 
-	<ion-button color="success" style="width:100%;" >Inscription</ion-button>
+	<ion-button color="success" style="width:100%;" type="submit" [disabled]="!signupForm.valid"  >Inscription</ion-button>
 </form>
 </ion-content>

@@ -1,66 +1,61 @@
+import { User } from './../user.model';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { Storage } from '@ionic/storage';
-import { Platform } from '@ionic/angular';
-import { Observable } from 'rxjs/Observable';
+import {map} from 'rxjs/operators';
+import { API_URL } from './../app.constants';
+import { Observable } from 'rxjs';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
+import { Router } from '@angular/router';
 
-const TOKEN_KEY="auth-token";
+export const TOKEN = 'token'
+export const AUTHENTICATED_USER = 'authenticaterUser'
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthenticationService {
-authentificationState = new BehaviorSubject(false);
-  constructor(private storage: Storage,private plt :Platform) {
-  this.plt.ready().then(()=>{
-    this.checkToken();
-  });
+export class AuthenticationService {  
+  constructor(private http: HttpClient,private router: Router) { }
 
-   }
+executeJWTAuthenticationService(username, password) {
 
-   login(){
+  return this.http.post<any>(
+    `${API_URL}/login`,{
+      username,
+      password
+    }).pipe(
+      map(
+        data => {
+          sessionStorage.setItem(AUTHENTICATED_USER, username);
+          sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
+          return data;
+        }
+      )
+    );
 
-      return this.storage.set(TOKEN_KEY,'').then(res=>{
+}
 
-        this.authentificationState.next(true);
+isUserLoggedIn() {
+  const user = sessionStorage.getItem(AUTHENTICATED_USER);
+  return !(user === null);
+}
 
-      } );
-   }
+logout(){
+  sessionStorage.removeItem(AUTHENTICATED_USER);
+}
 
-   logout(){
-    return this.storage.remove(TOKEN_KEY).then(()=>{
+getAuthenticatedUser() {
+  return sessionStorage.getItem(AUTHENTICATED_USER);
+}
 
-      this.authentificationState.next(false);
-
-    } );
-   }
-
-   isAthenticated() {
-    return this.authentificationState.value;
-   }
-
-   checkToken(){
-    return this.storage.get(TOKEN_KEY).then(res=>{
-
-      if(res){
-
-        this.authentificationState.next(true);
-      }
-
-
-    } );
-   }
-
-
-   public register(credentials) {
-    if (credentials.email === null || credentials.password === null || credentials.lastname === null || credentials.mob === null || credentials.firstname === null) {
-      return Observable.throw("S'il vous plaît insérer les informations d'identification");
-    } else {
-      // Stockés les infos dans backend
-      return Observable.create(observer => {
-        observer.next(true);
-        observer.complete();
-      });
-    }
+getAuthenticatedToken() {
+  if(this.getAuthenticatedUser()) {
+    return sessionStorage.getItem(TOKEN);
   }
+}
+RedirectLogedUser(){
+  if(this.isUserLoggedIn())
+  this.router.navigate(['home']);
+
+}
 }

@@ -1,3 +1,33 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-split-pane *ngIf="authService.isUserLoggedIn()">
+    <ion-menu contentId="content">
+      
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>
+            <p>Home Beauty</p>
+          </ion-title>
+        </ion-toolbar>
+      </ion-header>
+  
+      <ion-content>
+        <ion-list>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of pages">
+            <ion-item [routerLink]="p.url" routerDirection="root" >
+              {{p.title}}
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-item (click)="logout()" color="danger">
+            <ion-label>
+              Deconnecter
+            </ion-label>
+           </ion-item>
+        </ion-list>
+      </ion-content>
+  
+    </ion-menu>
+  
+    <ion-router-outlet id="content" main></ion-router-outlet>
+  </ion-split-pane>
+  <ion-router-outlet *ngIf="!authService.isUserLoggedIn()"></ion-router-outlet>
 </ion-app>

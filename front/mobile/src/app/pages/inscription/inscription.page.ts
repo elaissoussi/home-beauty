@@ -1,6 +1,9 @@
+import { User, UserType } from './../../user.model';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { NavController, AlertController } from '@ionic/angular';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { MustMatch } from 'src/app/_helpers/must-match/validator';
 @Component({
   selector: 'app-inscription',
   templateUrl: './inscription.page.html',
@@ -8,35 +11,42 @@ import { NavController, AlertController } from '@ionic/angular';
 })
 export class InscriptionPage implements OnInit {
   createSuccess = false;
-  registerCredentials = { 
-    email: '', 
-    password: '' ,
-    lastname: '',
-    firstname: '',
-    mob: ''
+  registerCredentials :User; 
   
-  };
-  constructor(private auth:AuthenticationService,private navCrl: NavController,private alertCtrl: AlertController) { 
-
-
+  signupForm: FormGroup;
+  constructor(private authenticationService:AuthenticationService,
+    private navCrl: NavController,private alertCtrl: AlertController,private formBuilder :FormBuilder) { 
+    this.signupForm = this.formBuilder.group({
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      email: ['',[ Validators.required, Validators.email]],
+      phonenumber: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
+      type: ['', Validators.required],
+   }, {
+    validator: MustMatch('password', 'confirmPassword')
+});
+        
   }
 
-   register() {
-   /* this.auth.register(this.registerCredentials).subscribe(success => {
-      if (success) {
-        this.createSuccess = true;
-        alert("Votre compte a été creer avec success.");
-      } else {
-        alert("Il y a un erreur de la creation.");
-       
-      }
-    },
-      error => {
-        alert("Error " + error);
-      });*/
-  }
+  onSignUp() {
+    
+    console.log("hellloooo");
+    // stop here if form is invalid
+    if (this.signupForm.invalid) {
+      console.log(this.signupForm.getError);
+        return;
+    }
+console.log(this.registerCredentials);
+    
+}
 
   ngOnInit() {
+    this.registerCredentials =new User();
+    this.authenticationService.RedirectLogedUser();
+   
   }
+  
 
 }

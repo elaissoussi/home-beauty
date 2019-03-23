@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    <ion-title>Coiffure</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <div *ngIf="haircare.loading">
+        Loading, please wait...
+    </div>
+
+    <div *ngIf="!haircare.loading">
+        <ion-list>
+            <ion-item *ngFor="let item of haircare.results">
+                    <ion-label text-wrap>
+                            <ion-text color="primary">
+                              <h3>{{item.name}}</h3>
+                            </ion-text>
+                            <p>{{item.customerType}}</p>
+                            <ion-text color="secondary">
+                              <p>{{item.price}}</p>
+                            </ion-text>
+                   </ion-label>
+                      
+                <button ion-button icon-only item-right >
+                    <ion-icon name="cart"></ion-icon>
+                </button>  
+
+            </ion-item>
+
+        </ion-list>
+    </div>
+
+</ion-content>
