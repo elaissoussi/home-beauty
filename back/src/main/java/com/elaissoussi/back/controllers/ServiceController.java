@@ -1,6 +1,9 @@
 package com.elaissoussi.back.controllers;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,8 +21,11 @@ public class ServiceController {
   private ServiceRepository serviceRepository;
    
   @GetMapping("/type/{servicetype}")
-  public Set<Service> servicesByType(@PathVariable String servicetype) {
-      return serviceRepository.findAllByServiceType(ServiceType.valueOf(servicetype));
+  public Map servicesByType(@PathVariable String servicetype) {
+      // HAIR - CARE
+      // TO FIX FOR OTHER SERVICES
+      Set<Service> services = serviceRepository.findAllByServiceType(ServiceType.valueOf(servicetype));
+      return services.stream().collect(Collectors.groupingBy(Service::getCustomerType));
   }
   
   @GetMapping("/types")
