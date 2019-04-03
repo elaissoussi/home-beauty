@@ -32,10 +32,11 @@ export class InscriptionPage implements OnInit {
 
   onSignUp() {
     
-    console.log("hellloooo");
+    console.log("hellloooo Abdo and Monsif");
     // stop here if form is invalid
     if (this.signupForm.invalid) {
       console.log(this.signupForm.getError);
+      
         return;
     }
 console.log(this.registerCredentials);

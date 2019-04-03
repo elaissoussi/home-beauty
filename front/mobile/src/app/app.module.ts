@@ -11,10 +11,11 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { IonicStorageModule  } from '@ionic/storage';//
+import { IonicStorageModule  } from '@ionic/storage';
+import { Calendar } from '@ionic-native/calendar/ngx';
 
-import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { HttpModule } from '@angular/http';
+//import { Geolocation } from '@ionic-native/geolocation/ngx';
+//import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -37,7 +38,8 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [
     StatusBar,
     SplashScreen, 
-    Geolocation,
+    Calendar,
+    //Geolocation,
      AuthGuardService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     

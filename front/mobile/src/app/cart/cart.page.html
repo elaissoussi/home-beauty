@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/haircare"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Mon cart</ion-title>
+    </ion-toolbar>
+  </ion-header>
+   
+  <ion-content>
+    <ion-list>
+      <ion-item *ngFor="let item of selectedItems" lines="inset">
+          <ion-button color="danger" expand="full" (click)="removeFromCart(product)">Supprimer </ion-button>
+        {{ item.count }} x {{ item.name }} 
+        <ion-label slot="end" text-right>{{ (item.price * item.count)}} Euro</ion-label>
+       
+      </ion-item>
+      <ion-item class="total">
+        Total: <span slot="end">{{ total }} Euro</span>
+      </ion-item>
+    </ion-list>
+  
+    <ion-button color="green" expand="full" (click)="displayCalendar()">Afficher Calendrier </ion-button>
+  </ion-content>

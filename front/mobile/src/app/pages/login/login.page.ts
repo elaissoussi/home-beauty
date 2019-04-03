@@ -1,16 +1,15 @@
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthGuardService } from './../../services/auth-guard.service';
 import { AuthenticationService } from '../../services/authentication.service';
-import { Component, OnInit, Input } from '@angular/core';
 import { HTTP } from '@ionic-native/http/ngx';
 import { Router } from '@angular/router';
-
-
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
+
 export class loginPage implements OnInit {
   username = 'abdo@gmail.com';
   password = 'abdo';

@@ -33,7 +33,6 @@ export class AppComponent {
         title:'Paramètres',
         url:'/home/parametres'
       },
-      
       {
         title:'Coiffure',
         url:'/home/haircare'
