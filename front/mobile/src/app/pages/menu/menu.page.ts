@@ -26,12 +26,11 @@ export class MenuPage implements OnInit {
       {
         title:'Paramètres',
         url:'/menu/parametres'
-      }/*,
-    
+      },
       {
         title:'Coiffure',
-        url:'/menu/haircare'//'/menu/connexion'
-      }*/
+        url:'/menu/haircare'
+      }
   ];
 
 

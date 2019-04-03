@@ -16,9 +16,9 @@ export class HttpIntercepterAuthServiceService  implements HttpInterceptor{
   intercept(request: HttpRequest<any>, next: HttpHandler){
   
     const AuthHeaderString = this.AuthenticationService.getAuthenticatedToken();
-    const username = this.AuthenticationService.getAuthenticatedUser()
+    const email = this.AuthenticationService.getAuthenticatedUser()
 
-    if(AuthHeaderString && username) { 
+    if(AuthHeaderString && email) { 
       request = request.clone({
         setHeaders : {
             Authorization : AuthHeaderString

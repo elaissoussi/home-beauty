@@ -17,16 +17,16 @@ export const AUTHENTICATED_USER = 'authenticaterUser'
 export class AuthenticationService {  
   constructor(private http: HttpClient,private router: Router) { }
 
-executeJWTAuthenticationService(username, password) {
+executeJWTAuthenticationService(email, password) {
 
   return this.http.post<any>(
     `${API_URL}/login`,{
-      username,
+      email,
       password
     }).pipe(
       map(
         data => {
-          sessionStorage.setItem(AUTHENTICATED_USER, username);
+          sessionStorage.setItem(AUTHENTICATED_USER, email);
           sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
           return data;
         }

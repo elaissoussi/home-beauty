@@ -30,20 +30,16 @@ const routes: Routes = [
     {
       path: 'parametres', 
       loadChildren: './pages/menu/parametres/parametres.module#ParametresPageModule'
+    },
+    {
+      path: 'haircare', 
+      loadChildren: './pages/menu/haircare/haircare.module#HaircarePageModule' 
     }
-]
-
-
-},
-  { path: 'cart', loadChildren: './cart/cart.module#CartPageModule' },
-    
-  {
-    path: 'haircare', 
-    loadChildren: './pages/haircare/haircare.module#HaircarePageModule' 
-  }
-
-  
- 
+          ]
+ },
+{ path: 'cart', 
+  loadChildren: './cart/cart.module#CartPageModule' 
+}
 ];
 
 @NgModule({

@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 })
 
 export class loginPage implements OnInit {
-  username = 'abdo@gmail.com';
-  password = 'abdo';
+  email:String ;
+  password:String ;
   errorMessage = 'Invalid Credentials';
   invalidLogin = false;
 
@@ -22,7 +22,7 @@ export class loginPage implements OnInit {
 
   borderColor:string="#000000";
   handleJWTAuthLogin() {
-    this.authenticationService.executeJWTAuthenticationService(this.username, this.password)
+    this.authenticationService.executeJWTAuthenticationService(this.email, this.password)
         .subscribe(
           data => {
             console.log(data);
