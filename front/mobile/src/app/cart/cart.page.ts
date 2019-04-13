@@ -1,60 +1,42 @@
 import { Component, OnInit } from '@angular/core';
-import { HaircaireService } from '../services/haircaire.service';
-import { Calendar } from '@ionic-native/calendar/ngx';
 import { Platform } from '@ionic/angular';
-//import { MbscEventcalendarOptions } from '@mobiscroll/angular';
-import { Jsonp } from '@angular/http';
+import { CartService, Entry } from '../services/cart.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.page.html',
   styleUrls: ['./cart.page.scss'],
 })
-export class CartPage implements OnInit {
+export class CartPage {
  
-  selectedItems = [];
+  // cart items
+  cart : Entry[] = [];
+
+  // total cart
+  total : number = 0;
  
-  total = 0;
- 
-  constructor(private cartService:HaircaireService,private calendar:Calendar,private plt :Platform) {
-
-   
-
-   }
-
-   displayCalendar(){
-   this.calendar.createCalendar('MyCalendar').then(
-    (msg) => { console.log(msg); },
-    (err) => { console.log(err); }
-  );
-}
-
-   removeFromCart(product) {
-   
-    this.cartService.removeProduct(product);
-
-  }
-   
-  
-   
-  ngOnInit() {
-    let items = this.cartService.getCart();
-    let selected = {};
-    for (let obj of items) {
-      if (selected[obj.id]) {
-        selected[obj.id].count++;
-      } else {
-        selected[obj.id] = {...obj, count: 1};
-      }   
+  constructor(private cartService: CartService, private plt :Platform, private router: Router) {
+    this.plt.ready().then(() => 
+                {
+                  this.cartService.getCart().then((cart : Entry[]) => {
+                    if(cart){
+                      this.cart = cart;
+                      this.total = this.cartService.getTotalCart(cart); 
+                     }
+                  });
+                })
   }
 
- 
-  this.selectedItems = Object.keys(selected).map(key => selected[key])
-  this.total = this.selectedItems.reduce((a, b) => a + (b.count * b.price), 0);
+  removeFromCart(entry : Entry){
+    this.cartService.removeFromCart(entry).then((cart : Entry[])=> {
+      this.cart = cart;
+      this.total = this.cartService.getTotalCart(cart); 
+    })
+  }
 
-  console.log(selected);
-
-}
-  
-  
-
+  removeCart(){
+    this.router.navigate['haircare'];
+    this.cartService.removeCart();
+  }
 }

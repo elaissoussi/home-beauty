@@ -32,7 +32,6 @@ export class HaircaireService {
       ]
     }
   ];
-  private cart = [];
   
   results    : Array<any> = [];
   loading    : boolean = false ; 
@@ -43,32 +42,6 @@ export class HaircaireService {
     return this.data;
   }
  
-  getCart() {
-    return this.cart;
-  }
- 
-  addProduct(product) {
-    this.cart.push(product);
-  }
-
-  removeProduct(product) {
-    //this.cart.pop(product);
-    //let items = this.cartService.getCart();
-
-    let i=0;
-    for (let obj of this.cart) {
-    i++;
-    console.log(obj);
-    console.log(product);
-      if (obj.id===product.id) {
-        
-        //selected[obj.id].count++;
-        this.cart.splice(i,1);
-      } 
-      
-  }
-  }
-
   getHaircaireServices(){
    
     let apiUrl =  `${API_URL}/services/type/HAIR`;

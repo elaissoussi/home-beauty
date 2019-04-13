@@ -5,20 +5,27 @@
       </ion-buttons>
       <ion-title>Mon cart</ion-title>
     </ion-toolbar>
-  </ion-header>
+</ion-header>
    
   <ion-content>
     <ion-list>
-      <ion-item *ngFor="let item of selectedItems" lines="inset">
-          <ion-button color="danger" expand="full" (click)="removeFromCart(product)">Supprimer </ion-button>
-        {{ item.count }} x {{ item.name }} 
-        <ion-label slot="end" text-right>{{ (item.price * item.count)}} Euro</ion-label>
-       
+      
+      <ion-item *ngFor="let e of cart" lines="inset">
+        {{ e.quantity }} x {{ e.product.name }} 
+        <ion-label text-right>{{ (e.product.price * e.quantity)}} Euro</ion-label>
+        <ion-icon slot="end" name="trash"  (click)="removeFromCart(e)"></ion-icon>
+
       </ion-item>
+
       <ion-item class="total">
         Total: <span slot="end">{{ total }} Euro</span>
       </ion-item>
+
+      <ion-button expand="block" (click)="placeOrder()">Passer Ma commande</ion-button>
+
+      <ion-button expand="block" (click)="removeCart()">Vider Mon panier</ion-button>
+
     </ion-list>
   
-    <ion-button color="green" expand="full" (click)="displayCalendar()">Afficher Calendrier </ion-button>
+    <ion-button color="green" expand="full">Afficher Calendrier </ion-button>
   </ion-content>

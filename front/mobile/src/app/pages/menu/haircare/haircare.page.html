@@ -70,7 +70,7 @@
       </ion-title>
       <ion-buttons slot="end">
         <ion-button (click)="openCart()">
-          <ion-badge *ngIf="cart.length > 0">{{ cart.length }}</ion-badge>
+          <ion-badge *ngIf="cartProductsNumber > 0">{{ cartProductsNumber }}</ion-badge>
           <ion-icon slot="icon-only" name="cart"></ion-icon>
         </ion-button>
       </ion-buttons>
@@ -78,7 +78,7 @@
   </ion-header>
    
   <ion-content>
-    <div *ngFor="let cat of items" class="category-block">
+    <div *ngFor="let cat of products" class="category-block">
    
       <ion-row no-padding class="category-banner">
         <ion-col text-left button tappable (click)="cat.expanded = !cat.expanded" align-self-center>
@@ -100,7 +100,7 @@
                   <img src="https://via.placeholder.com/300x300">
                   
                 </ion-card-content>
-                <ion-button expand="full" (click)="addToCart(product)">Ajouter </ion-button>
+                <ion-button expand="full" (click)="addProduct(product)">Ajouter </ion-button>
                   
               </ion-card-header>
             </ion-card>
