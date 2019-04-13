@@ -36,7 +36,7 @@ export class CartPage {
   }
 
   removeCart(){
-    this.router.navigate['haircare'];
+    this.router.navigate(['home']);
     this.cartService.removeCart();
   }
 }
