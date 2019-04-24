@@ -49,4 +49,10 @@ public class EsthesticianController {
 
     return esthetician;
   }
+  
+  @GetMapping("/zipcode/{zipcode}")
+  public Set<Esthetician> getByZipCode(@PathVariable("zipcode") int zipCode){
+    return estheticianRepository.findByZipCode(zipCode);
+  }
+  
 }

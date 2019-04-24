@@ -15,4 +15,6 @@ public interface EstheticianRepository extends UserBaseRepository<Esthetician>{
   @Query("SELECT e.services FROM Esthetician e WHERE e.id = :id")
   Set<Service> findServicesByEstheticianId(@Param("id") Long id);
   
+  @Query("SELECT e FROM Esthetician e INNER JOIN e.address a WHERE a.zipCode = :zipCode")
+  Set<Esthetician> findByZipCode(@Param("zipCode") int zipCode);
 }

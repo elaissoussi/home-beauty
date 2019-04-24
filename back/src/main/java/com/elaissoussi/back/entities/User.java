@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 @Inheritance(strategy =InheritanceType.TABLE_PER_CLASS )
@@ -22,6 +24,10 @@ public class User {
     private String lastName;
     
     private String phoneNumber;
+    
+    @OneToOne
+    @JoinColumn(unique=true)
+    private Address address;
     
     public Long getId() {
       return id;
@@ -58,5 +64,11 @@ public class User {
     }
     public void setPhoneNumber(String phoneNumber) {
       this.phoneNumber = phoneNumber;
+    }
+    public Address getAddress() {
+      return address;
+    }
+    public void setAddress(Address address) {
+      this.address = address;
     }
 }

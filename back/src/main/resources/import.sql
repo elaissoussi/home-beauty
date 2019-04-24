@@ -1,12 +1,17 @@
+-- Address
+INSERT INTO address (ID, ZIP_CODE, CITY) VALUES (1, 75000,'Paris');
+INSERT INTO address (ID, ZIP_CODE, CITY) VALUES (2, 59000,'Lille' );
+INSERT INTO address (ID, ZIP_CODE, CITY) VALUES (3, 92000,'Nanterre');
+
 -- Customers
 INSERT INTO customers (ID, EMAIL, PASSWORD, PHONE_NUMBER, FIRST_NAME, LAST_NAME) VALUES (1, 'abdo@gmail.com','abdo', '06123456789', 'abdo','khdime');
 INSERT INTO customers (ID, EMAIL, PASSWORD, PHONE_NUMBER, FIRST_NAME, LAST_NAME) VALUES (2, 'monsif@gmail.com','monsif', '06123456789', 'Monsif','EL AISSOUSSI');
 INSERT INTO customers (ID, EMAIL, PASSWORD, PHONE_NUMBER, FIRST_NAME, LAST_NAME) VALUES (3, 'customer@gmail.com','$2a$10$0fDPY8T..dmHMF7m6XoTTeIWP5z4fRe/0TaJ0SGNDPP23962TMri2', '06123456789', 'Mons','ELAISS');
 
 -- Estheticians
-INSERT INTO estheticians (ID, EMAIL, PASSWORD, PHONE_NUMBER, FIRST_NAME, LAST_NAME) VALUES (1, 'est1@gmail.com', 'est1', '06123456789', 'est2Fname','est2Fname');
-INSERT INTO estheticians (ID, EMAIL, PASSWORD, PHONE_NUMBER, FIRST_NAME, LAST_NAME) VALUES (2, 'est2@gmail.com', 'est2', '06123456789', 'est1Fname','est2LName');
-INSERT INTO estheticians (ID, EMAIL, PASSWORD, PHONE_NUMBER, FIRST_NAME, LAST_NAME) VALUES (3, 'esthetician@gmail.com', '$2a$10$Z0y8.nukjTIND/ra8UaDi.eR5KgivRSVlekwSErkjGfTV8v4Gq9uC', '06123456789', 'Abdo','Khdi');
+INSERT INTO estheticians (ID, EMAIL, PASSWORD, PHONE_NUMBER, FIRST_NAME, LAST_NAME, ADDRESS_ID) VALUES (1, 'est1@gmail.com', 'est1', '06123456789', 'est2Fname','est2Fname',1);
+INSERT INTO estheticians (ID, EMAIL, PASSWORD, PHONE_NUMBER, FIRST_NAME, LAST_NAME, ADDRESS_ID) VALUES (2, 'est2@gmail.com', 'est2', '06123456789', 'est1Fname','est2LName',1);
+INSERT INTO estheticians (ID, EMAIL, PASSWORD, PHONE_NUMBER, FIRST_NAME, LAST_NAME, ADDRESS_ID) VALUES (3, 'esthetician@gmail.com', '$2a$10$Z0y8.nukjTIND/ra8UaDi.eR5KgivRSVlekwSErkjGfTV8v4Gq9uC', '06123456789', 'Abdo','Khdi',2);
 
 -- Service HAIR / MEN
 INSERT INTO services (ID, NAME,SERVICE_TYPE, CUSTOMER_TYPE, PRICE) VALUES (1, 'Shampoing','HAIR','MEN', 10);
