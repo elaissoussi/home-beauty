@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,12 +20,23 @@ public class Esthetician extends User {
              joinColumns = @JoinColumn(name = "esthestician_id"),
              inverseJoinColumns = @JoinColumn(name = "service_id"))
   private Set<Service> services = new HashSet<>();
-
+  
+  @OneToMany(mappedBy="esthetician" , cascade = CascadeType.ALL)
+  private Set<Availability> availabilities = new HashSet<>();
+  
   public Set<Service> getServices() {
     return services;
   }
 
   public void setServices(Set<Service> services) {
     this.services = services;
+  }
+
+  public Set<Availability> getAvailabilities() {
+    return availabilities;
+  }
+
+  public void setAvailabilities(Set<Availability> availabilities) {
+    this.availabilities = availabilities;
   }
 }
