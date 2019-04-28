@@ -1,7 +1,8 @@
--- Address
-INSERT INTO address (ID, ZIP_CODE, CITY) VALUES (1, 75000,'Paris');
-INSERT INTO address (ID, ZIP_CODE, CITY) VALUES (2, 59000,'Lille' );
-INSERT INTO address (ID, ZIP_CODE, CITY) VALUES (3, 92000,'Nanterre');
+-- Addresses
+INSERT INTO addresses (ID, ZIP_CODE, CITY) VALUES (1, 75000,'Paris');
+INSERT INTO addresses (ID, ZIP_CODE, CITY) VALUES (2, 59000,'Lille' );
+INSERT INTO addresses (ID, ZIP_CODE, CITY) VALUES (3, 92000,'Nanterre');
+INSERT INTO addresses (ID, ZIP_CODE, CITY) VALUES (4, 75000,'Paris');
 
 -- Customers
 INSERT INTO customers (ID, EMAIL, PASSWORD, PHONE_NUMBER, FIRST_NAME, LAST_NAME) VALUES (1, 'abdo@gmail.com','abdo', '06123456789', 'abdo','khdime');
@@ -9,9 +10,19 @@ INSERT INTO customers (ID, EMAIL, PASSWORD, PHONE_NUMBER, FIRST_NAME, LAST_NAME)
 INSERT INTO customers (ID, EMAIL, PASSWORD, PHONE_NUMBER, FIRST_NAME, LAST_NAME) VALUES (3, 'customer@gmail.com','$2a$10$0fDPY8T..dmHMF7m6XoTTeIWP5z4fRe/0TaJ0SGNDPP23962TMri2', '06123456789', 'Mons','ELAISS');
 
 -- Estheticians
-INSERT INTO estheticians (ID, EMAIL, PASSWORD, PHONE_NUMBER, FIRST_NAME, LAST_NAME, ADDRESS_ID) VALUES (1, 'est1@gmail.com', 'est1', '06123456789', 'est2Fname','est2Fname',1);
-INSERT INTO estheticians (ID, EMAIL, PASSWORD, PHONE_NUMBER, FIRST_NAME, LAST_NAME, ADDRESS_ID) VALUES (2, 'est2@gmail.com', 'est2', '06123456789', 'est1Fname','est2LName',1);
-INSERT INTO estheticians (ID, EMAIL, PASSWORD, PHONE_NUMBER, FIRST_NAME, LAST_NAME, ADDRESS_ID) VALUES (3, 'esthetician@gmail.com', '$2a$10$Z0y8.nukjTIND/ra8UaDi.eR5KgivRSVlekwSErkjGfTV8v4Gq9uC', '06123456789', 'Abdo','Khdi',2);
+INSERT INTO estheticians (ID, EMAIL, PASSWORD, PHONE_NUMBER, FIRST_NAME, LAST_NAME, ADDRESS_ID) VALUES (1, 'esthetician@gmail.com', '$2a$10$Z0y8.nukjTIND/ra8UaDi.eR5KgivRSVlekwSErkjGfTV8v4Gq9uC', '06123456789', 'Khdim','Abdo',1);
+INSERT INTO estheticians (ID, EMAIL, PASSWORD, PHONE_NUMBER, FIRST_NAME, LAST_NAME, ADDRESS_ID) VALUES (2, 'esthetician1@gmail.com', '$2a$10$Z0y8.nukjTIND/ra8UaDi.eR5KgivRSVlekwSErkjGfTV8v4Gq9uC', '06123456789', 'Elaisso','Monsif',4);
+INSERT INTO estheticians (ID, EMAIL, PASSWORD, PHONE_NUMBER, FIRST_NAME, LAST_NAME, ADDRESS_ID) VALUES (3, 'esthetician2@gmail.com', '$2a$10$Z0y8.nukjTIND/ra8UaDi.eR5KgivRSVlekwSErkjGfTV8v4Gq9uC', '06123456789', 'Camilla','Mohammed',3);
+
+-- Availabilities
+INSERT INTO availabilities(ID,START_TIME,END_TIME, AVAILABLE, ESTHETICIAN_ID) VALUES (1, parsedatetime('01-01-2019 08:00', 'dd-MM-yyyy hh:mm'),parsedatetime('01-01-2019 09:00', 'dd-MM-yyyy hh:mm'), true, 1);
+INSERT INTO availabilities(ID,START_TIME,END_TIME, AVAILABLE, ESTHETICIAN_ID) VALUES (2, parsedatetime('01-01-2019 09:00', 'dd-MM-yyyy hh:mm'),parsedatetime('01-01-2019 10:00', 'dd-MM-yyyy hh:mm'), true, 1);
+INSERT INTO availabilities(ID,START_TIME,END_TIME, AVAILABLE, ESTHETICIAN_ID) VALUES (4, parsedatetime('01-01-2019 13:00', 'dd-MM-yyyy hh:mm'),parsedatetime('01-01-2019 14:00', 'dd-MM-yyyy hh:mm'), true, 1);
+
+INSERT INTO availabilities(ID,START_TIME,END_TIME, AVAILABLE, ESTHETICIAN_ID) VALUES (5, parsedatetime('01-01-2019 08:00', 'dd-MM-yyyy hh:mm'),parsedatetime('01-01-2019 09:00', 'dd-MM-yyyy hh:mm'), true, 2);
+INSERT INTO availabilities(ID,START_TIME,END_TIME, AVAILABLE, ESTHETICIAN_ID) VALUES (6, parsedatetime('01-01-2019 09:00', 'dd-MM-yyyy hh:mm'),parsedatetime('01-01-2019 10:00', 'dd-MM-yyyy hh:mm'), true, 2);
+INSERT INTO availabilities(ID,START_TIME,END_TIME, AVAILABLE, ESTHETICIAN_ID) VALUES (8, parsedatetime('01-01-2019 15:00', 'dd-MM-yyyy hh:mm'),parsedatetime('01-01-2019 16:00', 'dd-MM-yyyy hh:mm'), true, 2);
+
 
 -- Service HAIR / MEN
 INSERT INTO services (ID, NAME,SERVICE_TYPE, CUSTOMER_TYPE, PRICE) VALUES (1, 'Shampoing','HAIR','MEN', 10);

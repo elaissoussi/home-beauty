@@ -8,6 +8,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Inheritance(strategy =InheritanceType.TABLE_PER_CLASS )
@@ -18,6 +19,8 @@ public class User {
     private Long id; 
     
     private String email;
+    
+    @JsonIgnore
     private String password; 
     
     private String firstName;
@@ -25,6 +28,7 @@ public class User {
     
     private String phoneNumber;
     
+    @JsonIgnore
     @OneToOne
     @JoinColumn(unique=true)
     private Address address;
