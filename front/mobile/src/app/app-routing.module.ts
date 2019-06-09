@@ -13,7 +13,7 @@ const routes: Routes = [
     loadChildren: './pages/inscription/inscription.module#InscriptionPageModule' 
   },
  
-  { path: 'home', canActivate: [AuthGuardService],
+  { path: 'home', canActivate: [AuthGuardService], 
   children:[
     {
       path:'',
@@ -39,7 +39,11 @@ const routes: Routes = [
  },
 { path: 'cart', 
   loadChildren: './cart/cart.module#CartPageModule' 
-}
+},  { path: 'appointment', loadChildren: './appointment/appointment.module#AppointmentPageModule' },
+  { path: 'signup', loadChildren: './pages/signup/signup.module#SignupPageModule' }
+
+ 
+
 ];
 
 @NgModule({

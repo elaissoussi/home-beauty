@@ -1,0 +1,87 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        
+      
+          <ion-buttons slot="start">
+            <ion-back-button defaultHref="login"></ion-back-button>
+          </ion-buttons>
+        
+      <ion-title>Inscription</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <!--
+    [formGroup]="signupForm" #registerForm="ngForm"
+    [(ngModel)]="registerCredentials.type"
+    formControlName="lastname" 
+  -->
+  <ion-content padding>
+    <form (ngSubmit)="onSignUp()" >
+      <ion-item>
+        <ion-label position="floating">Nom</ion-label>
+        <ion-input type="text"  [(ngModel)]="firstName"  [ngModelOptions]="{standalone: true}" required></ion-input>
+      </ion-item>
+      
+     
+  
+      <ion-item>
+        <ion-label position="floating">Prenom</ion-label>
+        <ion-input  type="text" [(ngModel)]="lastName" [ngModelOptions]="{standalone: true}" required></ion-input>
+      </ion-item>
+    
+      
+      <ion-item>
+        <ion-label position="floating">Numéro de téléphone</ion-label>
+        <ion-input  type="number" [(ngModel)]="phoneNumber" [ngModelOptions]="{standalone: true}"  required></ion-input>
+      </ion-item>
+
+       <ion-item>
+        <ion-label position="floating">Adresse Email</ion-label>
+        <ion-input  type="text" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Mot de passe</ion-label>
+        <ion-input type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Confirmer mot de passe</ion-label>
+        <ion-input  type="password" [(ngModel)]="confirmPassword" [ngModelOptions]="{standalone: true}" ></ion-input>
+      </ion-item>
+      
+       <ion-list >
+          <ion-radio-group >
+        <ion-item>
+          <ion-label>Inscrire tant que client</ion-label>
+          <ion-radio  value="1" checked></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Inscrire tant que estheticians</ion-label>
+          <ion-radio  value="2"></ion-radio>
+        </ion-item>
+        </ion-radio-group>
+      </ion-list>
+
+      <ion-item >
+        <ion-label position="floating">Votre code postal</ion-label>
+        <ion-input  type="number" [(ngModel)]="zipcode" [ngModelOptions]="{standalone: true}" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Votre horaire de diponibilité</ion-label>
+
+        
+        <ion-item *ngFor="let entry of hor">
+          <ion-label>{{entry.val}}</ion-label>
+          <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" [ngModelOptions]="{standalone: true}"></ion-checkbox>
+        </ion-item>
+      
+      </ion-item>
+      <!--[disabled]="!signupForm.valid"
+      
+  
+     
+      -->
+  
+    <ion-button color="success" style="width:100%;" type="submit"   >Inscription</ion-button>
+  </form>
+  </ion-content>
+  

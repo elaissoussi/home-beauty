@@ -6,7 +6,7 @@ import { API_URL } from './../app.constants';
 import { Observable } from 'rxjs';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 import { Router } from '@angular/router';
-
+import 'rxjs/add/operator/map';
 export const TOKEN = 'token'
 export const AUTHENTICATED_USER = 'authenticaterUser'
 
@@ -17,10 +17,17 @@ export const AUTHENTICATED_USER = 'authenticaterUser'
 export class AuthenticationService {  
   constructor(private http: HttpClient,private router: Router) { }
 
+  
+  // Change to this http://ed43bb3b.ngrok.io/api/register
+  static readonly REGISTER_URL = 'http://contoh.dev/api/register';
+  access: boolean;
+  token: string;
+
 executeJWTAuthenticationService(email, password) {
 
   return this.http.post<any>(
     `${API_URL}/login`,{
+    
       email,
       password
     }).pipe(
@@ -34,6 +41,21 @@ executeJWTAuthenticationService(email, password) {
     );
 
 }
+
+returnadresse(zipcode) {
+
+ 
+
+}
+/*.pipe(
+  map(
+    data => {
+     // sessionStorage.setItem(AUTHENTICATED_USER, zipcode);
+      //sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
+      return data;
+    }
+  )
+);*/
 
 isUserLoggedIn() {
   const user = sessionStorage.getItem(AUTHENTICATED_USER);
@@ -58,4 +80,21 @@ RedirectLogedUser(){
   this.router.navigate(['home']);
 
 }
+
+signup(email,password,firstName,lastName,phoneNumber){
+//http://localhost:8080/customers/sign-up
+//http://localhost:8080/estheticians/sign-up
+  return this.http.post<any>(
+    `${API_URL}/customers/sign-up`,{
+    
+      email,
+      password,
+      firstName,
+      lastName,
+      phoneNumber
+    })
+  }
+
+
+
 }

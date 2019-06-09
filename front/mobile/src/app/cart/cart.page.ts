@@ -39,4 +39,9 @@ export class CartPage {
     this.router.navigate(['home']);
     this.cartService.removeCart();
   }
+
+  openappointment(){
+    this.router.navigate(['appointment']);
+  
+  }
 }

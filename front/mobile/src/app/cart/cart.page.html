@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar>
       <ion-buttons slot="start">
-        <ion-back-button defaultHref="/haircare"></ion-back-button>
+        <ion-back-button defaultHref="/home/haircare"></ion-back-button>
       </ion-buttons>
       <ion-title>Mon cart</ion-title>
     </ion-toolbar>
@@ -21,11 +21,11 @@
         Total: <span slot="end">{{ total }} Euro</span>
       </ion-item>
 
-      <ion-button expand="block" (click)="placeOrder()">Passer Ma commande</ion-button>
+      <ion-button expand="block" (click)="openappointment()">Passer Ma commande</ion-button>
 
       <ion-button expand="block" (click)="removeCart()">Vider Mon panier</ion-button>
 
     </ion-list>
   
-    <ion-button color="green" expand="full">Afficher Calendrier </ion-button>
+    
   </ion-content>
