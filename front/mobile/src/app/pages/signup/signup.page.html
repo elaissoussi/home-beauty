@@ -52,28 +52,28 @@
           <ion-radio-group >
         <ion-item>
           <ion-label>Inscrire tant que client</ion-label>
-          <ion-radio  value="1" checked></ion-radio>
+          <ion-radio  value="customer" checked></ion-radio>
         </ion-item>
         <ion-item>
           <ion-label>Inscrire tant que estheticians</ion-label>
-          <ion-radio  value="2"></ion-radio>
+          <ion-radio  value="esthetician"></ion-radio>
         </ion-item>
         </ion-radio-group>
       </ion-list>
-
-      <ion-item >
-        <ion-label position="floating">Votre code postal</ion-label>
-        <ion-input  type="number" [(ngModel)]="zipcode" [ngModelOptions]="{standalone: true}" ></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Votre horaire de diponibilité</ion-label>
-
+      <ion-list *ngIf="isSelected('esthetician')">
+        <ion-item >
+          <ion-label position="floating">Votre code postal</ion-label>
+          <ion-input  type="number" [(ngModel)]="zipcode" [ngModelOptions]="{standalone: true}" ></ion-input>
         </ion-item>
-        <ion-item *ngFor="let entry of hor">
-          <ion-label>{{entry.val}}</ion-label>
-          <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" [ngModelOptions]="{standalone: true}"></ion-checkbox>
-        </ion-item>
-      
+        <ion-item>
+          <ion-label position="floating">Votre horaire de diponibilité</ion-label>
+
+          </ion-item>
+          <ion-item *ngFor="let entry of hor">
+            <ion-label>{{entry.val}}</ion-label>
+            <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" [ngModelOptions]="{standalone: true}"></ion-checkbox>
+          </ion-item>
+      </ion-list>
       
       <!--[disabled]="!signupForm.valid"
       

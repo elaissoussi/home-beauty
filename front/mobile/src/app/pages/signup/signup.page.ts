@@ -17,6 +17,8 @@ export class SignupPage implements OnInit {
     { val: '9-10', isChecked: false }
   ];
 
+  showServEst=false;
+
   email:String ;
   password:String ;
   firstName:string;
@@ -59,9 +61,24 @@ onSignUp() {
   
 }
 
-handleJWTAuthLogin() {
+private selectedLink: string="esthetician";        
   
-}
+  setradio(e: string): void   
+  {  
+  
+    this.selectedLink = e;  
+          
+  }  
+  
+    isSelected(name: string): boolean   
+  {  
+  
+        if (!this.selectedLink) {   
+            return false;  
+  }  
+  
+        return (this.selectedLink === name);  
+    }  
 
         
   
