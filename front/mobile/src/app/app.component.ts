@@ -16,11 +16,7 @@ import { Button } from 'protractor';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
-  public hor = [
-    { val: '7-8', isChecked: true },
-    { val: '8-9', isChecked: false },
-    { val: '9-10', isChecked: false }
-  ];
+  
 
   public pages = [
       {

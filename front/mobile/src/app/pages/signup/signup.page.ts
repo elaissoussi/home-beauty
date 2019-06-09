@@ -10,6 +10,13 @@ import { MustMatch } from 'src/app/_helpers/must-match/validator';
   styleUrls: ['./signup.page.scss'],
 })
 export class SignupPage implements OnInit {
+
+  public hor = [
+    { val: '7-8', isChecked: true },
+    { val: '8-9', isChecked: false },
+    { val: '9-10', isChecked: false }
+  ];
+
   email:String ;
   password:String ;
   firstName:string;
