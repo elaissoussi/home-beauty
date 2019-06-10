@@ -1,10 +1,10 @@
 package com.elaissoussi.back.entities;
 
-import javax.persistence.Entity;
+import javax.persistence.Entity;import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,7 +19,7 @@ public class Address {
   private String street;
   private String city ;
   
-  @OneToOne(mappedBy="address")
+  @ManyToOne(fetch=FetchType.LAZY)
   private User user;
   
   public int getZipCode() {

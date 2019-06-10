@@ -1,13 +1,15 @@
 package com.elaissoussi.back.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -28,9 +30,8 @@ public class User {
     private String phoneNumber;
     
     @JsonIgnore
-    @OneToOne
-    @JoinColumn(unique=true)
-    private Address address;
+    @OneToMany(mappedBy="user" , cascade = CascadeType.ALL)
+    private Set<Address> addresses = new HashSet<>();
     
     public Long getId() {
       return id;
@@ -68,10 +69,10 @@ public class User {
     public void setPhoneNumber(String phoneNumber) {
       this.phoneNumber = phoneNumber;
     }
-    public Address getAddress() {
-      return address;
+    public Set<Address> getAddresses() {
+      return addresses;
     }
-    public void setAddress(Address address) {
-      this.address = address;
+    public void setAddresses(Set<Address> addresses) {
+      this.addresses = addresses;
     }
 }
