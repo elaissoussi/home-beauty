@@ -19,9 +19,11 @@ export class AuthenticationService {
 
   
   // Change to this http://ed43bb3b.ngrok.io/api/register
-  static readonly REGISTER_URL = 'http://contoh.dev/api/register';
+  
   access: boolean;
   token: string;
+  customer:boolean;
+  esthetician:boolean;
 
 executeJWTAuthenticationService(email, password) {
 
@@ -42,20 +44,7 @@ executeJWTAuthenticationService(email, password) {
 
 }
 
-returnadresse(zipcode) {
 
- 
-
-}
-/*.pipe(
-  map(
-    data => {
-     // sessionStorage.setItem(AUTHENTICATED_USER, zipcode);
-      //sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
-      return data;
-    }
-  )
-);*/
 
 isUserLoggedIn() {
   const user = sessionStorage.getItem(AUTHENTICATED_USER);
@@ -81,9 +70,10 @@ RedirectLogedUser(){
 
 }
 
-signup(email,password,firstName,lastName,phoneNumber){
+signupCust(email,password,firstName,lastName,phoneNumber){
 //http://localhost:8080/customers/sign-up
 //http://localhost:8080/estheticians/sign-up
+
   return this.http.post<any>(
     `${API_URL}/customers/sign-up`,{
     
@@ -93,8 +83,25 @@ signup(email,password,firstName,lastName,phoneNumber){
       lastName,
       phoneNumber
     })
+  
+ 
   }
 
 
-
+  signupEsth(email,password,firstName,lastName,phoneNumber){
+    //http://localhost:8080/customers/sign-up
+    //http://localhost:8080/estheticians/sign-up
+    
+      return this.http.post<any>(
+        `${API_URL}/estheticians/sign-up`,{
+        
+          email,
+          password,
+          firstName,
+          lastName,
+          phoneNumber
+        })
+      
+     
+      }
 }

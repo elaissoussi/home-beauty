@@ -12,12 +12,19 @@ import { MustMatch } from 'src/app/_helpers/must-match/validator';
 export class SignupPage implements OnInit {
 
   public hor = [
-    { val: '7-8', isChecked: true },
+    { val: '7-8', isChecked: false },
     { val: '8-9', isChecked: false },
     { val: '9-10', isChecked: false }
   ];
 
-  showServEst=false;
+  public esthetician :Boolean;
+  public customer:boolean;
+  //public customer :Boolean=!this.esthetician;
+showserest(){
+  this.esthetician = !this.esthetician;
+}
+
+  
 
   email:String ;
   password:String ;
@@ -44,41 +51,37 @@ export class SignupPage implements OnInit {
     }
 
 onSignUp() {
-    
-  this.authenticationService.signup(this.email, this.password,this.lastName,this.firstName,this.phoneNumber)
+    if(this.customer===true){
+  this.authenticationService.signupCust(this.email, this.password,this.lastName,this.firstName,this.phoneNumber)
       .subscribe(
         data => {
           console.log(data);
-       //   this.router.navigate(['home']);
-        //  this.invalidLogin = false;
+      
         },
         error => {
           console.log(error);
-          //this.invalidLogin = true;
+      
         }
       )
+    }
+    else if(this.esthetician===true){
+      this.authenticationService.signupEsth(this.email, this.password,this.lastName,this.firstName,this.phoneNumber)
+      .subscribe(
+        data => {
+          console.log(data);
+      
+        },
+        error => {
+          console.log(error);
+      
+        }
+      )
+    }
 
   
 }
 
-private selectedLink: string="esthetician";        
-  
-  setradio(e: string): void   
-  {  
-  
-    this.selectedLink = e;  
-          
-  }  
-  
-    isSelected(name: string): boolean   
-  {  
-  
-        if (!this.selectedLink) {   
-            return false;  
-  }  
-  
-        return (this.selectedLink === name);  
-    }  
+
 
         
   

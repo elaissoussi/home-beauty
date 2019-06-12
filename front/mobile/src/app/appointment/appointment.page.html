@@ -45,18 +45,18 @@
     </ion-radio-group>
 
     <ion-list *ngIf="showComp">
-        <ion-radio-group>
+        
           
       
           <ion-item *ngFor="let item of infodata | keyvalue">
            
-              <ion-radio slot="start" value="{{item.key }}" ></ion-radio>
+              <ion-toggle slot="start" value="{{item.key }}" ></ion-toggle>
             <ion-label>{{item.key }}</ion-label>
             
           </ion-item>
       
           
-        </ion-radio-group>
+       
       </ion-list>
        
 

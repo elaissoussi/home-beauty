@@ -52,15 +52,15 @@
           <ion-radio-group >
         <ion-item>
           <ion-label>Inscrire tant que client</ion-label>
-          <ion-radio  value="customer" checked></ion-radio>
+          <ion-radio [(ngModel)]="customer" value="customer" [ngModelOptions]="{standalone: true}" checked></ion-radio>
         </ion-item>
         <ion-item>
           <ion-label>Inscrire tant que estheticians</ion-label>
-          <ion-radio  value="esthetician"></ion-radio>
+          <ion-radio [(ngModel)]="esthetician"  value="esthetician" [ngModelOptions]="{standalone: true}"></ion-radio>
         </ion-item>
         </ion-radio-group>
       </ion-list>
-      <ion-list *ngIf="isSelected('esthetician')">
+      <ion-list *ngIf="esthetician">
         <ion-item >
           <ion-label position="floating">Votre code postal</ion-label>
           <ion-input  type="number" [(ngModel)]="zipcode" [ngModelOptions]="{standalone: true}" ></ion-input>
@@ -71,14 +71,16 @@
           </ion-item>
           <ion-item *ngFor="let entry of hor">
             <ion-label>{{entry.val}}</ion-label>
-            <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" [ngModelOptions]="{standalone: true}"></ion-checkbox>
+            
+            <ion-toggle slot="end" [(ngModel)]="entry.isChecked" [ngModelOptions]="{standalone: true}" color="dark"></ion-toggle>
           </ion-item>
       </ion-list>
       
       <!--[disabled]="!signupForm.valid"
       
   
-     
+     <ion-checkbox slot="end" [(ngModel)]="entry.isChecked" [ngModelOptions]="{standalone: true}"></ion-checkbox>
+            
       -->
   
     <ion-button color="success" style="width:100%;" type="submit"   >Inscription</ion-button>
