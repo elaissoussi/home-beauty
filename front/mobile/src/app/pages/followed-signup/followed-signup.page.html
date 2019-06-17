@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar >
+      
+    
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="signup"></ion-back-button>
+        </ion-buttons>
+      
+    <ion-title>Inscription</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <form>
+       
+        <ion-list >
+          <ion-item >
+            <ion-label position="floating">Votre code postal</ion-label>
+            <ion-input  type="number" [(ngModel)]="zipcode" [ngModelOptions]="{standalone: true}" ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Votre horaire de disponibilité</ion-label>
+          </ion-item>
+          
+          <ion-card *ngFor="let day of days">
+              <ion-card-header>
+                
+                <ion-card-title>{{day}}: </ion-card-title>
+              </ion-card-header>
+            
+              <ion-card-content *ngFor="let entry of hor">
+                  <ion-label>{{entry.val}}</ion-label>
+                
+                  <ion-toggle slot="end" value="{{i+1}}" [(ngModel)]="entry.isChecked" [ngModelOptions]="{standalone: true}" ></ion-toggle>
+                
+              </ion-card-content>
+            </ion-card>
+
+           
+          
+        </ion-list>
+        
+       <!--
+
+         <ion-item *ngFor="let day of days">
+                {{day}}: 
+                <ion-item *ngFor="let entry of hor">
+                  
+                  <ion-label>{{entry.val}}</ion-label>
+                
+
+            
+              <ion-toggle slot="end" [(ngModel)]="entry.isChecked" [ngModelOptions]="{standalone: true}" ></ion-toggle>
+            
+            </ion-item>
+            </ion-item>
+
+       -->
+    
+      <ion-button color="success" style="width:100%;" type="submit"   >Valider</ion-button>
+    </form>
+
+</ion-content>

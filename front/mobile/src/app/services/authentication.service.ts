@@ -21,7 +21,7 @@ export class AuthenticationService {
   // Change to this http://ed43bb3b.ngrok.io/api/register
   
   access: boolean;
-  token: string;
+  token: string= 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYWFAZmZmIiwiZXhwIjoxNTYxMjQ3NTQ5fQ.4-y2qg-7Esy2INe3Sra0WSqXiNBruQowFeHl6nCpTEL8YM2hMS0umhTtbzpCZDgjjgVhsObY-3ptpMEpE8OGuQ';
   customer:boolean;
   esthetician:boolean;
 
@@ -82,7 +82,15 @@ signupCust(email,password,firstName,lastName,phoneNumber){
       firstName,
       lastName,
       phoneNumber
-    })
+    }).pipe(
+      map(
+        data => {
+          sessionStorage.setItem(AUTHENTICATED_USER, email);
+          //sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
+          return data;
+        }
+      )
+    );
   
  
   }
@@ -100,7 +108,15 @@ signupCust(email,password,firstName,lastName,phoneNumber){
           firstName,
           lastName,
           phoneNumber
-        })
+        }).pipe(
+          map(
+            data => {
+              sessionStorage.setItem(AUTHENTICATED_USER, email);
+             // sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
+              return data;
+            }
+          )
+        );
       
      
       }

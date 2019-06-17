@@ -4,6 +4,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { NavController, AlertController } from '@ionic/angular';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { MustMatch } from 'src/app/_helpers/must-match/validator';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
@@ -11,11 +12,7 @@ import { MustMatch } from 'src/app/_helpers/must-match/validator';
 })
 export class SignupPage implements OnInit {
 
-  public hor = [
-    { val: '7-8', isChecked: false },
-    { val: '8-9', isChecked: false },
-    { val: '9-10', isChecked: false }
-  ];
+ 
 
   public esthetician :Boolean;
   public customer:boolean;
@@ -35,7 +32,7 @@ showserest(){
   createSuccess = false;
   registerCredentials :User; 
   signupForm: FormGroup;
-  constructor(private authenticationService:AuthenticationService,
+  constructor(private authenticationService:AuthenticationService,private router:Router,
     private navCrl: NavController,private alertCtrl: AlertController,private formBuilder :FormBuilder) { 
     this.signupForm = this.formBuilder.group({
       firstName: ['', Validators.required],
@@ -56,7 +53,7 @@ onSignUp() {
       .subscribe(
         data => {
           console.log(data);
-      
+          this.router.navigate(['home']);
         },
         error => {
           console.log(error);
@@ -64,12 +61,12 @@ onSignUp() {
         }
       )
     }
-    else if(this.esthetician===true){
+     if(this.esthetician===true){
       this.authenticationService.signupEsth(this.email, this.password,this.lastName,this.firstName,this.phoneNumber)
       .subscribe(
         data => {
           console.log(data);
-      
+          this.router.navigate(['followed-signup']);
         },
         error => {
           console.log(error);

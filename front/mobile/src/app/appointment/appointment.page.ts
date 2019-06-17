@@ -33,24 +33,22 @@ export class AppointmentPage implements OnInit {
     results: Observable<any>;
     url = `${API_URL}/estheticians/`;
     infodata =[];
-    //infodata2=[][];
+  
   showEsth(){
 
     
     //console.log(zipcode);
          let headers = new HttpHeaders().set('Content-Type', 'application/json');
-         headers = headers.set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlc3RoZXRpY2lhbkBnbWFpbC5jb20iLCJleHAiOjE1NjAxMjMwMTh9.42luPEyReEdTO1PflbP4DG7G_U0DNsdGB8KZHTYZvra5rtJf7b1W-NopdaIFc0oopyTD8D1hQgLt7IL1ifCmtw');
+         headers = headers.set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYWFAZmZmIiwiZXhwIjoxNTYxMjQ3NTQ5fQ.4-y2qg-7Esy2INe3Sra0WSqXiNBruQowFeHl6nCpTEL8YM2hMS0umhTtbzpCZDgjjgVhsObY-3ptpMEpE8OGuQ');
          
          this.showComp=true;
          this.zipc = this.http.get<any>(`${API_URL}/estheticians/zipcode/${this.zipcode}/date/01-01-2019`,{headers});
-         this.zipc
+         this.zipc 
           .subscribe(data => {
             this.infodata= data;
            let map = new Map([data]);
             console.log('my data: ',map); 
-            //this.infodata2=(Object.values(this.infodata));
-            //let mykey = Object.keys(this.infodata);
-           // return this.infodata;
+          
           });
        
   }
