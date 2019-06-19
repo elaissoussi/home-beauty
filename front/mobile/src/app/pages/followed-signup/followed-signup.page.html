@@ -12,7 +12,7 @@
 
 <ion-content padding>
 
-    <form>
+    <form (ngSubmit)="onSignUp()">
        
         <ion-list >
           <ion-item >
@@ -23,21 +23,7 @@
             <ion-label position="floating">Votre horaire de disponibilité</ion-label>
           </ion-item>
           
-          <ion-card *ngFor="let day of days">
-              <ion-card-header>
-                
-                <ion-card-title>{{day}} </ion-card-title>
-              </ion-card-header>
-            
-              <ion-card-content *ngFor="let entry of hor">
-                  <ion-label>{{entry.val}}</ion-label>
-                
-                  <ion-toggle slot="end" value="{{i+1}}" [(ngModel)]="entry.isChecked" [ngModelOptions]="{standalone: true}" ></ion-toggle>
-                
-              </ion-card-content>
-            </ion-card>
-
-           
+       
           
         </ion-list>
         
@@ -62,8 +48,9 @@
           
        
         </div>
-    <ion-input type="hidden" value="4"></ion-input>
+
+    <ion-input type="hidden"  [(ngModel)]="idestheticians" [ngModelOptions]="{standalone: true}" value="{{idesthetician}}"></ion-input>
       <ion-button color="success" style="width:100%;" type="submit"   >Valider</ion-button>
     </form>
-    <ion-button (click)="getInfoEsth()"   >IDEsth</ion-button>
+    <ion-button  >{{idesthetician}}</ion-button>
 </ion-content>

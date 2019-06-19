@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Storage } from '@ionic/storage';
+import { isDeepStrictEqual } from 'util';
+import { Route, Router } from '@angular/router';
 @Component({
   selector: 'app-followed-signup',
   templateUrl: './followed-signup.page.html',
@@ -54,9 +56,20 @@ export class FollowedSignupPage implements OnInit {
     { val: '8-9', isChecked: false },
     { val: '9-10', isChecked: false }
   ];*/
+  public idesthetician;
 
+  constructor(private authservice : AuthenticationService,private storage: Storage,private router: Router) {
 
-  constructor(private authservice : AuthenticationService,private storage: Storage) { }
+  
+   
+   this.storage.get('idEsth').then((idest) => {
+     this.idesthetician=idest;
+    console.log('Your Id is', idest);
+  });
+  }
+
+  //idEsthetic:number = idesthetician;
+
   sliderConfig = {
     slidesPerView: 1.6,
     spaceBetween: 10,
@@ -67,15 +80,14 @@ export class FollowedSignupPage implements OnInit {
   getdis(){
     return this.data;
   }
-getInfoEsth(){
-  this.storage.get('idEsth').then((val) => {
-    console.log('Your Id is', val);
-  });
-}
+
+   
+zipcode:number;
+idestheticians:number;
 
   onSignUp() {
-   /* if(this.customer===true){
-  this.authenticationService.signupCust(this.email, this.password,this.lastName,this.firstName,this.phoneNumber)
+  
+  this.authservice.signupEsthZipcode(this.zipcode,this.idestheticians)
       .subscribe(
         data => {
           console.log(data);
@@ -86,11 +98,11 @@ getInfoEsth(){
       
         }
       )
-    }*/
+    }
     
 
   
-}
+
 
   ngOnInit() {
   }

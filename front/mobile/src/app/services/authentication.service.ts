@@ -123,7 +123,27 @@ signupCust(email,password,firstName,lastName,phoneNumber){
             }
           )
         );
-      
-     
       }
+
+
+      signupEsthZipcode(zipcode,idesthetician){
+        //http://localhost:8080/customers/sign-up
+        //http://localhost:8080/estheticians/sign-up
+        //${API_URL}/estheticians/zipcode/${zipcode}
+        
+          return this.http.post<any>(
+            `${API_URL}/estheticians/zipcode`,{
+            
+              zipcode,
+              idesthetician
+            }).pipe(
+              map(
+                data => {
+                
+                  return data;
+                
+                }
+              )
+            );
+          }
 }
