@@ -26,7 +26,7 @@
           <ion-card *ngFor="let day of days">
               <ion-card-header>
                 
-                <ion-card-title>{{day}}: </ion-card-title>
+                <ion-card-title>{{day}} </ion-card-title>
               </ion-card-header>
             
               <ion-card-content *ngFor="let entry of hor">
@@ -41,24 +41,29 @@
           
         </ion-list>
         
-       <!--
-
-         <ion-item *ngFor="let day of days">
-                {{day}}: 
-                <ion-item *ngFor="let entry of hor">
-                  
-                  <ion-label>{{entry.val}}</ion-label>
-                
-
-            
-              <ion-toggle slot="end" [(ngModel)]="entry.isChecked" [ngModelOptions]="{standalone: true}" ></ion-toggle>
-            
-            </ion-item>
-            </ion-item>
-
-       -->
+        <div *ngFor="let cat of data" class="category-block">
+   
+          <ion-row no-padding class="category-banner">
+            <ion-col text-left button tappable (click)="cat.expanded = !cat.expanded" align-self-center>
+              {{ cat.Days }}
+            </ion-col>
+          </ion-row>
+       
     
+            <div *ngFor="let product of cat.products">
+              <div *ngIf="cat.expanded">
+              
+                <ion-item>
+                      {{ product.val }}  <ion-toggle slot="end"  [(ngModel)]="product.isChecked" [ngModelOptions]="{standalone: true}" ></ion-toggle>
+                  </ion-item>
+               
+              </div> 
+            </div>
+          
+       
+        </div>
+    <ion-input type="hidden" value="4"></ion-input>
       <ion-button color="success" style="width:100%;" type="submit"   >Valider</ion-button>
     </form>
-
+    <ion-button (click)="getInfoEsth()"   >IDEsth</ion-button>
 </ion-content>

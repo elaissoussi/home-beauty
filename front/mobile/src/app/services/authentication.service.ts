@@ -7,15 +7,16 @@ import { Observable } from 'rxjs';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/map';
+import { Storage } from '@ionic/storage';
 export const TOKEN = 'token'
 export const AUTHENTICATED_USER = 'authenticaterUser'
-
+export const ID_USER = 'id_user'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {  
-  constructor(private http: HttpClient,private router: Router) { }
+  constructor(private http: HttpClient,private router: Router,private storage: Storage) { }
 
   
   // Change to this http://ed43bb3b.ngrok.io/api/register
@@ -86,6 +87,7 @@ signupCust(email,password,firstName,lastName,phoneNumber){
       map(
         data => {
           sessionStorage.setItem(AUTHENTICATED_USER, email);
+        
           //sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
           return data;
         }
@@ -112,8 +114,12 @@ signupCust(email,password,firstName,lastName,phoneNumber){
           map(
             data => {
               sessionStorage.setItem(AUTHENTICATED_USER, email);
+              
+            //  sessionStorage.setItem(ID_USER, );
              // sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
+               this.storage.set('idEsth',data.id);
               return data;
+            
             }
           )
         );
