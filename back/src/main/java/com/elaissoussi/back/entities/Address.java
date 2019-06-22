@@ -1,6 +1,7 @@
 package com.elaissoussi.back.entities;
 
-import javax.persistence.Entity;import javax.persistence.FetchType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,6 +40,12 @@ public class Address {
   }
   public void setStreet(String street) {
     this.street = street;
+  }
+  public User getUser() {
+    return user;
+  }
+  public void setUser(User user) {
+    this.user = user;
   } 
   
 }

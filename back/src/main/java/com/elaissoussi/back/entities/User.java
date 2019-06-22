@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,7 +31,9 @@ public class User {
     private String phoneNumber;
     
     @JsonIgnore
-    @OneToMany(mappedBy="user" , cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="user" , 
+               cascade = CascadeType.ALL,
+               fetch=FetchType.LAZY)
     private Set<Address> addresses = new HashSet<>();
     
     public Long getId() {
