@@ -1,7 +1,7 @@
 package com.elaissoussi.back.services.impl;
 
-import java.util.Arrays;
-import java.util.Comparator;
+
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -26,10 +26,14 @@ public class EsthesticianServiceImpl implements EsthesticianService {
   public Map<Availability, Set<Esthetician>> getAvailabilities(int zipCode, Date date) {
 
     Set<Esthetician> esthesticians = estheticianRepository.findByZipCode(zipCode);
-
+    
+    Calendar calendar = Calendar.getInstance();
+    calendar.setTime(date);
+    int i = calendar.get(Calendar.DAY_OF_WEEK);
+    
     List<Availability> availabilities =
         esthesticians.stream().map(e -> e.getAvailabilities()).flatMap(e -> e.stream())
-            .filter(a -> a.getStartTime().after(date)).collect(Collectors.toList());
+            .filter(a -> a.getDayOfWeak() > i).collect(Collectors.toList());
 
     // Group by Esthetician
     Map<Availability, Set<Esthetician>> availabilitiesMap =

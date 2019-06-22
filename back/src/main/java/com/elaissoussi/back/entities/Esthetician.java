@@ -24,7 +24,9 @@ public class Esthetician extends User {
   private Set<Service> services = new HashSet<>();
   
   @JsonIgnore
-  @OneToMany(mappedBy="esthetician" , cascade = CascadeType.ALL)
+  @OneToMany(mappedBy="esthetician" , 
+             cascade = CascadeType.ALL,
+             fetch =FetchType.LAZY)
   private Set<Availability> availabilities = new HashSet<>();
   
   public Set<Service> getServices() {

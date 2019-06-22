@@ -20,7 +20,7 @@ public class AddressController {
   UserRepository userRepository;
 
   @PostMapping("/{userId}")
-  public Address addAddress(@RequestBody Address address, @PathVariable("userId") Long userId) {
+  public User addAddress(@RequestBody Address address, @PathVariable("userId") Long userId) {
 
     User user = userRepository.findOne(userId);
 
@@ -30,8 +30,6 @@ public class AddressController {
     user.setAddresses(addresses);
     address.setUser(user);
 
-    userRepository.save(user);
-
-    return address;
+   return  userRepository.save(user);
   }
 }
