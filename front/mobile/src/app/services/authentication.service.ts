@@ -16,7 +16,10 @@ export const ID_USER = 'id_user'
   providedIn: 'root'
 })
 export class AuthenticationService {  
-  constructor(private http: HttpClient,private router: Router,private storage: Storage) { }
+  constructor(private http: HttpClient,private router: Router,private storage: Storage) {
+
+
+   }
 
   
   // Change to this http://ed43bb3b.ngrok.io/api/register
@@ -126,17 +129,15 @@ signupCust(email,password,firstName,lastName,phoneNumber){
       }
 
 
-      signupEsthZipcode(zipcode,idesthetician){
-        //http://localhost:8080/customers/sign-up
-        //http://localhost:8080/estheticians/sign-up
-        //${API_URL}/estheticians/zipcode/${zipcode}
-        
-          return this.http.post<any>(
-            `${API_URL}/estheticians/zipcode`,{
-            
-              zipcode,
-              idesthetician
-            }).pipe(
+      signupEsthZipcode(zipCode,userId){
+      
+        //Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbGtoQGVsYWkiLCJleHAiOjE1NjIzNzk5OTl9.M-AUJeoXqprLIoSFvDB67cs0BCZAgECXOJAZLL731OZ8aSHQajgmFAYB9-xUOVwNwhBxoE0FWtc_fj256GpO6A
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+         headers = headers.set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbGtoQGVsYWkiLCJleHAiOjE1NjIzNzk5OTl9.M-AUJeoXqprLIoSFvDB67cs0BCZAgECXOJAZLL731OZ8aSHQajgmFAYB9-xUOVwNwhBxoE0FWtc_fj256GpO6A');
+          
+        return this.http.post<any>(
+            `${API_URL}/addresses/${userId}`,{zipCode,userId},{headers})
+            .pipe(
               map(
                 data => {
                 

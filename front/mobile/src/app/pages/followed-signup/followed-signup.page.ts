@@ -56,14 +56,14 @@ export class FollowedSignupPage implements OnInit {
     { val: '8-9', isChecked: false },
     { val: '9-10', isChecked: false }
   ];*/
-  public idesthetician;
+  public userId;
 
   constructor(private authservice : AuthenticationService,private storage: Storage,private router: Router) {
 
   
    
    this.storage.get('idEsth').then((idest) => {
-     this.idesthetician=idest;
+     this.userId=idest;
     console.log('Your Id is', idest);
   });
   }
@@ -82,12 +82,13 @@ export class FollowedSignupPage implements OnInit {
   }
 
    
-zipcode:number;
-idestheticians:number;
+  zipCode:number;
+
 
   onSignUp() {
+    
   
-  this.authservice.signupEsthZipcode(this.zipcode,this.idestheticians)
+  this.authservice.signupEsthZipcode(this.zipCode,this.userId)
       .subscribe(
         data => {
           console.log(data);
