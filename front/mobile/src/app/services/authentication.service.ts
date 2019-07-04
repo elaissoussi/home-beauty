@@ -25,7 +25,7 @@ export class AuthenticationService {
   // Change to this http://ed43bb3b.ngrok.io/api/register
   
   access: boolean;
-  token: string= 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYWFAZmZmIiwiZXhwIjoxNTYxMjQ3NTQ5fQ.4-y2qg-7Esy2INe3Sra0WSqXiNBruQowFeHl6nCpTEL8YM2hMS0umhTtbzpCZDgjjgVhsObY-3ptpMEpE8OGuQ';
+  token: string//= 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYWFAZmZmIiwiZXhwIjoxNTYxMjQ3NTQ5fQ.4-y2qg-7Esy2INe3Sra0WSqXiNBruQowFeHl6nCpTEL8YM2hMS0umhTtbzpCZDgjjgVhsObY-3ptpMEpE8OGuQ';
   customer:boolean;
   esthetician:boolean;
 

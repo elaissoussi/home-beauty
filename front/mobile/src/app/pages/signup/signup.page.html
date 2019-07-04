@@ -49,18 +49,18 @@
       </ion-item>
       
        <ion-list >
-          <ion-radio-group >
-        <ion-item>
-          <ion-label>Inscrire tant que client</ion-label>
-          <ion-radio [(ngModel)]="customer" value="customer" [ngModelOptions]="{standalone: true}" checked></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Inscrire tant que estheticians</ion-label>
-          <ion-radio [(ngModel)]="esthetician"  value="esthetician" [ngModelOptions]="{standalone: true}"></ion-radio>
-        </ion-item>
+          <ion-radio-group [(ngModel)]="type"  name="type" >
+            <ion-item>
+              <ion-label>Inscrire tant que client</ion-label>
+              <ion-radio  value="customer"  checked></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Inscrire tant que estheticians</ion-label>
+              <ion-radio  value="esthetician" ></ion-radio>
+            </ion-item>
         </ion-radio-group>
       </ion-list>
-     
+      
       
       <!--[disabled]="!signupForm.valid"
       

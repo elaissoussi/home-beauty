@@ -14,12 +14,9 @@ export class SignupPage implements OnInit {
 
  
 
-  public esthetician :Boolean;
-  public customer:boolean;
+ 
   //public customer :Boolean=!this.esthetician;
-showserest(){
-  this.esthetician = !this.esthetician;
-}
+
 
   
 
@@ -46,9 +43,12 @@ showserest(){
     validator: MustMatch('password', 'confirmPassword')
 });
     }
-
+public type :string;
+  //public customer:boolean;
 onSignUp() {
-    if(this.customer===true){
+  
+    if(this.type==="customer"){
+    //  this.esthetician=false;
   this.authenticationService.signupCust(this.email, this.password,this.lastName,this.firstName,this.phoneNumber)
       .subscribe(
         data => {
@@ -60,9 +60,12 @@ onSignUp() {
       
         }
       )
-    }
-     if(this.esthetician===true){
-      this.authenticationService.signupEsth(this.email, this.password,this.lastName,this.firstName,this.phoneNumber)
+     console.log("Customers bien enregistrer");
+    } 
+   else
+   {
+      // this.customer=false;
+     this.authenticationService.signupEsth(this.email, this.password,this.lastName,this.firstName,this.phoneNumber)
       .subscribe(
         data => {
           console.log(data);
@@ -71,8 +74,9 @@ onSignUp() {
         error => {
           console.log(error);
       
-        }
+        } 
       )
+      console.log("Esthetician bien enregistrer");
     }
 
   
