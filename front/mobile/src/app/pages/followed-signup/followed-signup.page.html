@@ -19,38 +19,51 @@
             <ion-label position="floating">Votre code postal</ion-label>
             <ion-input  type="number" [(ngModel)]="zipCode" [ngModelOptions]="{standalone: true}" ></ion-input>
           </ion-item>
-          <ion-item>
-            <ion-label position="floating">Votre horaire de disponibilité</ion-label>
-          </ion-item>
-          
-       
+         
           
         </ion-list>
         
-        <div *ngFor="let cat of data" class="category-block">
-   
-          <ion-row no-padding class="category-banner">
-            <ion-col text-left button tappable (click)="cat.expanded = !cat.expanded" align-self-center>
-              {{ cat.Days }}
-            </ion-col>
-          </ion-row>
-       
-    
-            <div *ngFor="let product of cat.products">
-              <div *ngIf="cat.expanded">
-              
-                <ion-item>
-                      {{ product.val }}  <ion-toggle slot="end"  [(ngModel)]="product.isChecked" [ngModelOptions]="{standalone: true}" ></ion-toggle>
-                  </ion-item>
-               
-              </div> 
-            </div>
-          
-       
-        </div>
+        
 
     <ion-input type="hidden"  [(ngModel)]="user_id" [ngModelOptions]="{standalone: true}" value="{{idesthetician}}"></ion-input>
       <ion-button color="success" style="width:100%;" type="submit"   >Valider</ion-button>
+      <ion-button  style="width:100%;" (click)="showDaysAndTimes()" >Show</ion-button>
+      
+      
+      
     </form>
-    <ion-button  >{{idesthetician}}</ion-button>
+    <div *ngIf="showTimes">
+    <form (ngSubmit)="sendAvailabilities()">
+      <div>
+      
+            <ion-label position="floating">Votre horaire de disponibilité</ion-label>
+          
+         </div> 
+       
+
+        <div *ngFor="let cat of availabilities" class="category-block">
+   
+            <ion-row no-padding class="category-banner">
+              <ion-col text-left button tappable (click)="cat.expanded = !cat.expanded" align-self-center>
+                {{ cat.Days }}
+              </ion-col>
+            </ion-row>
+         
+      
+              <div *ngFor="let av of cat.hours">
+                <div *ngIf="cat.expanded">
+                
+                  <ion-item>
+                        {{ av.val }}  <ion-toggle slot="end" (ionChange)="av.isChecked" [(ngModel)]="av.isChecked" [ngModelOptions]="{standalone: true}" ></ion-toggle>
+                    </ion-item>
+                 
+                </div> 
+              </div>
+            
+         
+          </div>
+          <ion-button style="width:100%;" type="submit"  >Valider</ion-button>
+
+    </form>
+  </div>
 </ion-content>

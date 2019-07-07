@@ -131,9 +131,8 @@ signupCust(email,password,firstName,lastName,phoneNumber){
 
       signupEsthZipcode(zipCode,userId){
       
-        //Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbGtoQGVsYWkiLCJleHAiOjE1NjIzNzk5OTl9.M-AUJeoXqprLIoSFvDB67cs0BCZAgECXOJAZLL731OZ8aSHQajgmFAYB9-xUOVwNwhBxoE0FWtc_fj256GpO6A
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
-         headers = headers.set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbGtoQGVsYWkiLCJleHAiOjE1NjIzNzk5OTl9.M-AUJeoXqprLIoSFvDB67cs0BCZAgECXOJAZLL731OZ8aSHQajgmFAYB9-xUOVwNwhBxoE0FWtc_fj256GpO6A');
+         headers = headers.set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYmRvQGFiZG8uY29tIiwiZXhwIjoxNTYzMTQ3NjYwfQ.zQVjR1g67FzSIRGuCMVrWeUQGaYe2s9z69s5mKO-2Qxs-PLNsOkbYYof4zU22_69mmO9FI7JTtXEP4qy5mzg_w');
           
         return this.http.post<any>(
             `${API_URL}/addresses/${userId}`,{zipCode,userId},{headers})
@@ -146,5 +145,12 @@ signupCust(email,password,firstName,lastName,phoneNumber){
                 }
               )
             );
+
+           
           }
+          /*##########################*/
+
+         
+
+          
 }
