@@ -132,7 +132,7 @@ signupCust(email,password,firstName,lastName,phoneNumber){
       signupEsthZipcode(zipCode,userId){
       
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
-         headers = headers.set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYmRvQGFiZG8uY29tIiwiZXhwIjoxNTYzMTQ3NjYwfQ.zQVjR1g67FzSIRGuCMVrWeUQGaYe2s9z69s5mKO-2Qxs-PLNsOkbYYof4zU22_69mmO9FI7JTtXEP4qy5mzg_w');
+         headers = headers.set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYmRvQGFiZG8uY29tIiwiZXhwIjoxNTY0OTY0MTUyfQ.tlMiM7FtL6sg-E0LiwiKVp8-o7RrjxbVyqs536r6OKfn-r0IVhysOSchilPUImEaK46QHOPDqn__JJOX_WySFQ');
           
         return this.http.post<any>(
             `${API_URL}/addresses/${userId}`,{zipCode,userId},{headers})
@@ -148,8 +148,33 @@ signupCust(email,password,firstName,lastName,phoneNumber){
 
            
           }
-          /*##########################*/
+    
 
+
+          sendAvailabilities(esthAvai) {
+
+            
+        
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+        headers = headers.set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhaG1hZEBhaG1hZC5jb20iLCJleHAiOjE1NjUxMzQ0MDJ9.eWYoqJ114Ci5JEiw41oKgNoer9e-sSbgazNT0poAkEIfDrf38F6OT8WSaj2Civg1yMsuyjJUv_63XZciF-EzIg');
+  
+        console.log(esthAvai);
+        
+        return this.http.post<any>(
+          `${API_URL}/availabilities/229376`,{esthAvai},{headers})
+        
+          .pipe(
+            map(
+              data => {
+               
+                return data;
+              
+              }
+            )
+          );
+     
+  
+    }
          
 
           

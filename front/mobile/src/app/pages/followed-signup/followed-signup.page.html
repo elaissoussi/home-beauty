@@ -26,13 +26,13 @@
         
 
     <ion-input type="hidden"  [(ngModel)]="user_id" [ngModelOptions]="{standalone: true}" value="{{idesthetician}}"></ion-input>
-      <ion-button color="success" style="width:100%;" type="submit"   >Valider</ion-button>
-      <ion-button  style="width:100%;" (click)="showDaysAndTimes()" >Show</ion-button>
+      <ion-button color="success" (click)="showDaysAndTimes()"  style="width:100%;" type="submit"   >Valider</ion-button>
+      
       
       
       
     </form>
-    <div *ngIf="showTimes">
+    <div *ngIf="showAvailibilities">
     <form (ngSubmit)="sendAvailabilities()">
       <div>
       

@@ -2,7 +2,7 @@ import { User, UserType } from './../../user.model';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { NavController, AlertController } from '@ionic/angular';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
 import { MustMatch } from 'src/app/_helpers/must-match/validator';
 import { Router } from '@angular/router';
 @Component({
@@ -28,16 +28,17 @@ export class SignupPage implements OnInit {
   
   createSuccess = false;
   registerCredentials :User; 
-  signupForm: FormGroup;
+   signupForm: FormGroup;
+
   constructor(private authenticationService:AuthenticationService,private router:Router,
     private navCrl: NavController,private alertCtrl: AlertController,private formBuilder :FormBuilder) { 
     this.signupForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      email: ['',[ Validators.required, Validators.email]],
-      phoneNumber: ['', Validators.required],
-      confirmPassword: ['', Validators.required],
+      firstName1: ['', Validators.required],
+      lastName1: ['', Validators.required],
+      password1: ['', [Validators.required, Validators.minLength(6)]],
+      email1: ['',[ Validators.required, Validators.email]],
+      phoneNumber1: ['', Validators.required],
+      confirmPassword1: ['', Validators.required],
       type: ['', Validators.required],
    }, {
     validator: MustMatch('password', 'confirmPassword')
