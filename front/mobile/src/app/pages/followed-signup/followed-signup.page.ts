@@ -139,7 +139,7 @@ public pro;
 
   onSignUp() {
     
-  
+  /*
   this.authservice.signupEsthZipcode(this.zipCode,this.userId)
       .subscribe(
         data => {
@@ -151,6 +151,7 @@ public pro;
       
         }
       )
+      */
     }
     
    

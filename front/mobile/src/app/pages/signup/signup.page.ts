@@ -47,8 +47,9 @@ export class SignupPage implements OnInit {
 public type :string;
   //public customer:boolean;
 onSignUp() {
-  
+  /*
     if(this.type==="customer"){
+
     //  this.esthetician=false;
   this.authenticationService.signupCust(this.email, this.password,this.lastName,this.firstName,this.phoneNumber)
       .subscribe(
@@ -79,8 +80,7 @@ onSignUp() {
       )
       console.log("Esthetician bien enregistrer");
     }
-
-  
+  */
 }
 
 

@@ -1,106 +1,65 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
+import { API_URL, AUTHENTICATED_USER, SESSION_CART} from './../app.constants';
 
-export class Product{
-    id : number;
-    name: String;
-    price : number;
-    image : String;
-}
+import {JsonConvert, Any} from "json2typescript"
+import { Cart } from '../models/Cart';
+import { CartEntry } from '../models/CartEntry';
+import { Product } from '../models/Product';
 
-export class Entry{
-    product : Product;
-    quantity: number;
-
-    constructor(product: Product, quantity:number){
-      this.product=product;
-      this.quantity =quantity;
-    };
-}
-
-export const SESSION_CART = 'session_cart';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
   
+  constructor(public storage: Storage, public httpClient:HttpClient) {}
 
-  constructor(public storage: Storage) {}
-
-  getCart() : Promise<Entry[]> {
-      
-      return this.storage.get(SESSION_CART);
-  }
-  
-  addToCart(product : Product, quantity : number) : Promise<any> {
-      
-    return this.storage.get(SESSION_CART).then((cart:Entry[]) => {
-    
-      if(cart)
-      {
-        var entryIndex = cart.findIndex( e => e != null && e.product.id == product.id);
-        if(entryIndex > -1 )
-        {
-          var updateEntry = cart[entryIndex];
-          updateEntry.quantity += quantity;
-          cart[entryIndex] = updateEntry;
-        }
-        else
-        {
-          var newEntry = new Entry(product, quantity);
-          cart.push(newEntry);
-        }
-        
-        return this.storage.set(SESSION_CART, cart);
-
-      }else
-      {
-        var firstEntry = new Entry(product, quantity);
-        return this.storage.set(SESSION_CART, [firstEntry]);
-      }
-
-    });
-  
-    }
-
-  removeFromCart(entryToRemove : Entry) : Promise<Entry[]>{
-    return this.storage.get(SESSION_CART).then( (cart:Entry[]) => {
-      if(cart){
-        var newCart : Entry[] = [];
-        cart.forEach(entry => {
-          if(entryToRemove.product.id != entry.product.id){
-            newCart.push(entry); 
-          }
-        });
-        return this.storage.set(SESSION_CART, newCart);
-      }
-    });
+  getCart(): Observable<Any>{
+    let customer = sessionStorage.getItem(AUTHENTICATED_USER);
+    return this.httpClient.get(`${API_URL}/cart?customer=${customer}`);
   }
 
-  getProductsCartNumber(cart:Entry[]) : number{
+  updateCart(product : Product, quantity : number) : Observable<Any> {
+    let customer = sessionStorage.getItem(AUTHENTICATED_USER);
+    return this.httpClient.post(`${API_URL}/cart/updateCart?customer=${customer}&service=${product.id}&quantity=${quantity}`,{});
+  }
+
+  getProductsCartNumber(cart : Cart) : number {
       var totalItems = 0 ; 
       if(cart)
       {
-          cart.forEach(e => {
+          cart.entries.forEach(e => {
           totalItems += e.quantity;
           });
       }
       return totalItems; 
   }
 
-  getTotalCart(cart:Entry[]) : number{
-    var totalCart = 0 ; 
+  getTotalCart(cart : Cart) : number{
+    let totalCart = 0 ; 
     if(cart)
     {
-        cart.forEach(e => {
-          totalCart += (e.product.price * e.quantity );
+        cart.entries.forEach(e => {
+          totalCart += e.product.price * e.quantity ; 
         });
     }
     return totalCart; 
   }
 
-  removeCart(){
-    this.storage.remove(SESSION_CART);
+  convert(cartJson : Any) : Cart{
+
+        let jsonConvert : JsonConvert = new JsonConvert();        
+        let cart: Cart;
+        
+        try {
+            cart = jsonConvert.deserializeObject(cartJson, Cart);
+        } catch (e) {
+            console.log((<Error>e));
+        }
+        return cart;
   }
+
 }

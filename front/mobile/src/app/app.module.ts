@@ -1,4 +1,8 @@
 import { AuthGuardService } from './services/auth-guard.service';
+
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { TokenInterceptor } from './services/token.interceptor';
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -14,10 +18,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicStorageModule  } from '@ionic/storage';
 import { Calendar } from '@ionic-native/calendar/ngx';
 
-//import { Geolocation } from '@ionic-native/geolocation/ngx';
-//import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
-
 
 
 
@@ -29,7 +29,6 @@ import { HttpClientModule } from '@angular/common/http';
     IonicModule.forRoot(), 
     AppRoutingModule,
     FormsModule,
-   // BackgroundMode,
     ReactiveFormsModule,
     HttpClientModule,
     IonicStorageModule.forRoot(),
@@ -39,9 +38,9 @@ import { HttpClientModule } from '@angular/common/http';
     StatusBar,
     SplashScreen, 
     Calendar,
-    //Geolocation,
      AuthGuardService,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
     
   ],
   bootstrap: [AppComponent]

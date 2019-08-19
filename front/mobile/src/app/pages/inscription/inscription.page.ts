@@ -45,8 +45,7 @@ console.log(this.registerCredentials);
 
   ngOnInit() {
     this.registerCredentials =new User();
-    this.authenticationService.RedirectLogedUser();
-   
+    this.authenticationService.redirectLogedUser();
   }
   
 

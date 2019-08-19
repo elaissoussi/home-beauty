@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { CartService, Entry } from '../services/cart.service';
+import { CartService } from '../services/cart.service';
 import { Router } from '@angular/router';
+import { Cart } from '../models/Cart';
+import { CartEntry } from '../models/CartEntry';
+
 
 @Component({
   selector: 'app-cart',
@@ -10,8 +13,8 @@ import { Router } from '@angular/router';
 })
 export class CartPage {
  
-  // cart items
-  cart : Entry[] = [];
+  // cart 
+  cart : Cart;
 
   // total cart
   total : number = 0;
@@ -19,29 +22,31 @@ export class CartPage {
   constructor(private cartService: CartService, private plt :Platform, private router: Router) {
     this.plt.ready().then(() => 
                 {
-                  this.cartService.getCart().then((cart : Entry[]) => {
-                    if(cart){
-                      this.cart = cart;
-                      this.total = this.cartService.getTotalCart(cart); 
-                     }
-                  });
+                  this.cartService.getCart().subscribe(
+                    response => {
+                      this.cart = this.cartService.convert(response);
+                      this.total = this.cartService.getTotalCart(this.cart); 
+                    },
+                    error => {
+                      console.log(error);
+                    }
+                  );
                 })
   }
 
-  removeFromCart(entry : Entry){
-    this.cartService.removeFromCart(entry).then((cart : Entry[])=> {
-      this.cart = cart;
-      this.total = this.cartService.getTotalCart(cart); 
-    })
+  removeFromCart(entry : CartEntry){
+    this.cartService.updateCart(entry.product, 0).subscribe(
+      response => {
+        this.cart = this.cartService.convert(response);
+        this.total = this.cartService.getTotalCart(this.cart); 
+      },
+      error => {
+        console.log(error);
+      });
   }
 
-  removeCart(){
-    this.router.navigate(['home']);
-    this.cartService.removeCart();
-  }
 
   openappointment(){
     this.router.navigate(['appointment']);
-  
   }
 }

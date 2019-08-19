@@ -24,8 +24,7 @@ export class loginPage implements OnInit {
   handleJWTAuthLogin() {
     this.authenticationService.executeJWTAuthenticationService(this.email, this.password)
         .subscribe(
-          data => {
-            console.log(data);
+          response => {
             this.router.navigate(['home']);
             this.invalidLogin = false;
           },
@@ -36,7 +35,7 @@ export class loginPage implements OnInit {
         )
   }
   ngOnInit() {
-    this.authenticationService.RedirectLogedUser();
+    this.authenticationService.redirectLogedUser();
   }
 
 }

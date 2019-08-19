@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {HaircaireService} from 'src/app/services/haircaire.service';
 import { stringify } from '@angular/compiler/src/util';
 import { Router } from '@angular/router';
-import { CartService, Entry, Product } from 'src/app/services/cart.service';
+import { CartService } from 'src/app/services/cart.service';
 import { Platform } from '@ionic/angular';
+import { Product } from 'src/app/models/Product'
 
 @Component({
   selector: 'app-haircare',
@@ -36,18 +37,32 @@ products = [];
   
   addProduct(product : Product)
   {
-    this.cartService.addToCart(product, 1).then(()=> {
-      this.refreshCart()
-    });
+    this.cartService.updateCart(product, 1).subscribe(
+      response => 
+      {
+        let cart = this.cartService.convert(response);
+        this.cartProductsNumber = this.cartService.getProductsCartNumber(cart);
+      },
+      error => 
+      {
+        console.log(error);
+      }
+    );
   }
 
   refreshCart()
   {
-    this.cartService.getCart().then(cart => {
-      if(cart){
-            this.cartProductsNumber = this.cartService.getProductsCartNumber(cart);
-             }
-    })
+    this.cartService.getCart().subscribe(
+      response => 
+      {
+        let cart = this.cartService.convert(response);
+        this.cartProductsNumber = this.cartService.getProductsCartNumber(cart);
+      },
+      error => 
+      {
+        console.log(error);
+      }
+    );
   }
 
   openCart() 

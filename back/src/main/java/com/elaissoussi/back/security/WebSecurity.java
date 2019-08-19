@@ -25,18 +25,19 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-            http.cors().and().csrf().disable().authorizeRequests()
+            // we don't need CSRF because our token is invulnerable
+            http.cors().and().csrf().disable()
+                 // allowed URLs 
+                .authorizeRequests()
                 .antMatchers(HttpMethod.POST, SecurityUtils.SIGN_UP_CUSTOMER_URL).permitAll()
                 .antMatchers(HttpMethod.POST, SecurityUtils.SIGN_UP_ESTHETICIAN_URL).permitAll()
-                .antMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
+                // Add filters
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager()))
-                // this disables session creation on Spring Security
+                // Disable session creation on Spring Security
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-            // h2- console frames
-            http.headers().frameOptions().disable();
     }
 
     @Override
@@ -46,8 +47,23 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
   @Bean
   CorsConfigurationSource corsConfigurationSource() {
+    
     final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+    
+    CorsConfiguration config = new CorsConfiguration();
+    config.setAllowCredentials(true);
+    config.addAllowedOrigin("*");
+    // add Authorization token in the exposed headers
+    config.addExposedHeader("Authorization, x-xsrf-token, Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, " +
+            "Content-Type, Access-Control-Request-Method, Custom-Filter-Header");
+    config.addAllowedHeader("*");
+    config.addAllowedMethod("OPTIONS");
+    config.addAllowedMethod("GET");
+    config.addAllowedMethod("POST");
+    config.addAllowedMethod("PUT");
+    config.addAllowedMethod("DELETE");
+    source.registerCorsConfiguration("/**", config);
+    
     return source;
   }
 }

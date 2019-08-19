@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class HttpIntercepterAuthServiceService  implements HttpInterceptor{
+export class TokenInterceptor  implements HttpInterceptor{
 
   constructor(
 // tslint:disable-next-line: no-shadowed-variable
