@@ -17,12 +17,12 @@
     </ion-toolbar>
   </ion-header>
    
-  <ion-content>
+  <ion-content *ngIf="products">
     <div *ngFor="let cat of products" class="category-block">
    
       <ion-row no-padding class="category-banner">
         <ion-col text-left button tappable (click)="cat.expanded = !cat.expanded" align-self-center>
-          {{ cat.category }}
+          {{ cat.name }}
         </ion-col>
       </ion-row>
    
@@ -40,7 +40,7 @@
                   <img src="https://via.placeholder.com/300x300">
                   
                 </ion-card-content>
-                <ion-button expand="full" (click)="addProduct(product)">Ajouter </ion-button>
+                <ion-button expand="full" (click)="addProduct(product)">Ajouter</ion-button>
                   
               </ion-card-header>
             </ion-card>

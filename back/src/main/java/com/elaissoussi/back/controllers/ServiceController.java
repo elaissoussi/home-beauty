@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.elaissoussi.back.entities.Category;
+import com.elaissoussi.back.entities.CustomerType;
+import com.elaissoussi.back.entities.ProductList;
 import com.elaissoussi.back.entities.Service;
 import com.elaissoussi.back.entities.ServiceType;
 import com.elaissoussi.back.repositories.ServiceRepository;
@@ -23,21 +25,24 @@ public class ServiceController {
   private ServiceRepository serviceRepository;
    
   @GetMapping("/type/{servicetype}")
-  public List<Category> servicesByType(@PathVariable String servicetype) {
+  public ProductList servicesByType(@PathVariable String servicetype) {
       
       Set<Service> services = serviceRepository.findAllByServiceType(ServiceType.valueOf(servicetype));
-      Map<ServiceType, List<Service>> servicesByTypes = services.stream().collect(Collectors.groupingBy(Service::getServiceType));
+      Map<CustomerType, List<Service>> servicesByCustomerType = services.stream().collect(Collectors.groupingBy(Service::getCustomerType));
       
       List<Category> categories = new ArrayList<>();
       
-      servicesByTypes.entrySet().stream().forEach( c -> {
+      servicesByCustomerType.entrySet().stream().forEach( c -> {
         Category cat = new Category();
         cat.setName(c.getKey().toString());
         cat.setServices(c.getValue());
         categories.add(cat);
       });
       
-      return categories;   
+      ProductList pl = new ProductList();
+      pl.setCategories(categories);
+      
+      return pl;
   }
   
   @GetMapping("/types")
