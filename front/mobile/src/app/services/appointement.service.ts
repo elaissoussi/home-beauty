@@ -1,30 +1,35 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { API_URL } from './../app.constants';
-
-export enum SearchType {
-  all = '',
-  movie = 'movie',
-  series = 'series',
-  episode = 'episode'
-}
+import { DatePipe } from '@angular/common';
+import { Availability } from 'src/app/models/Availability';
+import {JsonConvert, Any} from "json2typescript"
+import { AvailabilityList } from '../models/AvailabilityList';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppointementService {
   
-  url = `${API_URL}/estheticians/`;
-  apiKey = '';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private datePipe: DatePipe) {}
 
-  searchData(zipcode: number): Observable<any> {
-    return this.http.get(`${this.url}/zipcode/${zipcode}`).pipe(
-      map(results => {
-        console.log(results)
-      })
-    );
+  getEstheticianAvailabilities(zipcode : number, date : Date): Observable<any> {
+    let newDate = this.datePipe.transform(date, 'dd-MM-yyyy');
+    return this.http.get(`${API_URL}/estheticians/zipcode/${zipcode}/date/${newDate}`);
+  }
+
+
+  convert(JsonObject : any) : AvailabilityList {
+
+    let jsonConvert : JsonConvert = new JsonConvert();        
+    let availabilityList : AvailabilityList = undefined;
+    
+    try {
+      availabilityList = jsonConvert.deserializeObject(JsonObject, AvailabilityList);
+    } catch (e) {
+        console.log((<Error>e));
+    }
+    return availabilityList;
   }
 }

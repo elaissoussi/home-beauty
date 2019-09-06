@@ -4,10 +4,7 @@ package com.elaissoussi.back.services.impl;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +20,7 @@ public class EsthesticianServiceImpl implements EsthesticianService {
   EstheticianRepository estheticianRepository;
 
   @Override
-  public Map<Availability, Set<Esthetician>> getAvailabilities(int zipCode, Date date) {
+  public  List<Availability> getAvailabilities(int zipCode, Date date) {
 
     Set<Esthetician> esthesticians = estheticianRepository.findByZipCode(zipCode);
     
@@ -33,14 +30,15 @@ public class EsthesticianServiceImpl implements EsthesticianService {
     
     List<Availability> availabilities =
         esthesticians.stream().map(e -> e.getAvailabilities()).flatMap(e -> e.stream())
-            .filter(a -> a.getDayOfWeak() > i).collect(Collectors.toList());
-
-    // Group by Esthetician
-    Map<Availability, Set<Esthetician>> availabilitiesMap =
+            .filter(a -> a.getDayOfWeak() >= i).collect(Collectors.toList());
+    
+    // return list of start - end-date to display in the front !
+    
+    /*Map<Availability, Set<Esthetician>> availabilitiesMap =
         availabilities.stream().collect(Collectors.groupingBy(Function.identity(),
-            Collectors.mapping(Availability::getEsthetician, Collectors.toSet())));
+            Collectors.mapping(Availability::getEsthetician, Collectors.toSet())));*/
 
-    return new TreeMap<>(availabilitiesMap);
+    return availabilities;
   }
 
 }

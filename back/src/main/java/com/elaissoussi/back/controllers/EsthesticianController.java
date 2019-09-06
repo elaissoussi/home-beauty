@@ -1,6 +1,8 @@
 package com.elaissoussi.back.controllers;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.elaissoussi.back.entities.Availability;
+import com.elaissoussi.back.entities.AvailabilityList;
 import com.elaissoussi.back.entities.Esthetician;
 import com.elaissoussi.back.entities.Service;
 import com.elaissoussi.back.repositories.EstheticianRepository;
@@ -57,7 +60,12 @@ public class EsthesticianController {
   }
   
   @GetMapping("/zipcode/{zipcode}/date/{date}")
-  public Map<Availability , Set<Esthetician>> getAvailabilities(@PathVariable("zipcode") int zipCode, @PathVariable("date") @DateTimeFormat(pattern="dd-MM-yyyy") Date date){
-    return estheticianService.getAvailabilities(zipCode, date) ; 
+  public AvailabilityList getAvailabilities(@PathVariable("zipcode") int zipCode, 
+                                              @PathVariable("date") @DateTimeFormat(pattern="dd-MM-yyyy") Date date){
+    List<Availability> availabilities = estheticianService.getAvailabilities(zipCode, date);
+    AvailabilityList availabilitiesList = new AvailabilityList();
+    availabilitiesList.setAvailabilities(availabilities);
+    
+    return availabilitiesList;
   }
 }

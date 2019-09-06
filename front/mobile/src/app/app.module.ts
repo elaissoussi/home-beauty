@@ -18,6 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicStorageModule  } from '@ionic/storage';
 import { Calendar } from '@ionic-native/calendar/ngx';
 
+import { DatePipe } from '@angular/common'
+
 
 
 
@@ -40,8 +42,8 @@ import { Calendar } from '@ionic-native/calendar/ngx';
     Calendar,
      AuthGuardService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
-    
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
