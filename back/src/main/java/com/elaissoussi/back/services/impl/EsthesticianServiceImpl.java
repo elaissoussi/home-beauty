@@ -54,15 +54,18 @@ public class EsthesticianServiceImpl implements EsthesticianService {
 		
 		Availability availability = availabilityReposiroty.findOne(avalibilityId);
 		
-		int dayOfWeak = availability.getDayOfWeak();
-		int startHour = availability.getStartHour();
-		int endHour = availability.getEndHour();
-		  
-		List<Availability> availabilities =  availabilityReposiroty.findAvailabilitiesBy(dayOfWeak, startHour, endHour);
-		
-		if(!CollectionUtils.isEmpty(availabilities)) {
+		if (availability != null) {
 			
-			return availabilities.stream().map(av -> av.getEsthetician()).collect(Collectors.toSet());
+			int dayOfWeak = availability.getDayOfWeak();
+			int startHour = availability.getStartHour();
+			int endHour = availability.getEndHour();
+
+			List<Availability> availabilities = availabilityReposiroty.findAvailabilitiesBy(dayOfWeak, startHour,endHour);
+
+			if (!CollectionUtils.isEmpty(availabilities)) {
+
+				return availabilities.stream().map(av -> av.getEsthetician()).collect(Collectors.toSet());
+			}
 		}
 		
 		return Collections.emptySet();
