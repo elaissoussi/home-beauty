@@ -21,7 +21,7 @@ export class AppointementService {
     return this.http.get(`${API_URL}/estheticians/zipcode/${zipcode}/date/${newDate}`);
   }
 
-  getEstheticianAvailabilitiesTime(id : string): Observable<any> {
+  getEstheticianAvailabilitiesTime(id : number): Observable<any> {
     
     return this.http.get(`${API_URL}/estheticians/availability/${id}`);
   }

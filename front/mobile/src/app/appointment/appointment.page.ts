@@ -43,43 +43,12 @@ export class AppointmentPage {
 
   openSelectEsth(id:number){
     
-   // if(this.radioButtonValues){
-       
-
- /*this.appointmentService.getEstheticianAvailabilitiesTime(id).subscribe(
-
-response => {
-  this.items=response;
-  console.log(this.items);
- // this.availabilityList = this.appointmentService.convert(response);
-  this.storage.set(this.key,JSON.stringify(this.items));
-})
-     /* this.http.get(`http://localhost:8080/estheticians/availability/${$event}`)
-       .subscribe(res=>{
-         this.items=res;
-       console.log($event);
-        console.log(this.items);
-        this.storage.set(this.key,JSON.stringify(this.items));
-        
-     })
-
-    
-    */
-   //}
+  
    this.router.navigate([`select-estheticians/${id}`]);
 
-  // this.router.navigate(['/select-estheticians'], { queryParams: { id : id } }); 
+ 
  
   }
 
-  getesth = () => {
-    this.storage.get(this.key).then((val) => {
-      if(val!=null && val != undefined){
-       this.items=JSON.parse(val)
-        console.log('Your info is', this.items);
-        
-      }
-      
-    });
-  }
+  
 }

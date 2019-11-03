@@ -7,10 +7,10 @@ export class Esthetician {
     id : number = undefined;
 
     @JsonProperty("firstName", String)
-    firstName : number = undefined;
+    firstName : string = undefined;
 
     @JsonProperty("lastName", String)
-    lastName : number = undefined;
+    lastName : string = undefined;
 
  
 }
