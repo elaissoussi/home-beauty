@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HTTP } from '@ionic-native/http/ngx';
-
+import { Storage } from '@ionic/storage';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { NavParams } from '@ionic/angular';
 
@@ -13,8 +13,7 @@ import { NavParams } from '@ionic/angular';
 export class HomePage {
 
 
-  constructor(private http: HTTP,private authService:AuthenticationService) {
-
+  constructor(private http: HTTP,private authService:AuthenticationService,private storage: Storage) {
 
   }
   logout(){

@@ -11,6 +11,8 @@ import { AvailabilityList } from '../models/AvailabilityList';
   providedIn: 'root'
 })
 export class AppointementService {
+
+ 
   
   constructor(private http: HttpClient, private datePipe: DatePipe) {}
 
@@ -19,7 +21,10 @@ export class AppointementService {
     return this.http.get(`${API_URL}/estheticians/zipcode/${zipcode}/date/${newDate}`);
   }
 
-
+  getEstheticianAvailabilitiesTime(id : string): Observable<any> {
+    
+    return this.http.get(`${API_URL}/estheticians/availability/${id}`);
+  }
   convert(JsonObject : any) : AvailabilityList {
 
     let jsonConvert : JsonConvert = new JsonConvert();        

@@ -39,9 +39,11 @@ const routes: Routes = [
  },
 { path: 'cart', 
   loadChildren: './cart/cart.module#CartPageModule' 
-},  { path: 'appointment', loadChildren: './appointment/appointment.module#AppointmentPageModule' },
+},
+  { path: 'appointment', loadChildren: './appointment/appointment.module#AppointmentPageModule' },
   { path: 'signup', loadChildren: './pages/signup/signup.module#SignupPageModule' },
-  { path: 'followed-signup', loadChildren: './pages/followed-signup/followed-signup.module#FollowedSignupPageModule' }
+  { path: 'followed-signup', loadChildren: './pages/followed-signup/followed-signup.module#FollowedSignupPageModule' },
+  { path: 'select-estheticians/:id', loadChildren: './select-estheticians/select-estheticians.module#SelectEstheticiansPageModule' }
 
  
 

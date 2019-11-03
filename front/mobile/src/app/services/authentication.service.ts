@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {map} from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
 
 import { API_URL, AUTHENTICATED_USER, TOKEN} from './../app.constants';
@@ -11,7 +12,7 @@ import { API_URL, AUTHENTICATED_USER, TOKEN} from './../app.constants';
 })
 export class AuthenticationService {  
 
-constructor(private http: HttpClient,private router: Router) {}
+constructor(private http: HttpClient,private router: Router,private storage: Storage) {}
 
 executeJWTAuthenticationService(email, password) {
 
@@ -19,6 +20,7 @@ executeJWTAuthenticationService(email, password) {
                   .pipe(map(response => {
                         sessionStorage.setItem(AUTHENTICATED_USER, email);
                         sessionStorage.setItem(TOKEN, response.headers.get('Authorization'));
+                       
                         return response;
                       }
                       )
@@ -52,4 +54,8 @@ redirectLogedUser(){
   this.router.navigate(['home']);
 }
 
+
+signuo = () => {
+  
+}
 }

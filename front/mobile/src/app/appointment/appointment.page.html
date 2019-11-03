@@ -24,8 +24,8 @@
                       name="date" [(ngModel)]="date"></ion-datetime>
     </ion-item>
 
-    <ion-item>
-    <ion-radio-group>
+  <!--   <ion-item>
+   <ion-radio-group>
         <ion-list>
               <ion-list-header>
                 <ion-label>Sex d'ehstetician</ion-label>
@@ -44,10 +44,14 @@
         </ion-item>
       </ion-list>
 
-      <button class="item-cover disable-hover item-cover-ios item-cover-default item-cover-default-ios" disable-activated="" ion-button="item-cover" role="checkbox" type="button"  aria-checked="true" aria-labelledby="lbl-6" aria-disabled="false"></button>
-    </ion-radio-group>
+      </ion-radio-group>
     </ion-item>
-      
+       <button class="item-cover disable-hover item-cover-ios item-cover-default item-cover-default-ios" disable-activated="" ion-button="item-cover" role="checkbox" type="button"  aria-checked="true" aria-labelledby="lbl-6" aria-disabled="false"></button>
+    
+      -->
+
+     
+     
       <ion-button expand="block" (click)="listEstheticianAvailabilities()" >Valider</ion-button>
   </ion-list>
 
@@ -55,7 +59,7 @@
 
   <ion-list *ngIf="availabilityList?.availabilityList">
           <ion-item *ngFor="let a of availabilityList.availabilityList">
-              <ion-toggle slot="start" value="{{a.id}}" ></ion-toggle>
+              <ion-toggle [(ngModel)]="radioButtonValues[a.id]" (ionChange)="openSelectEsth(a.id)" slot="start" value="{{a.id}}" ></ion-toggle>
             <ion-label>{{a.startHour}} - {{a.endHour}}</ion-label>
           </ion-item>
   </ion-list>
