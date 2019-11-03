@@ -1,5 +1,6 @@
 import { JsonObject, JsonProperty } from "json2typescript";
 
+@JsonObject("Esthetician")
 export class Esthetician {
     
     @JsonProperty("id", Number)

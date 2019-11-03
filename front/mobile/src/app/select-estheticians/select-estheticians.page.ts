@@ -53,7 +53,7 @@ export class SelectEstheticiansPage implements OnInit {
    }
 
 
-   openSelectEsth(id:number){
+   openSelectEsth(id:string){
     
     // if(this.radioButtonValues){
         

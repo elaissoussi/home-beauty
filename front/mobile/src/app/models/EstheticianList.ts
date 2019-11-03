@@ -1,9 +1,9 @@
 import { JsonObject, JsonProperty } from "json2typescript";
 import { Esthetician } from "./Esthetician"
 
-@JsonObject("EstheticianList")
+@JsonObject("estheticians")
 export class EstheticianList{
 
-    @JsonProperty("estheticianlist",[Esthetician])
+    @JsonProperty("estheticians",[Esthetician])
     estheticianlist : Esthetician[] = undefined;
 }
