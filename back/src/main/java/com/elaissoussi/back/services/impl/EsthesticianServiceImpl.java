@@ -35,6 +35,9 @@ public class EsthesticianServiceImpl implements EsthesticianService {
 		calendar.setTime(date);
 		int i = calendar.get(Calendar.DAY_OF_WEEK);
 
+		// check startDate & endDate of order !!!
+		// find the good idea to check availabiilty of esth
+		// how esth could submit thier availa
 		List<Availability> availabilities = esthesticians.stream().map(e -> e.getAvailabilities())
 				.flatMap(e -> e.stream()).filter(a -> a.getDayOfWeak() >= i).collect(Collectors.toList());
 
@@ -50,7 +53,7 @@ public class EsthesticianServiceImpl implements EsthesticianService {
 	}
 
 	@Override
-	public Set<Esthetician> getEstheticiansByAvailability(Long avalibilityId) {
+	public List<Esthetician> getEstheticiansByAvailability(Long avalibilityId) {
 		
 		Availability availability = availabilityReposiroty.findOne(avalibilityId);
 		
@@ -64,11 +67,11 @@ public class EsthesticianServiceImpl implements EsthesticianService {
 
 			if (!CollectionUtils.isEmpty(availabilities)) {
 
-				return availabilities.stream().map(av -> av.getEsthetician()).collect(Collectors.toSet());
+				return availabilities.stream().map(av -> av.getEsthetician()).collect(Collectors.toList());
 			}
 		}
 		
-		return Collections.emptySet();
+		return Collections.emptyList();
 	}
 
 }

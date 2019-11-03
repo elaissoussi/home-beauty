@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.elaissoussi.back.entities.Availability;
 import com.elaissoussi.back.entities.AvailabilityList;
 import com.elaissoussi.back.entities.Esthetician;
+import com.elaissoussi.back.entities.EstheticianList;
 import com.elaissoussi.back.entities.Service;
 import com.elaissoussi.back.repositories.AvailabilityReposiroty;
 import com.elaissoussi.back.repositories.EstheticianRepository;
@@ -70,7 +71,12 @@ public class EsthesticianController {
   }
   
   @GetMapping("/availability/{availabilityId}")
-  public Set<Esthetician> getEstheticiansByAvalibilty(@PathVariable("availabilityId") Long avalibilityId){
-	  return estheticianService.getEstheticiansByAvailability(avalibilityId);
+  public EstheticianList getEstheticiansByAvalibilty(@PathVariable("availabilityId") Long avalibilityId){
+	  List<Esthetician> esthestians = estheticianService.getEstheticiansByAvailability(avalibilityId);
+	  
+	  EstheticianList estheticianList = new EstheticianList();
+	  estheticianList.setEstheticians(esthestians);
+	  
+	  return estheticianList;
   }
 }
