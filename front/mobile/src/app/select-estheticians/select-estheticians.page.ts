@@ -45,7 +45,7 @@ export class SelectEstheticiansPage implements OnInit {
              //this.evilResponseProps = Object.keys(this.estheticianList);
             console.log('Your convert :',this.convert(response))
            // console.log('Your Evil :',this.evilResponseProps)
-           return Object.keys(this.estheticianList)
+          // return Object.keys(this.estheticianList)
           },
           error => {
             console.log(error);
