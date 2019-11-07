@@ -8,12 +8,13 @@
 </ion-header>
 
 <ion-content padding>
+  
+
+    <ion-list *ngIf="estheticianList?.estheticianlist" > 
+
+      <ion-item *ngFor="let esth of estheticianList.estheticianlist">
             
-     <!--<ion-list *ngIf="estheticianList?.estheticianList" >--> 
-        <ion-item *ngFor="let esth of objectKeys(estheticianList)">
-            <ion-item-sliding >
-        
-    
+        <ion-item-sliding >
                 <ion-item>
                   <ion-avatar>
                       <ion-icon ios="ios-person" md="md-person"></ion-icon>
@@ -21,11 +22,9 @@
                   <ion-label>
                     <h2>
                       
-                     {{ estheticianList[esth].id }}
+                     {{ esth.firstName}} - {{ esth.lastName}}
                      </h2>
                      
-                    
-                  
                   </ion-label>
                 </ion-item>
             
@@ -42,11 +41,8 @@
               </ion-item-sliding>
 
         </ion-item>
-    
-     
-    
-  <!-- </ion-list>
-      Sliding item with expandable options on both sides -->
+  
+  </ion-list>
       
     
 </ion-content>
