@@ -26,6 +26,10 @@ import { DatePipe } from '@angular/common'
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
+  exports: [
+    FormsModule,
+    ReactiveFormsModule
+  ],
   imports: [
     BrowserModule, 
     IonicModule.forRoot(), 

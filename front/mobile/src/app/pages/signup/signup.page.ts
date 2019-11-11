@@ -1,10 +1,12 @@
 import { User, UserType } from './../../user.model';
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { SignupService } from 'src/app/services/signup.service'
 import { NavController, AlertController } from '@ionic/angular';
-import {FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
+import {FormBuilder, FormGroup, Validators,FormControl, AbstractControl } from '@angular/forms';
 import { MustMatch } from 'src/app/_helpers/must-match/validator';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
@@ -24,15 +26,21 @@ export class SignupPage implements OnInit {
   password:String ;
   firstName:string;
   lastName:string;
+  //confirmPassword:string;
   phoneNumber:number;
+  firstName1: AbstractControl;
+  lastName1:AbstractControl;
+  email1: AbstractControl;
+  password1: AbstractControl;
+  phoneNumber1: AbstractControl;
   
   createSuccess = false;
   registerCredentials :User; 
-   signupForm: FormGroup;
+   public signupForm: FormGroup;
 
-  constructor(private authenticationService:AuthenticationService,private router:Router,
+  constructor(private signupservice:SignupService,private router:Router,
     private navCrl: NavController,private alertCtrl: AlertController,private formBuilder :FormBuilder) { 
-    this.signupForm = this.formBuilder.group({
+   this.signupForm = this.formBuilder.group({
       firstName1: ['', Validators.required],
       lastName1: ['', Validators.required],
       password1: ['', [Validators.required, Validators.minLength(6)]],
@@ -41,17 +49,23 @@ export class SignupPage implements OnInit {
       confirmPassword1: ['', Validators.required],
       type: ['', Validators.required],
    }, {
-    validator: MustMatch('password', 'confirmPassword')
+   // validator: MustMatch('password', 'confirmPassword')
 });
+this.firstName1=this.signupForm.controls['firstName1'];
+this.lastName1=this.signupForm.controls['lastName1'];
+this.password1=this.signupForm.controls['password1'];
+this.email1=this.signupForm.controls['email1'];
+this.phoneNumber1=this.signupForm.controls['phoneNumber1'];
     }
+   
 public type :string;
   //public customer:boolean;
 onSignUp() {
-  /*
+  
     if(this.type==="customer"){
 
     //  this.esthetician=false;
-  this.authenticationService.signupCust(this.email, this.password,this.lastName,this.firstName,this.phoneNumber)
+  this.signupservice.signupCust(this.email, this.password,this.lastName,this.firstName1,this.phoneNumber)
       .subscribe(
         data => {
           console.log(data);
@@ -67,7 +81,7 @@ onSignUp() {
    else
    {
       // this.customer=false;
-     this.authenticationService.signupEsth(this.email, this.password,this.lastName,this.firstName,this.phoneNumber)
+     this.signupservice.signupEsth(this.email, this.password,this.lastName,this.firstName,this.phoneNumber)
       .subscribe(
         data => {
           console.log(data);
@@ -80,7 +94,7 @@ onSignUp() {
       )
       console.log("Esthetician bien enregistrer");
     }
-  */
+  
 }
 
 
