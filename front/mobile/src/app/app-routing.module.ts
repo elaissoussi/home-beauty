@@ -43,7 +43,8 @@ const routes: Routes = [
   { path: 'appointment', loadChildren: './appointment/appointment.module#AppointmentPageModule' },
   { path: 'signup', loadChildren: './pages/signup/signup.module#SignupPageModule' },
   { path: 'followed-signup', loadChildren: './pages/followed-signup/followed-signup.module#FollowedSignupPageModule' },
-  { path: 'select-estheticians/:id', loadChildren: './select-estheticians/select-estheticians.module#SelectEstheticiansPageModule' }
+  { path: 'select-estheticians/:id', loadChildren: './select-estheticians/select-estheticians.module#SelectEstheticiansPageModule' },  { path: 'payment', loadChildren: './payment/payment.module#PaymentPageModule' }
+
 
  
 

@@ -54,6 +54,7 @@
     "cordova-sqlite-storage": "3.2.0",
     "core-js": "^2.5.4",
     "firebase": "^5.8.4",
+    "ionic-select-searchable": "^2.10.0",
     "json2typescript": "^1.2.3",
     "node-sass": "^4.13.0",
     "rxjs": "~6.3.3",

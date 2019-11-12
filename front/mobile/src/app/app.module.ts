@@ -18,10 +18,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicStorageModule  } from '@ionic/storage';
 import { Calendar } from '@ionic-native/calendar/ngx';
 
-import { DatePipe } from '@angular/common'
+import { DatePipe } from '@angular/common';
 
 
-
+import { SelectSearchableModule }   from 'ionic-select-searchable';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,6 +38,7 @@ import { DatePipe } from '@angular/common'
     ReactiveFormsModule,
     HttpClientModule,
     IonicStorageModule.forRoot(),
+    SelectSearchableModule
     ],
   
   providers: [

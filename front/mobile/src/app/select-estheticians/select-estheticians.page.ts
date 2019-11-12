@@ -53,5 +53,14 @@ export class SelectEstheticiansPage {
     return estheticianList;
   }
 
+  openPayment(){
+    
+  
+    this.router.navigate([`/payment`]);
+ 
+  
+  
+   }
+
 
 }
