@@ -8,10 +8,28 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-searchbar [(ngModel)]="query"></ion-searchbar>
+    <ion-item>
+        <ion-label>Recherche esthetician</ion-label>
+      <ionic-selectable 
+            item-content 
+            [(ngModel)]="port"
+            [items]="ports"
+             [canSearch]="true"
+            itemValueField="id"
+            itemTextField="firstName"
+            [canSearch]="true"
+            (onChange)="esthChange($event)"
+          ></ionic-selectable >
+          <!-- 
+            [items]="estheticianList?.estheticianlist"
+             [canSearch]="true"
+          -->
+    </ion-item>
+
+ 
 
     <ion-list *ngIf="estheticianList?.estheticianlist" > 
-
+    
       <ion-item *ngFor="let esth of estheticianList.estheticianlist ">
             <!--filter:query-->
         <ion-item-sliding >
@@ -23,7 +41,7 @@
                   <ion-label>
                     <h2>
                       
-                     {{ esth.firstName | uppercase}} - {{ esth.lastName | uppercase}}
+                        {{ esth.id }} - {{ esth.firstName | uppercase}} - {{ esth.lastName | uppercase}}
                      </h2>
                      
                   </ion-label>

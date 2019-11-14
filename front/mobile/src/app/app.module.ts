@@ -21,7 +21,7 @@ import { Calendar } from '@ionic-native/calendar/ngx';
 import { DatePipe } from '@angular/common';
 
 
-import { SelectSearchableModule }   from 'ionic-select-searchable';
+import { IonicSelectableModule  } from 'ionic-selectable';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,7 +38,7 @@ import { SelectSearchableModule }   from 'ionic-select-searchable';
     ReactiveFormsModule,
     HttpClientModule,
     IonicStorageModule.forRoot(),
-    SelectSearchableModule
+    IonicSelectableModule
     ],
   
   providers: [
