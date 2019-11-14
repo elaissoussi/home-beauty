@@ -5,27 +5,15 @@
         </ion-buttons>
     <ion-title>Selctionné un esthetician</ion-title>
   </ion-toolbar>
+
+ 
 </ion-header>
 
 <ion-content padding>
-    <ion-item>
-        <ion-label>Recherche esthetician</ion-label>
-      <ionic-selectable 
-            item-content 
-            [(ngModel)]="port"
-            [items]="ports"
-             [canSearch]="true"
-            itemValueField="id"
-            itemTextField="firstName"
-            [canSearch]="true"
-            (onChange)="esthChange($event)"
-          ></ionic-selectable >
-          <!-- 
-            [items]="estheticianList?.estheticianlist"
-             [canSearch]="true"
-          -->
-    </ion-item>
+  <ion-searchbar type="text" debounce="500" (ionInput)="FilterJSONData($event)"></ion-searchbar>
 
+    
+    
  
 
     <ion-list *ngIf="estheticianList?.estheticianlist" > 

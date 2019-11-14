@@ -1,4 +1,5 @@
 {
+  
   "$schema": "./node_modules/@angular-devkit/core/src/workspace/workspace-schema.json",
   "version": 1,
   "defaultProject": "app",
@@ -25,6 +26,7 @@
                 "input": "src/assets",
                 "output": "assets"
               },
+             
               {
                 "glob": "**/*.svg",
                 "input": "node_modules/ionicons/dist/ionicons/svg",

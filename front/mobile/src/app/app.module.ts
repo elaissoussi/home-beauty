@@ -19,7 +19,7 @@ import { IonicStorageModule  } from '@ionic/storage';
 import { Calendar } from '@ionic-native/calendar/ngx';
 
 import { DatePipe } from '@angular/common';
-
+import { AutoCompleteModule } from 'ionic4-auto-complete';
 
 import { IonicSelectableModule  } from 'ionic-selectable';
 
@@ -38,7 +38,8 @@ import { IonicSelectableModule  } from 'ionic-selectable';
     ReactiveFormsModule,
     HttpClientModule,
     IonicStorageModule.forRoot(),
-    IonicSelectableModule
+    IonicSelectableModule,
+    AutoCompleteModule
     ],
   
   providers: [

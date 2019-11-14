@@ -56,6 +56,7 @@
     "firebase": "^5.8.4",
     "ionic-select-searchable": "^2.10.0",
     "ionic-selectable": "^4.5.0",
+    "ionic4-auto-complete": "^2.3.2",
     "json2typescript": "^1.2.3",
     "node-sass": "^4.13.0",
     "rxjs": "~6.3.3",

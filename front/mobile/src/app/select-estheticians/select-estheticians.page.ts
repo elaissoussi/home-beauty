@@ -22,55 +22,50 @@ class Port {
 
 
 export class SelectEstheticiansPage {
-  ports: Port[];
-  port: Port;
-//@ViewChild('myselect') selectComponent:IonicSelectableComponent;
+ 
   estheticianList: EstheticianList = undefined;
- estId=[];
- esth=null;
- 
+  jsonData : any = [];
+
   constructor(private appointement: AppointementService, private router: Router,
-    private route: ActivatedRoute, private plt: Platform,private toastCtrl:ToastController) {
+    private route: ActivatedRoute, private plt: Platform) {
 
-      this.ports=[
-        {
-          id:1,
-          firstName:'ESTH1',
-          lastName:'ESTH1'
-        },
-        {
-          id:2,
-          firstName:'ESTH2',
-          lastName:'ESTH2'
-        },
-        {
-          id:3,
-          firstName:'ESTH3',
-          lastName:'ESTH3'
-        }
-     ]
-
-      console.log(this.estheticianList)
-
-    this.plt.ready().then(() => {
-      let id = parseInt(this.route.snapshot.paramMap.get('id'));
-
-      this.appointement.getEstheticianAvailabilitiesTime(id).subscribe(
-
-        response => {
-          this.estheticianList = this.convert(response);
-        },
-        error => {
-          console.log(error);
-        }
-      );
-
-    })
-
- 
+      this.esthdisp();
   }
 
   
+esthdisp(){
+   this.plt.ready().then(() => {
+    let id = parseInt(this.route.snapshot.paramMap.get('id'));
+
+    this.appointement.getEstheticianAvailabilitiesTime(id).subscribe(
+
+      response => {
+        this.estheticianList = this.convert(response);
+       
+      },
+      error => {
+        console.log(error);
+      }
+    );
+
+  })
+
+  console.log(this.estheticianList);
+}
+
+FilterJSONData(ev :any){
+  this.esthdisp();
+  const val = ev.target.value;
+  if(val && val.trim() != ''){
+this.jsonData=this.jsonData.filter((item => {
+
+  return (item.firstName.toLowerCase().indexOf(val.toLowerCase())>-1  );
+//|| item.lastName.toLowerCase().indexOf(val.toLowerCase())>-1
+})
+)
+  }
+
+}
 
   convert(estheticianJSON: Any): EstheticianList {
 
@@ -94,20 +89,6 @@ export class SelectEstheticiansPage {
   
    }
 
-   esthChange(event: {
-    component: IonicSelectableComponent,
-    value: any
-  }) {
-    console.log('Esthetician:', event.value);
-  }
-
-  onClose () {
-    let toast = this.toastCtrl.create({
-      message:'Merci pour la selection',
-      duration:2000
-    });
-    //toast.present();
-
-  }
+  
 
 }
