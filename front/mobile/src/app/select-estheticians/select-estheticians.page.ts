@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Platform, ToastController } from '@ionic/angular';
 import { EstheticianList } from '../models/EstheticianList';
 import { JsonConvert, Any } from "json2typescript";
-import { IonicSelectableComponent } from 'ionic-selectable';
+//import { IonicSelectableComponent } from 'ionic-selectable';
 
 class Port {
   public id: number;
@@ -51,19 +51,23 @@ esthdisp(){
   })
 
   console.log(this.estheticianList);
+  this.jsonData=this.estheticianList;
+  console.log(this.jsonData);
 }
 
 FilterJSONData(ev :any){
-  this.esthdisp();
-  const val = ev.target.value;
-  if(val && val.trim() != ''){
-this.jsonData=this.jsonData.filter((item => {
+    this.esthdisp();
+    const val = ev.target.value;
+    const usersJson: any[] = Array.of(this.jsonData);
+      if(val && val.trim() != ''){
+            this.jsonData=usersJson.filter((item => {
 
-  return (item.firstName.toLowerCase().indexOf(val.toLowerCase())>-1  );
-//|| item.lastName.toLowerCase().indexOf(val.toLowerCase())>-1
-})
-)
-  }
+              return JSON.stringify(item.firstName.toLowerCase().includes(val.toLowerCase()) > -1);
+            //|| item.lastName.toLowerCase().indexOf(val.toLowerCase())>-1
+            })
+            )
+      }
+    this.jsonData = <any[]>JSON.parse(this.jsonData);
 
 }
 
@@ -81,13 +85,11 @@ this.jsonData=this.jsonData.filter((item => {
   }
 
   openPayment(){
-    
-  
     this.router.navigate([`/payment`]);
- 
-  
   
    }
+
+   
 
   
 

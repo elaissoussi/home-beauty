@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-searchbar type="text" debounce="500" (ionInput)="FilterJSONData($event)"></ion-searchbar>
+  <ion-searchbar type="text" debounce="500" [(ngModel)]="ev" (ionInput)="FilterJSONData($event)"></ion-searchbar>
 
     
     
