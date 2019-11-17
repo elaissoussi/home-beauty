@@ -17,14 +17,21 @@
         <ion-input  type="text" name="zipcode" [(ngModel)]="zipcode"></ion-input>
     </ion-item>
     
-    <ion-item>
+     <ion-item>
         <ion-label>Date</ion-label>
         <ion-datetime display-format="MM/DD/YYYY" 
                       pickerFormat="MM/DD/YYYY" 
                       name="date" [(ngModel)]="date"></ion-datetime>
+                      
     </ion-item>
+   
 
-  <!--   <ion-item>
+  <!--  
+     <ion-item>
+      <ion-input  type="date" name="date" [(ngModel)]="date"></ion-input>
+  </ion-item>
+    
+    <ion-item>
    <ion-radio-group>
         <ion-list>
               <ion-list-header>

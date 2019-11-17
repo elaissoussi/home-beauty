@@ -9,13 +9,7 @@ import { EstheticianList } from '../models/EstheticianList';
 import { JsonConvert, Any } from "json2typescript";
 
 
-//import { IonicSelectableComponent } from 'ionic-selectable';
 
-class Port {
-  public id: number;
-  public firstName: string;
-  public lastName:string;
-}
 @Component({
   selector: 'app-select-estheticians',
   templateUrl: './select-estheticians.page.html',
@@ -75,6 +69,7 @@ let searchValue : string = ev.target.value;
 
    console.log(items);
    this.estheticianList.estheticianlist = items;
+   
 }
 
   convert(estheticianJSON: Any): EstheticianList {
@@ -90,8 +85,9 @@ let searchValue : string = ev.target.value;
     return estheticianList;
   }
 
-  openPayment(){
-    this.router.navigate([`/payment`]);
+  openPayment(id:number){
+    
+    this.router.navigate([`/payment/${id}`]);
   
    }
 
