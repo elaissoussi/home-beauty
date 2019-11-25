@@ -26,36 +26,67 @@ export class SignupPage implements OnInit {
   password:String ;
   firstName:string;
   lastName:string;
-  //confirmPassword:string;
   phoneNumber:number;
-  firstName1: AbstractControl;
-  lastName1:AbstractControl;
-  email1: AbstractControl;
-  password1: AbstractControl;
-  phoneNumber1: AbstractControl;
   
   createSuccess = false;
   registerCredentials :User; 
-   public signupForm: FormGroup;
+  signupForm:FormGroup;
 
-  constructor(private signupservice:SignupService,private router:Router,
-    private navCrl: NavController,private alertCtrl: AlertController,private formBuilder :FormBuilder) { 
+  error_messages = {
+    'email': [
+      { type: 'required', message : 'L\'email est obligatoire' },
+      { type: 'minLength', message : 'La longueur de l\'email doit être plus longue ou égale à 6 caractères' },
+      { type: 'maxLenght', message : 'La longueur de l\'email doit être inférieure ou égale à 50 caractères' },
+      { type: 'pattern', message : 'Veuillez entrer une adresse email' }
+    ],
+    'password':[
+      { type: 'required', message : 'Le mot de passe est obligatoire' },
+      { type: 'minLength', message : 'La longueur de mot de passe doit être plus longue ou égale à 6 caractères' },
+      { type: 'maxLenght', message : 'La longueur de mot de passe doit être inférieure ou égale à 30 caractères' },
+      { type: 'pattern', message : 'Veuillez entrer le mot de passe' }
+    ],
+    'confirmPassword':[
+      { type: 'required', message : 'La conirmation de mot de passe est obligatoire' },
+      { type: 'minLength', message : 'La longueur de mot de passe doit être plus longue ou égale à 6 caractères' },
+      { type: 'maxLenght', message : 'La longueur de mot de passe doit être inférieure ou égale à 30 caractères' },
+      { type: 'pattern', message : 'Veuillez entrer le mot de passe' }
+    ],
+    'firstName': [
+      { type: 'required', message : 'Le prenom est obligatoire' },
+    ],
+    'lastName': [
+      { type: 'required', message : 'Le nom est obligatoire' },
+    ],
+    'phoneNumber': [
+      { type: 'required', message : 'Le numéro de telephone est obligatoire' },
+    ]
+
+  }
+
+  constructor(private signupservice:SignupService,private router:Router,public formBuilder : FormBuilder) { 
+
    this.signupForm = this.formBuilder.group({
-      firstName1: ['', Validators.required],
-      lastName1: ['', Validators.required],
-      password1: ['', [Validators.required, Validators.minLength(6)]],
-      email1: ['',[ Validators.required, Validators.email]],
-      phoneNumber1: ['', Validators.required],
-      confirmPassword1: ['', Validators.required],
+      firstName: new FormControl('',Validators.compose([Validators.required])) ,
+      lastName: new FormControl('',Validators.compose([Validators.required])),
+      password : new FormControl('',Validators.compose([
+        Validators.required,
+          Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
+          Validators.minLength(6),
+          Validators.maxLength(30)
+      ])),
+      email: new FormControl('',Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
+        Validators.minLength(6),
+        Validators.maxLength(50)
+
+      ])),
+      phoneNumber: new FormControl('',Validators.compose([Validators.required])),
+      confirmPassword: new FormControl('',Validators.compose([Validators.required])),
       type: ['', Validators.required],
    }, {
-   // validator: MustMatch('password', 'confirmPassword')
+    validator: MustMatch('password', 'confirmPassword')
 });
-this.firstName1=this.signupForm.controls['firstName1'];
-this.lastName1=this.signupForm.controls['lastName1'];
-this.password1=this.signupForm.controls['password1'];
-this.email1=this.signupForm.controls['email1'];
-this.phoneNumber1=this.signupForm.controls['phoneNumber1'];
     }
    
 public type :string;
@@ -65,7 +96,7 @@ onSignUp() {
     if(this.type==="customer"){
 
     //  this.esthetician=false;
-  this.signupservice.signupCust(this.email, this.password,this.lastName,this.firstName1,this.phoneNumber)
+  this.signupservice.signupCust(this.email, this.password,this.lastName,this.firstName,this.phoneNumber)
       .subscribe(
         data => {
           console.log(data);
