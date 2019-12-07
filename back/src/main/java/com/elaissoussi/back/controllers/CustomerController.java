@@ -28,12 +28,6 @@ public class CustomerController {
   @PostMapping("/sign-up")
   public Customer signup(@RequestBody Customer customer) {
 
-    // TODO : fix primary key violation , example 
-    /*
-     * { "email": "est3@gmail.com", "password": "est3", "id":4 }
-     * 
-     */
-    
     customer.setPassword(bCryptPasswordEncoder.encode(customer.getPassword()));
     customerRepository.save(customer);
 

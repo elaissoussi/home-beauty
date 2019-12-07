@@ -11,19 +11,31 @@ import com.elaissoussi.back.services.CartService;
 
 @RestController
 @RequestMapping("/cart")
-public class CartController {
+public class CartController
+{
 
-  @Resource
-  CartService cartService;
+	@Resource
+	CartService cartService;
 
-  @GetMapping
-  Cart getCart(@RequestParam("customer") String customerEmail) {
-    return cartService.getCart(customerEmail);
-  }
+	@GetMapping
+	Cart getCart(@RequestParam("customer") String customerEmail)
+	{
+		return cartService.getCart(customerEmail);
+	}
 
-  @PostMapping("/updateCart")
-  Cart addToCart(@RequestParam("customer") String customerEmail,
-      @RequestParam("service") Long serviceId, @RequestParam("quantity") int quantity) {
-    return cartService.updateCart(customerEmail, serviceId, quantity);
+	@PostMapping("/updateCart")
+	Cart addToCart(@RequestParam("customer") String customerEmail, @RequestParam("service") Long serviceId,
+			@RequestParam("quantity") int quantity)
+	{
+		return cartService.updateCart(customerEmail, serviceId, quantity);
+	}
+
+	@PostMapping("/setCartTime")
+	Cart setCartTime(@RequestParam("customer") String customerEmail, 
+		           @RequestParam("esthetician") String estheticianId,
+		           @RequestParam("startHour") String startHour,
+		           @RequestParam("endHour") String endHour,
+		           @RequestParam("date") String date) {
+	   return cartService.updateCart(customerEmail,estheticianId,startHour,endHour,date); 
   }
 }

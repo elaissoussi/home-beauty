@@ -1,32 +1,55 @@
 package com.elaissoussi.back.entities;
 
-import java.util.Date;
 import java.util.List;
-
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+@Entity
+@Table(name="orders")
 public class Order {
+  
+  @Id
+  @GeneratedValue(strategy=GenerationType.TABLE)
+  private Long id;
+  
+  @JsonIgnore
+  @OneToOne
+  private Customer customer; 
+  
+  @OneToMany(mappedBy="cart", 
+             cascade=CascadeType.ALL,
+             fetch=FetchType.LAZY)
+  private List<CartEntry> entries;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
-	private Long id;
+  public Long getId() {
+    return id;
+  }
 
-	private Customer customer;
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-	private Esthetician esthetician;
+  public Customer getCustomer() {
+    return customer;
+  }
 
-	private Date startDate;
+  public void setCustomer(Customer customer) {
+    this.customer = customer;
+  }
 
-	private Date endHour;
+  public List<CartEntry> getEntries() {
+    return entries;
+  }
 
-	@OneToMany(mappedBy = "order", 
-			   cascade = CascadeType.ALL, 
-			   fetch = FetchType.LAZY)
-	private List<OrderEntry> entries;
-
+  public void setEntries(List<CartEntry> entries) {
+    this.entries = entries;
+  }
 }
