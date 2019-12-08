@@ -38,7 +38,10 @@ public class Cart
 
 	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<CartEntry> entries;
-
+	
+	@OneToOne
+	private PaymentInfo payementInfo;
+	
 	public Long getId()
 	{
 		return id;
@@ -107,5 +110,15 @@ public class Cart
 	public void setDate(Date date)
 	{
 		this.date = date;
+	}
+
+	public PaymentInfo getPayementInfo()
+	{
+		return payementInfo;
+	}
+
+	public void setPayementInfo(PaymentInfo payementInfo)
+	{
+		this.payementInfo = payementInfo;
 	}
 }

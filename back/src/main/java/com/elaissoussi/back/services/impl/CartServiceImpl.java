@@ -11,6 +11,7 @@ import com.elaissoussi.back.entities.Cart;
 import com.elaissoussi.back.entities.CartEntry;
 import com.elaissoussi.back.entities.Customer;
 import com.elaissoussi.back.entities.Esthetician;
+import com.elaissoussi.back.entities.PaymentInfo;
 import com.elaissoussi.back.entities.Service;
 import com.elaissoussi.back.repositories.CartEntryRepository;
 import com.elaissoussi.back.repositories.CartRepository;
@@ -152,6 +153,15 @@ public class CartServiceImpl implements CartService
 		cart.setStartHour(startHour);
 		cart.setEndHour(endHour);
 
+		return cartRepository.save(cart);
+	}
+
+	@Override
+	public Cart addPaymentInfo(String customerEmail, PaymentInfo paymentInfo)
+	{
+		Cart cart = getCart(customerEmail);
+		cart.setPayementInfo(paymentInfo);
+		
 		return cartRepository.save(cart);
 	}
 
