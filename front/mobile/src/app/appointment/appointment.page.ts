@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AppointementService } from '../services/appointement.service';
 import { AvailabilityList } from '../models/AvailabilityList';
-import { Storage } from '@ionic/storage';
+
 @Component({
   selector: 'app-appointment',
   templateUrl: './appointment.page.html',
@@ -18,14 +17,16 @@ export class AppointmentPage {
    //id : number = undefined;
    availabilityList : AvailabilityList = undefined;
    radioButtonValues = [] ;
+   isChecked : boolean = false;
    //infoEsth = [];
     items:any=[];
     key:string="items";
+    myDate:string= new Date().toISOString();
 
-  constructor(private http : HttpClient,
-              private router : Router,
-              private appointmentService : AppointementService,
-              private storage: Storage) {}
+  constructor( private router : Router, private appointmentService : AppointementService,) {
+
+
+  }
     
   
   listEstheticianAvailabilities(){
@@ -43,8 +44,11 @@ export class AppointmentPage {
 
   openSelectEsth(id:number){
     
-  
-   this.router.navigate([`select-estheticians/${id}`]);
+  if(this.radioButtonValues && this.isChecked==true)
+  {
+    this.router.navigate([`select-estheticians/${id}`]);
+  }
+   
 
  
  

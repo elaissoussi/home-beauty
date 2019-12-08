@@ -5,29 +5,36 @@
         </ion-buttons>
     <ion-title>Selctionné un esthetician</ion-title>
   </ion-toolbar>
+
+ 
 </ion-header>
 
 <ion-content padding>
-  
+  <ion-searchbar type="text" debounce="500" [(ngModel)]="ev" (ionInput)="FilterJSONData($event)"></ion-searchbar>
+
+    
+    
+ 
 
     <ion-list *ngIf="estheticianList?.estheticianlist" > 
-
-      <ion-item *ngFor="let esth of estheticianList.estheticianlist">
-            
+  
+      <ion-item *ngFor="let esth of estheticianList.estheticianlist ">
+            <!--filter:query-->
         <ion-item-sliding >
-                <ion-item>
+         
+                <ion-item (click)="openPayment(esth.id)">
                   <ion-avatar>
                       <ion-icon ios="ios-person" md="md-person"></ion-icon>
                   </ion-avatar>
                   <ion-label>
                     <h2>
                       
-                     {{ esth.firstName}} - {{ esth.lastName}}
+                        {{ esth.id }} - {{ esth.firstName | uppercase}} - {{ esth.lastName | uppercase}}
                      </h2>
                      
                   </ion-label>
                 </ion-item>
-            
+          
                 <ion-item-options side="end">
                   <ion-item-option color="warning" expandable>
                       <ion-icon name="star"></ion-icon>

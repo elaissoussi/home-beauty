@@ -18,14 +18,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicStorageModule  } from '@ionic/storage';
 import { Calendar } from '@ionic-native/calendar/ngx';
 
-import { DatePipe } from '@angular/common'
+import { DatePipe } from '@angular/common';
+import { AutoCompleteModule } from 'ionic4-auto-complete';
 
-
-
+import { IonicSelectableModule  } from 'ionic-selectable';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
+  exports: [
+    FormsModule,
+    ReactiveFormsModule
+  ],
   imports: [
     BrowserModule, 
     IonicModule.forRoot(), 
@@ -34,6 +38,8 @@ import { DatePipe } from '@angular/common'
     ReactiveFormsModule,
     HttpClientModule,
     IonicStorageModule.forRoot(),
+    IonicSelectableModule,
+    AutoCompleteModule
     ],
   
   providers: [

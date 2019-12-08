@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { AppointementService } from '../services/appointement.service';
 
@@ -8,6 +8,8 @@ import { Platform } from '@ionic/angular';
 import { EstheticianList } from '../models/EstheticianList';
 import { JsonConvert, Any } from "json2typescript";
 
+
+
 @Component({
   selector: 'app-select-estheticians',
   templateUrl: './select-estheticians.page.html',
@@ -16,29 +18,59 @@ import { JsonConvert, Any } from "json2typescript";
 
 
 export class SelectEstheticiansPage {
-
+ 
   estheticianList: EstheticianList = undefined;
+  
 
   constructor(private appointement: AppointementService, private router: Router,
     private route: ActivatedRoute, private plt: Platform) {
 
-    this.plt.ready().then(() => {
-      let id = parseInt(this.route.snapshot.paramMap.get('id'));
-
-      this.appointement.getEstheticianAvailabilitiesTime(id).subscribe(
-
-        response => {
-          this.estheticianList = this.convert(response);
-        },
-        error => {
-          console.log(error);
-        }
-      );
-
-    })
-
-
+      this.esthdisp();
   }
+
+  
+esthdisp(){
+   this.plt.ready().then(() => {
+    let id = parseInt(this.route.snapshot.paramMap.get('id'));
+
+    this.appointement.getEstheticianAvailabilitiesTime(id).subscribe(
+
+      response => {
+        this.estheticianList = this.convert(response);
+      
+      },
+      error => {
+        console.log(error);
+      }
+    );
+
+  })
+
+
+}
+
+FilterJSONData(ev :any){
+   
+let searchValue : string = ev.target.value;
+
+    if(searchValue == null) {
+      return ;
+    }
+    console.log(searchValue);
+    if(searchValue == "") {
+ 
+      
+       return this.esthdisp();
+    }
+
+    let items = this.estheticianList.estheticianlist.filter((item => {
+      return (item.firstName.toLowerCase().indexOf(searchValue.toLowerCase()) > -1);
+      }));
+
+   console.log(items);
+   this.estheticianList.estheticianlist = items;
+   
+}
 
   convert(estheticianJSON: Any): EstheticianList {
 
@@ -53,5 +85,14 @@ export class SelectEstheticiansPage {
     return estheticianList;
   }
 
+  openPayment(id:number){
+    
+    this.router.navigate([`/payment/${id}`]);
+  
+   }
+
+   
+
+  
 
 }
