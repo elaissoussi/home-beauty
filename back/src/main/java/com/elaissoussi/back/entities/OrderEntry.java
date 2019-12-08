@@ -8,54 +8,65 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="orderentries")
-public class OrderEntry {
-  
-  @Id
-  @GeneratedValue(strategy=GenerationType.TABLE)
-  private Long id;
-  
-  @OneToOne
-  private Service service; 
-  
-  private int quantity;
-  
-  @JsonIgnore
-  @ManyToOne(fetch=FetchType.LAZY)
-  private Cart cart; 
-  
-  public Long getId() {
-    return id;
-  }
+@Table(name = "orderentries")
+public class OrderEntry
+{
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE)
+	private Long id;
 
-  public Service getService() {
-    return service;
-  }
+	@OneToOne
+	private Service service;
 
-  public void setService(Service service) {
-    this.service = service;
-  }
+	private int quantity;
 
-  public int getQuantity() {
-    return quantity;
-  }
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Order order;
 
-  public void setQuantity(int quantity) {
-    this.quantity = quantity;
-  }
+	public Long getId()
+	{
+		return id;
+	}
 
-  public Cart getCart() {
-    return cart;
-  }
+	public void setId(Long id)
+	{
+		this.id = id;
+	}
 
-  public void setCart(Cart cart) {
-    this.cart = cart;
-  }
+	public Service getService()
+	{
+		return service;
+	}
+
+	public void setService(Service service)
+	{
+		this.service = service;
+	}
+
+	public int getQuantity()
+	{
+		return quantity;
+	}
+
+	public void setQuantity(int quantity)
+	{
+		this.quantity = quantity;
+	}
+
+	public Order getOrder()
+	{
+		return order;
+	}
+
+	public void setOrder(Order order)
+	{
+		this.order = order;
+	}
+
 }

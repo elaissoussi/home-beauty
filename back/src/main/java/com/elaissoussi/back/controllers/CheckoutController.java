@@ -2,6 +2,7 @@ package com.elaissoussi.back.controllers;
 
 import javax.annotation.Resource;
 
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,16 +10,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.elaissoussi.back.entities.Cart;
+import com.elaissoussi.back.entities.Order;
 import com.elaissoussi.back.entities.PaymentInfo;
 import com.elaissoussi.back.services.CartService;
+import com.elaissoussi.back.services.OrderService;
+import com.elaissoussi.back.services.PaymentSerice;
 
 @RestController
 @RequestMapping("/checkout")
 public class CheckoutController
 {
-
 	@Resource
 	CartService cartService;
+
+	@Resource
+	PaymentSerice paymentService;
+
+	@Resource
+	OrderService orderService;
 
 	@PostMapping("/addPaymentInfo")
 	public Cart addPaymentInfo(@RequestParam("customer") String customerEmail, @RequestBody PaymentInfo paymentInfo)
@@ -27,13 +36,32 @@ public class CheckoutController
 	}
 
 	@PostMapping("/placeOrder")
-	public void placeOrder()
+	public Order placeOder(@RequestParam("customer") String customerEmail)
 	{
-		// check all details
 
-		// payment
+		Cart cart = cartService.getCart(customerEmail);
 
-		// redirect to confirmation page
+		if (CollectionUtils.isEmpty(cart.getEntries()))
+		{
+			return null;
+		}
+
+		if (cart.getEsthestian() == null)
+		{
+			return null;
+		}
+
+		if (cart.getDate() == null)
+		{
+			return null;
+		}
+
+		if (!paymentService.pay(cart))
+		{
+			return null;
+		}
+
+		return orderService.placeOrder(cart);
 	}
 
 }
