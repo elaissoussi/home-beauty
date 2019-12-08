@@ -34,7 +34,7 @@ public class CartController
 	}
 
 	@PostMapping("/setCartTime")
-	Cart setCartTime(@RequestParam("customer") String customerEmail, @RequestParam("esthetician") String estheticianId,
+	Cart setCartTime(@RequestParam("customer") String customerEmail, @RequestParam("esthetician") Long estheticianId,
 			@RequestParam("startHour") int startHour, @RequestParam("endHour") int endHour,
 			@RequestParam("date") @DateTimeFormat(pattern = "dd-MM-yyyy") Date date)
 	{
