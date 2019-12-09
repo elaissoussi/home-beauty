@@ -14,7 +14,7 @@ import com.elaissoussi.back.entities.Order;
 import com.elaissoussi.back.entities.PaymentInfo;
 import com.elaissoussi.back.services.CartService;
 import com.elaissoussi.back.services.OrderService;
-import com.elaissoussi.back.services.PaymentSerice;
+import com.elaissoussi.back.services.PaymentService;
 
 @RestController
 @RequestMapping("/checkout")
@@ -24,7 +24,7 @@ public class CheckoutController
 	CartService cartService;
 
 	@Resource
-	PaymentSerice paymentService;
+	PaymentService paymentService;
 
 	@Resource
 	OrderService orderService;
@@ -38,7 +38,6 @@ public class CheckoutController
 	@PostMapping("/placeOrder")
 	public Order placeOder(@RequestParam("customer") String customerEmail)
 	{
-
 		Cart cart = cartService.getCart(customerEmail);
 
 		if (CollectionUtils.isEmpty(cart.getEntries()))

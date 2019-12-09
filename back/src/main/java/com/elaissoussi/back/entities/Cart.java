@@ -23,11 +23,11 @@ public class Cart
 	private Long id;
 
 	@JsonIgnore
-	@OneToOne
+	@OneToMany(fetch=FetchType.LAZY)
 	private Customer customer;
 
 	@JsonIgnore
-	@OneToOne
+	@OneToMany(fetch=FetchType.LAZY)
 	private Esthetician esthestian;
 
 	private int startHour;

@@ -2,7 +2,7 @@ package com.elaissoussi.back.services;
 
 import com.elaissoussi.back.entities.Cart;
 
-public interface PaymentSerice
+public interface PaymentService
 {
 	boolean pay(Cart cart);
 }

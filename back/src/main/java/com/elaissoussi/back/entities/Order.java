@@ -2,6 +2,7 @@ package com.elaissoussi.back.entities;
 
 import java.util.Date;
 import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,8 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -22,11 +23,11 @@ public class Order
 	private Long id;
 
 	@JsonIgnore
-	@OneToOne
+	@OneToMany(fetch=FetchType.LAZY)
 	private Customer customer;
 
 	@JsonIgnore
-	@OneToOne
+	@OneToMany(fetch=FetchType.LAZY)
 	private Esthetician esthestian;
 
 	private int startHour;
@@ -35,7 +36,9 @@ public class Order
 
 	private Date date;
 
-	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "cart", 
+			   cascade = CascadeType.ALL, 
+			   fetch = FetchType.LAZY)
 	private List<CartEntry> entries;
 
 	public Long getId()

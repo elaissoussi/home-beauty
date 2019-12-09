@@ -13,7 +13,7 @@ public interface CartService
 
 	Cart removeFromCart(String customer, Long serviceId);
 
-	Cart updateCart(String customerEmail, Long estheticianId, int startHour, int endHour, Date date);
+	Cart addAppointement(String customerEmail, Long estheticianId, int startHour, int endHour, Date date);
 
 	Cart addPaymentInfo(String customerEmail, PaymentInfo paymentInfo);
 }

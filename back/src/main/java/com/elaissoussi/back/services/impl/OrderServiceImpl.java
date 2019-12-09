@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import com.elaissoussi.back.entities.Cart;
 import com.elaissoussi.back.entities.Order;
 import com.elaissoussi.back.entities.OrderEntry;
+import com.elaissoussi.back.repositories.CartRepository;
 import com.elaissoussi.back.repositories.OrderRepository;
 import com.elaissoussi.back.services.OrderService;
 
@@ -12,6 +13,9 @@ public class OrderServiceImpl implements OrderService
 {
 	@Resource
 	OrderRepository orderRepository;
+	
+	@Resource
+	CartRepository cartRepository;
 
 	@Override
 	public Order placeOrder(Cart cart)
@@ -32,7 +36,9 @@ public class OrderServiceImpl implements OrderService
 			oe.setQuantity(e.getQuantity());
 			oe.setOrder(order);
 		});
-
+		
+		cartRepository.delete(cart);
+		
 		return orderRepository.save(order);
 	}
 
