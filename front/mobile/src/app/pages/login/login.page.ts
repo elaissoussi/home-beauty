@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
-import { FormBuilder,FormGroup,FormControl, Validators } from '@angular/forms'
+import { FormBuilder,FormGroup,FormControl, Validators } from '@angular/forms';
+import { Storage } from '@ionic/storage';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -37,7 +38,7 @@ export class loginPage implements OnInit {
   }
 
   constructor(private router: Router, private authenticationService: AuthenticationService,
-              public formBuilder : FormBuilder) { 
+              public formBuilder : FormBuilder, private storage: Storage) { 
 
     this.loginForm = this.formBuilder.group({
       password : new FormControl('',Validators.compose([
@@ -65,6 +66,7 @@ export class loginPage implements OnInit {
     this.authenticationService.executeJWTAuthenticationService(this.email, this.password)
         .subscribe(
           response => {
+            this.storage.set('em', this.email);
             this.router.navigate(['home']);
             this.invalidLogin = false;
           },
