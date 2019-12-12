@@ -18,7 +18,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "estheticians")
 public class Esthetician extends User
 {
-
 	@JsonIgnore
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE },fetch = FetchType.LAZY)
 	@JoinTable(name = "estheticians_services", 
@@ -32,11 +31,13 @@ public class Esthetician extends User
 	           fetch = FetchType.LAZY)
 	private Set<Availability> availabilities = new HashSet<>();
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "customer", 
 			   cascade = CascadeType.ALL, 
 			   fetch = FetchType.LAZY)
 	private Set<Cart> carts;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "customer", 
 			   cascade = CascadeType.ALL, 
 			   fetch = FetchType.LAZY)

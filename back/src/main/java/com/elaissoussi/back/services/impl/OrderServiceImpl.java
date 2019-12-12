@@ -2,6 +2,8 @@ package com.elaissoussi.back.services.impl;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Service;
+
 import com.elaissoussi.back.entities.Cart;
 import com.elaissoussi.back.entities.Order;
 import com.elaissoussi.back.entities.OrderEntry;
@@ -9,6 +11,7 @@ import com.elaissoussi.back.repositories.CartRepository;
 import com.elaissoussi.back.repositories.OrderRepository;
 import com.elaissoussi.back.services.OrderService;
 
+@Service
 public class OrderServiceImpl implements OrderService
 {
 	@Resource

@@ -8,15 +8,19 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "customers")
 public class Customer extends User
-{
+{	
+	@JsonIgnore
 	@OneToMany(mappedBy = "customer", 
 			   cascade = CascadeType.ALL, 
 			   fetch = FetchType.LAZY)
 	private Set<Cart> carts;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "customer", 
 			   cascade = CascadeType.ALL, 
 			   fetch = FetchType.LAZY)

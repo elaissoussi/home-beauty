@@ -17,12 +17,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Inheritance(strategy =InheritanceType.TABLE_PER_CLASS )
 public class User {
   
+	@JsonIgnore
     @Id
     @GeneratedValue(strategy=GenerationType.TABLE)
     private Long id; 
     
     private String email;
     
+    @JsonIgnore
     private String password; 
     
     private String firstName;

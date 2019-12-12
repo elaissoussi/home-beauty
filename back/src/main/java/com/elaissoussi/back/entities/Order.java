@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -23,11 +24,11 @@ public class Order
 	private Long id;
 
 	@JsonIgnore
-	@OneToMany(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY)
 	private Customer customer;
 
 	@JsonIgnore
-	@OneToMany(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY)
 	private Esthetician esthestian;
 
 	private int startHour;
