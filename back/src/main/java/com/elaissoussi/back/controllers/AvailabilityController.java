@@ -13,20 +13,23 @@ import com.elaissoussi.back.repositories.EstheticianRepository;
 
 @RestController
 @RequestMapping("/availabilities")
-public class AvailabilityController {
+public class AvailabilityController
+{
 
-  @Autowired
-  EstheticianRepository estheticianRepository;
+	@Autowired
+	EstheticianRepository estheticianRepository;
 
-  @PostMapping("/{userId}")
-  public Esthetician addAvailabilities(@RequestBody Set<Availability> availabilities, @PathVariable("userId") Long userId) {
-    
-    Esthetician esthestician = estheticianRepository.findOne(userId);
+	@PostMapping("/{userId}")
+	public Esthetician addAvailabilities(@RequestBody Set<Availability> availabilities,
+			@PathVariable("userId") Long userId)
+	{
 
-    availabilities.stream().forEach(av -> av.setEsthetician(esthestician));
-    
-    esthestician.setAvailabilities(availabilities);
+		Esthetician esthestician = estheticianRepository.findOne(userId);
 
-   return  estheticianRepository.save(esthestician);
-  }
+		availabilities.stream().forEach(av -> av.setEsthetician(esthestician));
+
+		esthestician.setAvailabilities(availabilities);
+
+		return estheticianRepository.save(esthestician);
+	}
 }

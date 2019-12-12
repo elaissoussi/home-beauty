@@ -1,12 +1,14 @@
 package com.elaissoussi.back.services.impl;
 
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -18,59 +20,50 @@ import com.elaissoussi.back.repositories.EstheticianRepository;
 import com.elaissoussi.back.services.EsthesticianService;
 
 @Service
-public class EsthesticianServiceImpl implements EsthesticianService {
-
-	@Autowired
+public class EsthesticianServiceImpl implements EsthesticianService
+{
+	@Resource
 	EstheticianRepository estheticianRepository;
-	
-	@Autowired
+
+	@Resource
 	AvailabilityReposiroty availabilityReposiroty;
 
 	@Override
-	public List<Availability> getAvailabilities(int zipCode, Date date) {
-
+	public List<Availability> getAvailabilities(int zipCode, Date date)
+	{
 		Set<Esthetician> esthesticians = estheticianRepository.findByZipCode(zipCode);
 
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(date);
 		int i = calendar.get(Calendar.DAY_OF_WEEK);
 
-		// check startDate & endDate of order !!!
-		// find the good idea to check availabiilty of esth
-		// how esth could submit thier availa
+		// TODO : check startDate & endDate of order !!!
+		// TODO : find the good idea to check availabilty for esth
 		List<Availability> availabilities = esthesticians.stream().map(e -> e.getAvailabilities())
 				.flatMap(e -> e.stream()).filter(a -> a.getDayOfWeak() >= i).collect(Collectors.toList());
-
-		// return list of start - end-date to display in the front !
-
-		/*
-		 * Map<Availability, Set<Esthetician>> availabilitiesMap =
-		 * availabilities.stream().collect(Collectors.groupingBy(Function.identity(),
-		 * Collectors.mapping(Availability::getEsthetician, Collectors.toSet())));
-		 */
 
 		return availabilities;
 	}
 
 	@Override
-	public List<Esthetician> getEstheticiansByAvailability(Long avalibilityId) {
-		
+	public List<Esthetician> getEstheticiansByAvailability(Long avalibilityId)
+	{
 		Availability availability = availabilityReposiroty.findOne(avalibilityId);
-		
-		if (availability != null) {
-			
+
+		if (availability != null)
+		{
 			int dayOfWeak = availability.getDayOfWeak();
 			int startHour = availability.getStartHour();
 			int endHour = availability.getEndHour();
 
-			List<Availability> availabilities = availabilityReposiroty.findAvailabilitiesBy(dayOfWeak, startHour,endHour);
+			List<Availability> availabilities = availabilityReposiroty.findAvailabilitiesBy(dayOfWeak, startHour,
+					endHour);
 
-			if (!CollectionUtils.isEmpty(availabilities)) {
-
+			if (!CollectionUtils.isEmpty(availabilities))
+			{
 				return availabilities.stream().map(av -> av.getEsthetician()).collect(Collectors.toList());
 			}
 		}
-		
 		return Collections.emptyList();
 	}
 

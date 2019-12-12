@@ -142,7 +142,7 @@ public class CartServiceImpl implements CartService
 	}
 
 	@Override
-	public Cart updateCart(String customerEmail, Long estheticianId, int startHour, int endHour, Date date)
+	public Cart addAppointement(String customerEmail, Long estheticianId, int startHour, int endHour, Date date)
 	{
 		Cart cart = getCart(customerEmail);
 
