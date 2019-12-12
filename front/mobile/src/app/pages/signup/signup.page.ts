@@ -1,8 +1,8 @@
 import { User, UserType } from './../../user.model';
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+//import { AuthenticationService } from 'src/app/services/authentication.service';
 import { SignupService } from 'src/app/services/signup.service'
-import { NavController, AlertController } from '@ionic/angular';
+//import { NavController, AlertController } from '@ionic/angular';
 import {FormBuilder, FormGroup, Validators,FormControl, AbstractControl } from '@angular/forms';
 import { MustMatch } from 'src/app/_helpers/must-match/validator';
 import { Router } from '@angular/router';
@@ -17,9 +17,6 @@ export class SignupPage implements OnInit {
  
 
  
-  //public customer :Boolean=!this.esthetician;
-
-
   
 
   email:String ;
