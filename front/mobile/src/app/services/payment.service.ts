@@ -16,7 +16,7 @@ email:String
       console.log('Your email is', val);
     });
   }
-
+ 
 
   payment(cardHolderName,cardType,cardNumber,cardExpirationDate,cardCVC){
     return this.http.post<any>(

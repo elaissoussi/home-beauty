@@ -30,7 +30,7 @@ export class PaymentPage implements OnInit {
       data => {
         console.log(data);
         //this.router.navigate(['home']);
-      },
+      }, 
       error => {
         console.log(error);
     
