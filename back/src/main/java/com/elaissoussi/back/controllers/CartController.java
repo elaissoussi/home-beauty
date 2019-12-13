@@ -33,13 +33,11 @@ public class CartController
 		return cartService.updateCart(customerEmail, serviceId, quantity);
 	}
 
-	@PostMapping("/updateAppointement")
-	Cart addAppointement(@RequestParam("customer") String customerEmail,
-			@RequestParam("esthetician") Long estheticianId, 
-			@RequestParam("startHour") int startHour,
+	@PostMapping("/addAppointement")
+	Cart addAppointement(@RequestParam("esthetician") Long estheticianId, @RequestParam("startHour") int startHour,
 			@RequestParam("endHour") int endHour,
 			@RequestParam("date") @DateTimeFormat(pattern = "dd-MM-yyyy") Date date)
 	{
-		return cartService.addAppointement(customerEmail, estheticianId, startHour, endHour, date);
+		return cartService.addAppointement(estheticianId, startHour, endHour, date);
 	}
 }

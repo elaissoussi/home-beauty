@@ -40,6 +40,9 @@ public class CartServiceImpl implements CartService
 	@Resource
 	private EstheticianRepository estheticianRepository;
 
+	@Resource
+	UserService userService;
+	
 	@Override
 	public Cart getCart(String customerEmail)
 	{
@@ -142,8 +145,10 @@ public class CartServiceImpl implements CartService
 	}
 
 	@Override
-	public Cart addAppointement(String customerEmail, Long estheticianId, int startHour, int endHour, Date date)
+	public Cart addAppointement(Long estheticianId, int startHour, int endHour, Date date)
 	{
+		String customerEmail = userService.getCurrentUser();
+		
 		Cart cart = getCart(customerEmail);
 
 		Esthetician esthestian = estheticianRepository.findOne(estheticianId);
@@ -157,8 +162,10 @@ public class CartServiceImpl implements CartService
 	}
 
 	@Override
-	public Cart addPaymentInfo(String customerEmail, PaymentInfo paymentInfo)
+	public Cart addPaymentInfo(PaymentInfo paymentInfo)
 	{
+		String customerEmail = userService.getCurrentUser();
+		
 		Cart cart = getCart(customerEmail);
 		cart.setPayementInfo(paymentInfo);
 		
