@@ -1,12 +1,13 @@
 package com.elaissoussi.back.services.impl;
 
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 import org.springframework.util.CollectionUtils;
+
+import com.elaissoussi.back.entities.Appointment;
 import com.elaissoussi.back.entities.Cart;
 import com.elaissoussi.back.entities.CartEntry;
 import com.elaissoussi.back.entities.Customer;
@@ -145,18 +146,19 @@ public class CartServiceImpl implements CartService
 	}
 
 	@Override
-	public Cart addAppointement(Long estheticianId, int startHour, int endHour, Date date)
+	public Cart addAppointement(Appointment appointment)
 	{
 		String customerEmail = userService.getCurrentUser();
 		
 		Cart cart = getCart(customerEmail);
 
+		Long estheticianId = appointment.getEstheticianId();
 		Esthetician esthestian = estheticianRepository.findOne(estheticianId);
 
 		cart.setEsthestian(esthestian);
-		cart.setDate(date);
-		cart.setStartHour(startHour);
-		cart.setEndHour(endHour);
+		cart.setDate(appointment.getDate());
+		cart.setStartHour(appointment.getStartHour());
+		cart.setEndHour(appointment.getEndHour());
 
 		return cartRepository.save(cart);
 	}

@@ -1,7 +1,6 @@
 package com.elaissoussi.back.services;
 
-import java.util.Date;
-
+import com.elaissoussi.back.entities.Appointment;
 import com.elaissoussi.back.entities.Cart;
 import com.elaissoussi.back.entities.PaymentInfo;
 
@@ -13,7 +12,7 @@ public interface CartService
 
 	Cart removeFromCart(String customer, Long serviceId);
 
-	Cart addAppointement(Long estheticianId, int startHour, int endHour, Date date);
+	Cart addAppointement(Appointment app);
 
 	Cart addPaymentInfo(PaymentInfo paymentInfo);
 }

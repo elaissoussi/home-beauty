@@ -7,9 +7,12 @@ import javax.annotation.Resource;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.elaissoussi.back.entities.Appointment;
 import com.elaissoussi.back.entities.Cart;
 import com.elaissoussi.back.services.CartService;
 
@@ -34,10 +37,8 @@ public class CartController
 	}
 
 	@PostMapping("/addAppointement")
-	Cart addAppointement(@RequestParam("esthetician") Long estheticianId, @RequestParam("startHour") int startHour,
-			@RequestParam("endHour") int endHour,
-			@RequestParam("date") @DateTimeFormat(pattern = "dd-MM-yyyy") Date date)
+	Cart addAppointement(@RequestBody Appointment appointment)
 	{
-		return cartService.addAppointement(estheticianId, startHour, endHour, date);
+		return cartService.addAppointement(appointment);
 	}
 }
