@@ -1,25 +1,15 @@
 package com.elaissoussi.back.services.impl;
 
+import com.elaissoussi.back.entities.*;
+import com.elaissoussi.back.repositories.*;
+import com.elaissoussi.back.services.CartService;
+import org.springframework.util.CollectionUtils;
+
+import javax.annotation.Resource;
+import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import javax.annotation.Resource;
-import javax.transaction.Transactional;
-import org.springframework.util.CollectionUtils;
-
-import com.elaissoussi.back.entities.Appointment;
-import com.elaissoussi.back.entities.Cart;
-import com.elaissoussi.back.entities.CartEntry;
-import com.elaissoussi.back.entities.Customer;
-import com.elaissoussi.back.entities.Esthetician;
-import com.elaissoussi.back.entities.PaymentInfo;
-import com.elaissoussi.back.entities.Service;
-import com.elaissoussi.back.repositories.CartEntryRepository;
-import com.elaissoussi.back.repositories.CartRepository;
-import com.elaissoussi.back.repositories.CustomerRepository;
-import com.elaissoussi.back.repositories.EstheticianRepository;
-import com.elaissoussi.back.repositories.ServiceRepository;
-import com.elaissoussi.back.services.CartService;
 
 @org.springframework.stereotype.Service("cartService")
 @Transactional
@@ -43,10 +33,15 @@ public class CartServiceImpl implements CartService
 
 	@Resource
 	UserService userService;
+
+	@Resource 
+	PaymentInfoRepository paymentInfoRepository;
 	
 	@Override
-	public Cart getCart(String customerEmail)
+	public Cart getCart()
 	{
+		String customerEmail = userService.getCurrentUser();
+
 		Cart cart = cartRepository.findCartByCustomer(customerEmail);
 		if (cart == null)
 		{
@@ -56,16 +51,16 @@ public class CartServiceImpl implements CartService
 	}
 
 	@Override
-	public Cart updateCart(String customerEmail, Long serviceId, int quantity)
+	public Cart updateCart(Long serviceId, int quantity)
 	{
 
-		Cart cart = getCart(customerEmail);
+		Cart cart = getCart();
 		Service service = serviceRepository.findOne(serviceId);
 
 		// remove from cart
 		if (quantity == 0)
 		{
-			return removeFromCart(customerEmail, serviceId);
+			return removeFromCart(serviceId);
 		}
 
 		// update cart quantity
@@ -101,6 +96,7 @@ public class CartServiceImpl implements CartService
 			// Create a new cart
 
 			// customer
+			String customerEmail = userService.getCurrentUser();
 			Customer customer = customerRepository.findByEmail(customerEmail);
 			cart.setCustomer(customer);
 			// new Entry
@@ -116,10 +112,10 @@ public class CartServiceImpl implements CartService
 	}
 
 	@Override
-	public Cart removeFromCart(String customer, Long serviceId)
+	public Cart removeFromCart(Long serviceId)
 	{
 
-		Cart cart = getCart(customer);
+		Cart cart = getCart();
 		Service service = serviceRepository.findOne(serviceId);
 
 		if (!CollectionUtils.isEmpty(cart.getEntries()) && service != null)
@@ -146,11 +142,10 @@ public class CartServiceImpl implements CartService
 	}
 
 	@Override
-	public Cart addAppointement(Appointment appointment)
+	public Cart addAppointment(Appointment appointment)
 	{
-		String customerEmail = userService.getCurrentUser();
-		
-		Cart cart = getCart(customerEmail);
+
+		Cart cart = getCart();
 
 		Long estheticianId = appointment.getEstheticianId();
 		Esthetician esthestian = estheticianRepository.findOne(estheticianId);
@@ -166,9 +161,9 @@ public class CartServiceImpl implements CartService
 	@Override
 	public Cart addPaymentInfo(PaymentInfo paymentInfo)
 	{
-		String customerEmail = userService.getCurrentUser();
+		paymentInfoRepository.save(paymentInfo);
 		
-		Cart cart = getCart(customerEmail);
+		Cart cart = getCart();
 		cart.setPayementInfo(paymentInfo);
 		
 		return cartRepository.save(cart);

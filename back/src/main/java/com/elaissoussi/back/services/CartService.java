@@ -6,13 +6,13 @@ import com.elaissoussi.back.entities.PaymentInfo;
 
 public interface CartService
 {
-	Cart getCart(String customerEmail);
+	Cart getCart();
 
-	Cart updateCart(String customerEmail, Long serviceId, int quantity);
+	Cart updateCart(Long serviceId, int quantity);
 
-	Cart removeFromCart(String customer, Long serviceId);
+	Cart removeFromCart(Long serviceId);
 
-	Cart addAppointement(Appointment app);
+	Cart addAppointment(Appointment app);
 
 	Cart addPaymentInfo(PaymentInfo paymentInfo);
 }

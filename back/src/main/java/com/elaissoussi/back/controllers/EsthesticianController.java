@@ -3,6 +3,7 @@ package com.elaissoussi.back.controllers;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,12 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.elaissoussi.back.entities.Availability;
 import com.elaissoussi.back.entities.AvailabilityList;
 import com.elaissoussi.back.entities.Esthetician;
 import com.elaissoussi.back.entities.EstheticianList;
 import com.elaissoussi.back.entities.Service;
-import com.elaissoussi.back.repositories.AvailabilityReposiroty;
 import com.elaissoussi.back.repositories.EstheticianRepository;
 import com.elaissoussi.back.services.EsthesticianService;
 

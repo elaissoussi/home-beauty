@@ -1,10 +1,7 @@
 package com.elaissoussi.back.controllers;
 
-import java.util.Date;
-
 import javax.annotation.Resource;
 
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,21 +21,20 @@ public class CartController
 	CartService cartService;
 
 	@GetMapping
-	Cart getCart(@RequestParam("customer") String customerEmail)
+	Cart getCart()
 	{
-		return cartService.getCart(customerEmail);
+		return cartService.getCart();
 	}
 
 	@PostMapping("/updateCart")
-	Cart addToCart(@RequestParam("customer") String customerEmail, @RequestParam("service") Long serviceId,
-			@RequestParam("quantity") int quantity)
+	Cart addToCart(@RequestParam("service") Long serviceId, @RequestParam("quantity") int quantity)
 	{
-		return cartService.updateCart(customerEmail, serviceId, quantity);
+		return cartService.updateCart(serviceId, quantity);
 	}
 
 	@PostMapping("/addAppointement")
-	Cart addAppointement(@RequestBody Appointment appointment)
+	Cart addAppointment(@RequestBody Appointment appointment)
 	{
-		return cartService.addAppointement(appointment);
+		return cartService.addAppointment(appointment);
 	}
 }

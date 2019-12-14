@@ -18,13 +18,11 @@ export class CartService {
   constructor(public storage: Storage, public httpClient:HttpClient) {}
 
   getCart(): Observable<Any>{
-    let customer = sessionStorage.getItem(AUTHENTICATED_USER);
-    return this.httpClient.get(`${API_URL}/cart?customer=${customer}`);
+    return this.httpClient.get(`${API_URL}/cart`);
   }
 
   updateCart(product : Product, quantity : number) : Observable<Any> {
-    let customer = sessionStorage.getItem(AUTHENTICATED_USER);
-    return this.httpClient.post(`${API_URL}/cart/updateCart?customer=${customer}&service=${product.id}&quantity=${quantity}`,{});
+    return this.httpClient.post(`${API_URL}/cart/updateCart?service=${product.id}&quantity=${quantity}`,{});
   }
 
   getProductsCartNumber(cart : Cart) : number {

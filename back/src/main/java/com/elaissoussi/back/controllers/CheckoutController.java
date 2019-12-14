@@ -43,7 +43,7 @@ public class CheckoutController
 	{
 		String customerEmail = userService.getCurrentUser();
 		
-		Cart cart = cartService.getCart(customerEmail);
+		Cart cart = cartService.getCart();
 
 		if (CollectionUtils.isEmpty(cart.getEntries()))
 		{
