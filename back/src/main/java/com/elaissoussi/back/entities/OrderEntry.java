@@ -15,7 +15,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "orderentries")
 public class OrderEntry
 {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private Long id;

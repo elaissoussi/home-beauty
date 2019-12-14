@@ -23,13 +23,13 @@ public class Order
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private Long id;
 
-	@JsonIgnore
+
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Customer customer;
 
-	@JsonIgnore
+
 	@ManyToOne(fetch=FetchType.LAZY)
-	private Esthetician esthestian;
+	private Esthetician esthetician;
 
 	private int startHour;
 
@@ -37,10 +37,10 @@ public class Order
 
 	private Date date;
 
-	@OneToMany(mappedBy = "cart", 
+	@OneToMany(mappedBy = "order",
 			   cascade = CascadeType.ALL, 
 			   fetch = FetchType.LAZY)
-	private List<CartEntry> entries;
+	private List<OrderEntry> entries;
 
 	public Long getId()
 	{
@@ -60,26 +60,6 @@ public class Order
 	public void setCustomer(Customer customer)
 	{
 		this.customer = customer;
-	}
-
-	public List<CartEntry> getEntries()
-	{
-		return entries;
-	}
-
-	public void setEntries(List<CartEntry> entries)
-	{
-		this.entries = entries;
-	}
-
-	public Esthetician getEsthestian()
-	{
-		return esthestian;
-	}
-
-	public void setEsthestian(Esthetician esthestian)
-	{
-		this.esthestian = esthestian;
 	}
 
 	public int getStartHour()
@@ -110,5 +90,21 @@ public class Order
 	public void setDate(Date date)
 	{
 		this.date = date;
+	}
+
+	public List<OrderEntry> getEntries() {
+		return entries;
+	}
+
+	public void setEntries(List<OrderEntry> entries) {
+		this.entries = entries;
+	}
+
+	public Esthetician getEsthetician() {
+		return esthetician;
+	}
+
+	public void setEsthetician(Esthetician esthetician) {
+		this.esthetician = esthetician;
 	}
 }
