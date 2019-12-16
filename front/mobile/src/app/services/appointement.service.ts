@@ -6,7 +6,7 @@ import { DatePipe } from '@angular/common';
 import { Availability } from 'src/app/models/Availability';
 import {JsonConvert, Any} from "json2typescript"
 import { AvailabilityList } from '../models/AvailabilityList';
-
+import {map} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,6 +19,18 @@ export class AppointementService {
   getEstheticianAvailabilities(zipcode : number, date : Date): Observable<any> {
     let newDate = this.datePipe.transform(date, 'dd-MM-yyyy');
     return this.http.get(`${API_URL}/estheticians/zipcode/${zipcode}/date/${newDate}`);
+  }
+
+  sendZipCodeAndDate(zipcode : number, date : Date): Observable<any> {
+    let newDate = this.datePipe.transform(date, 'dd-MM-yyyy');
+    return this.http.post<any>(`${API_URL}/cart/addAppointement`,{zipcode,newDate})
+    .pipe(map(response => {
+          console.log(response);
+          return response;
+          
+        }
+        )
+      );
   }
 
   getEstheticianAvailabilitiesTime(id : number): Observable<any> {
