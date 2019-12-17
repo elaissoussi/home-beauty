@@ -2,11 +2,9 @@ package com.elaissoussi.back.controllers;
 
 import javax.annotation.Resource;
 
+import com.elaissoussi.back.entities.Appointment;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.elaissoussi.back.entities.Cart;
 import com.elaissoussi.back.entities.Order;
@@ -36,6 +34,17 @@ public class CheckoutController
 	public Cart addPaymentInfo(@RequestBody PaymentInfo paymentInfo)
 	{
 		return cartService.addPaymentInfo(paymentInfo);
+	}
+
+	@PostMapping("/addAppointement")
+	public Cart addAppointment(@RequestBody Appointment appointment)
+	{
+		return cartService.addAppointment(appointment);
+	}
+
+	@PostMapping("/addEsthetician/{estheticianId}")
+	public Cart addEsthetician(@PathVariable Long estheticianId){
+		return cartService.addEsthetician(estheticianId);
 	}
 
 	@PostMapping("/placeOrder")

@@ -147,10 +147,6 @@ public class CartServiceImpl implements CartService
 
 		Cart cart = getCart();
 
-		Long estheticianId = appointment.getEstheticianId();
-		Esthetician esthestian = estheticianRepository.findOne(estheticianId);
-
-		cart.setEsthestian(esthestian);
 		cart.setDate(appointment.getDate());
 		cart.setStartHour(appointment.getStartHour());
 		cart.setEndHour(appointment.getEndHour());
@@ -166,6 +162,16 @@ public class CartServiceImpl implements CartService
 		Cart cart = getCart();
 		cart.setPayementInfo(paymentInfo);
 		
+		return cartRepository.save(cart);
+	}
+
+	@Override
+	public Cart addEsthetician(Long estheticianId) {
+
+		Esthetician esthetician = estheticianRepository.findOne(estheticianId);
+		Cart cart = getCart();
+		cart.setEsthestian(esthetician);
+
 		return cartRepository.save(cart);
 	}
 

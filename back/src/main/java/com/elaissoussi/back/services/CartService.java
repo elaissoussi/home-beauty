@@ -15,4 +15,6 @@ public interface CartService
 	Cart addAppointment(Appointment app);
 
 	Cart addPaymentInfo(PaymentInfo paymentInfo);
+
+	Cart addEsthetician(Long estheticianId);
 }
