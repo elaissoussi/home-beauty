@@ -66,7 +66,7 @@ export class loginPage implements OnInit {
     this.authenticationService.executeJWTAuthenticationService(this.email, this.password)
         .subscribe(
           response => {
-            this.storage.set('em', this.email);
+          
             this.router.navigate(['home']);
             this.invalidLogin = false;
           },
