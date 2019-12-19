@@ -50,8 +50,6 @@ public class CheckoutController
 	@PostMapping("/placeOrder")
 	public Order placeOder()
 	{
-		String customerEmail = userService.getCurrentUser();
-		
 		Cart cart = cartService.getCart();
 
 		if (CollectionUtils.isEmpty(cart.getEntries()))
