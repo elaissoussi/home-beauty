@@ -37,6 +37,7 @@ export class AppointementService {
     
     return this.http.get(`${API_URL}/estheticians/availability/${id}`);
   }
+  
   convert(JsonObject : any) : AvailabilityList {
 
     let jsonConvert : JsonConvert = new JsonConvert();        

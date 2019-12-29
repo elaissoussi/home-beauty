@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
 import { AppointementService } from '../services/appointement.service';
-
+import { API_URL } from './../app.constants';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Platform } from '@ionic/angular';
@@ -23,7 +23,7 @@ export class SelectEstheticiansPage {
   
 
   constructor(private appointement: AppointementService, private router: Router,
-    private route: ActivatedRoute, private plt: Platform) {
+    private route: ActivatedRoute, private plt: Platform,private http: HttpClient) {
 
       this.esthdisp();
   }
@@ -86,6 +86,18 @@ let searchValue : string = ev.target.value;
   }
 
   openPayment(id:number){
+
+    this.http.post<any>(`${API_URL}/checkout//addEsthetician/${id}`,{id})
+    .subscribe(
+      response => {
+            
+        console.log(response)
+     
+         },
+      error   => {
+        console.log(error);
+    });
+    
     
     this.router.navigate([`/payment/${id}`]);
   

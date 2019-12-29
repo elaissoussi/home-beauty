@@ -52,6 +52,7 @@ export class AppointmentPage {
       response => {
             
            console.log(response)
+     
            this.router.navigate([`select-estheticians/${id}`]);
             },
       error   => {
