@@ -17,24 +17,18 @@ import com.elaissoussi.back.services.CartService;
 @RequestMapping("/cart")
 public class CartController
 {
-	@Resource
-	CartService cartService;
+    @Resource
+    CartService cartService;
 
-	@GetMapping
-	Cart getCart()
-	{
-		return cartService.getCart();
-	}
+    @GetMapping
+    Cart getCart()
+    {
+        return cartService.getCart();
+    }
 
-	@PostMapping("/updateCart")
-	Cart addToCart(@RequestParam("service") Long serviceId, @RequestParam("quantity") int quantity)
-	{
-		return cartService.updateCart(serviceId, quantity);
-	}
-
-	@PostMapping("/addAppointement")
-	Cart addAppointment(@RequestBody Appointment appointment)
-	{
-		return cartService.addAppointment(appointment);
-	}
+    @PostMapping("/updateCart")
+    Cart addToCart(@RequestParam("service") Long serviceId, @RequestParam("quantity") int quantity)
+    {
+        return cartService.updateCart(serviceId, quantity);
+    }
 }

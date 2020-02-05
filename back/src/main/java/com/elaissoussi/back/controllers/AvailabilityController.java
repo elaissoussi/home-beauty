@@ -1,6 +1,7 @@
 package com.elaissoussi.back.controllers;
 
 import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,20 +17,19 @@ import com.elaissoussi.back.repositories.EstheticianRepository;
 public class AvailabilityController
 {
 
-	@Autowired
-	EstheticianRepository estheticianRepository;
+    @Autowired
+    EstheticianRepository estheticianRepository;
 
-	@PostMapping("/{userId}")
-	public Esthetician addAvailabilities(@RequestBody Set<Availability> availabilities,
-			@PathVariable("userId") Long userId)
-	{
+    @PostMapping("/{userId}")
+    public Esthetician addAvailabilities(@RequestBody Set<Availability> availabilities,
+                                         @PathVariable("userId") Long userId)
+    {
+        Esthetician esthestician = estheticianRepository.findOne(userId);
 
-		Esthetician esthestician = estheticianRepository.findOne(userId);
+        availabilities.stream().forEach(av -> av.setEsthetician(esthestician));
 
-		availabilities.stream().forEach(av -> av.setEsthetician(esthestician));
+        esthestician.setAvailabilities(availabilities);
 
-		esthestician.setAvailabilities(availabilities);
-
-		return estheticianRepository.save(esthestician);
-	}
+        return estheticianRepository.save(esthestician);
+    }
 }

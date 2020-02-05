@@ -36,7 +36,7 @@ public class CheckoutController
 		return cartService.addPaymentInfo(paymentInfo);
 	}
 
-	@PostMapping("/addAppointement")
+	@PostMapping("/addAppointment")
 	public Cart addAppointment(@RequestBody Appointment appointment)
 	{
 		return cartService.addAppointment(appointment);

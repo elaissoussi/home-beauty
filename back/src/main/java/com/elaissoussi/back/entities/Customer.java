@@ -25,4 +25,24 @@ public class Customer extends User
 			   cascade = CascadeType.ALL, 
 			   fetch = FetchType.LAZY)
 	private Set<Order> orders;
+
+	public Set<Cart> getCarts()
+	{
+		return carts;
+	}
+
+	public void setCarts(Set<Cart> carts)
+	{
+		this.carts = carts;
+	}
+
+	public Set<Order> getOrders()
+	{
+		return orders;
+	}
+
+	public void setOrders(Set<Order> orders)
+	{
+		this.orders = orders;
+	}
 }

@@ -9,10 +9,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import com.elaissoussi.back.repositories.UserRepository;
 
+import javax.annotation.Resource;
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-  @Autowired
+  @Resource
   UserRepository userRepository; 
   
   @Override

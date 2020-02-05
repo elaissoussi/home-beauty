@@ -6,4 +6,6 @@ import com.elaissoussi.back.entities.Order;
 public interface OrderService {
 	
 	Order placeOrder(Cart cart);
+
+	Order getOrder(Long orderId);
 }
