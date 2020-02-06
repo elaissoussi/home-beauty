@@ -12,13 +12,15 @@ import {map} from 'rxjs/operators';
 })
 export class AppointementService {
 
- 
+  
+  page = 0;
   
   constructor(private http: HttpClient, private datePipe: DatePipe) {}
 
   getEstheticianAvailabilities(zipcode : number, date : Date): Observable<any> {
     let newDate = this.datePipe.transform(date, 'dd-MM-yyyy');
     return this.http.get(`${API_URL}/estheticians/zipcode/${zipcode}/date/${newDate}`);
+   
   }
 
   sendZipCodeAndDate(zipcode : number, date : Date,id :number): Observable<any> {
@@ -35,7 +37,7 @@ export class AppointementService {
 
   getEstheticianAvailabilitiesTime(id : number): Observable<any> {
     
-    return this.http.get(`${API_URL}/estheticians/availability/${id}`);
+    return this.http.get(`${API_URL}/estheticians/availability/${id}/?page=${this.page}`);
   }
   
   convert(JsonObject : any) : AvailabilityList {
@@ -49,5 +51,9 @@ export class AppointementService {
         console.log((<Error>e));
     }
     return availabilityList;
+  }
+
+  loadmore () {
+    this.page++;
   }
 }

@@ -30,11 +30,13 @@
                     <h2>
                       
                         {{ esth.id }} - {{ esth.firstName | uppercase}} - {{ esth.lastName | uppercase}}
+                       
                      </h2>
                      
                   </ion-label>
                 </ion-item>
-          
+              
+                
                 <ion-item-options side="end">
                   <ion-item-option color="warning" expandable>
                       <ion-icon name="star"></ion-icon>
@@ -51,5 +53,7 @@
   
   </ion-list>
       
-    
+  <ion-infinite-scroll threshold="25%" (ionInfinite)="loadMore($event)" >
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading Users..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

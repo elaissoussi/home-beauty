@@ -18,7 +18,8 @@ import { JsonConvert, Any } from "json2typescript";
 
 
 export class SelectEstheticiansPage {
- 
+  esths = [];
+maximumpage=3;
   estheticianList: EstheticianList = undefined;
   
 
@@ -29,7 +30,7 @@ export class SelectEstheticiansPage {
   }
 
   
-esthdisp(){
+esthdisp(event?){
    this.plt.ready().then(() => {
     let id = parseInt(this.route.snapshot.paramMap.get('id'));
 
@@ -37,7 +38,10 @@ esthdisp(){
 
       response => {
         this.estheticianList = this.convert(response);
-      
+        this.esths=this.esths.concat(response['results']);
+        if(event){
+          event.target.complete();
+        }
       },
       error => {
         console.log(error);
@@ -105,6 +109,12 @@ let searchValue : string = ev.target.value;
 
    
 
-  
+   loadMore (event) {
+    this.appointement.loadmore();
+    this.esthdisp(event)
+    if(this.appointement.page===this.maximumpage){
+event.target.disabled=true;
+    }
+  }
 
 }
