@@ -21,9 +21,9 @@ export class AppointementService {
     return this.http.get(`${API_URL}/estheticians/zipcode/${zipcode}/date/${newDate}`);
   }
 
-  sendZipCodeAndDate(zipcode : number, date : Date): Observable<any> {
+  sendZipCodeAndDate(zipcode : number, date : Date,id :number): Observable<any> {
     let newDate = this.datePipe.transform(date, 'dd-MM-yyyy');
-    return this.http.post<any>(`${API_URL}/cart/addAppointement`,{zipcode,newDate})
+    return this.http.post<any>(`${API_URL}/cart/addAppointement`,{zipcode,newDate,id})
     .pipe(map(response => {
           console.log(response);
           return response;

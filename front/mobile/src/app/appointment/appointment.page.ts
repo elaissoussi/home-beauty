@@ -47,7 +47,7 @@ export class AppointmentPage {
   if(this.radioButtonValues && this.isChecked==true)
   {
     console.log("id is: ",id)
-    this.appointmentService.sendZipCodeAndDate(this.zipcode, this.date).subscribe(
+    this.appointmentService.sendZipCodeAndDate(this.zipcode, this.date,id).subscribe(
 
       response => {
             
