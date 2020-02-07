@@ -2,6 +2,7 @@ package com.elaissoussi.back.controllers;
 
 import com.elaissoussi.back.entities.Customer;
 import com.elaissoussi.back.entities.Order;
+import com.elaissoussi.back.entities.OrderList;
 import com.elaissoussi.back.services.OrderService;
 import com.elaissoussi.back.services.impl.UserService;
 import org.springframework.util.CollectionUtils;
@@ -25,16 +26,15 @@ public class OrderController
     OrderService orderService;
 
     @GetMapping
-    public Set<Order> getOrders()
+    public OrderList getOrders()
     {
         Customer currentCustomer = userService.getCurrentCustomer();
-
         Set<Order> orders = currentCustomer.getOrders();
-        if (CollectionUtils.isEmpty(orders))
-        {
-            Collections.emptyList();
-        }
-        return orders;
+
+        OrderList orderList = new OrderList();
+        orderList.setOrders(orders);
+
+        return orderList;
     }
 
     @GetMapping("/{orderId}")

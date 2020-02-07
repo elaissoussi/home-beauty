@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Storage } from '@ionic/storage';
-import { API_URL,TOKEN} from './../app.constants';
+import { API_URL, TOKEN } from './../app.constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PaymentService {
 
-  constructor(private http: HttpClient,private storage: Storage) { 
+  constructor(private http: HttpClient, private storage: Storage) {
 
-  
+
   }
- 
 
-  payment(cardHolderName,cardType,cardNumber,cardExpirationDate,cardCVC){
+
+  payment(cardHolderName, cardType, cardNumber, cardExpirationDate, cardCVC) {
     return this.http.post<any>(
       `${API_URL}/checkout/addPaymentInfo`,
       {
@@ -24,16 +24,14 @@ export class PaymentService {
         cardNumber,
         cardExpirationDate,
         cardCVC
-      },{ observe: 'response' }).pipe(
+      }, { observe: 'response' }).pipe(
         map(
           response => {
-            console.log("info :",response)
-  
             return response;
           }
         )
       );
-    
-   
-    }
+
+
+  }
 }

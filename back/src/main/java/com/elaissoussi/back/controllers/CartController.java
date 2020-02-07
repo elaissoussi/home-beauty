@@ -14,21 +14,23 @@ import com.elaissoussi.back.entities.Cart;
 import com.elaissoussi.back.services.CartService;
 
 @RestController
-@RequestMapping("/cart")
+@RequestMapping(value = "/cart")
 public class CartController
 {
-    @Resource
-    CartService cartService;
+        String string ="^[0-9]{4}$";
 
-    @GetMapping
-    Cart getCart()
-    {
-        return cartService.getCart();
-    }
+        @Resource
+        CartService cartService;
 
-    @PostMapping("/updateCart")
-    Cart addToCart(@RequestParam("service") Long serviceId, @RequestParam("quantity") int quantity)
-    {
-        return cartService.updateCart(serviceId, quantity);
-    }
+        @GetMapping
+        Cart getCart()
+        {
+            return cartService.getCart();
+        }
+
+        @PostMapping("/updateCart")
+        Cart addToCart(@RequestParam("service") Long serviceId, @RequestParam("quantity") int quantity)
+        {
+            return cartService.updateCart(serviceId, quantity);
+        }
 }

@@ -15,44 +15,44 @@ import java.util.List;
 @Service
 public class OrderServiceImpl implements OrderService
 {
-	@Resource
-	OrderRepository orderRepository;
-	
-	@Resource
-	CartRepository cartRepository;
+    @Resource
+    OrderRepository orderRepository;
 
-	@Override
-	public Order placeOrder(Cart cart)
-	{
-		Order order = new Order();
+    @Resource
+    CartRepository cartRepository;
 
-		order.setCustomer(cart.getCustomer());
-		order.setEsthetician(cart.getEsthestian());
-		order.setDate(cart.getDate());
-		order.setStartHour(cart.getStartHour());
-		order.setEndHour(cart.getEndHour());
+    @Override
+    public Order placeOrder(Cart cart)
+    {
+        Order order = new Order();
 
-		List<OrderEntry> entries = new ArrayList();
-		cart.getEntries().forEach(e ->
-		{
-			OrderEntry oe = new OrderEntry();
-			oe.setService(e.getService());
-			oe.setQuantity(e.getQuantity());
-			oe.setOrder(order);
+        order.setCustomer(cart.getCustomer());
+        order.setEsthetician(cart.getEsthestian());
+        order.setDate(cart.getDate());
+        order.setStartHour(cart.getStartHour());
+        order.setEndHour(cart.getEndHour());
 
-			entries.add(oe);
-		});
-		order.setEntries(entries);
+        List<OrderEntry> entries = new ArrayList();
+        cart.getEntries().forEach(e ->
+        {
+            OrderEntry oe = new OrderEntry();
+            oe.setService(e.getService());
+            oe.setQuantity(e.getQuantity());
+            oe.setOrder(order);
 
-		cartRepository.delete(cart);
-		
-		return orderRepository.save(order);
-	}
+            entries.add(oe);
+        });
+        order.setEntries(entries);
 
-	@Override
-	public Order getOrder(Long orderId)
-	{
-		return orderRepository.findOne(orderId);
-	}
+        cartRepository.delete(cart);
+
+        return orderRepository.save(order);
+    }
+
+    @Override
+    public Order getOrder(Long orderId)
+    {
+        return orderRepository.findOne(orderId);
+    }
 
 }

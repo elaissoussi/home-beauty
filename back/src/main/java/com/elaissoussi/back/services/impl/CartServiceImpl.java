@@ -36,6 +36,10 @@ public class CartServiceImpl implements CartService
 
 	@Resource 
 	PaymentInfoRepository paymentInfoRepository;
+
+	@Resource
+	AvailabilityReposiroty availabilityReposiroty;
+
 	
 	@Override
 	public Cart getCart()
@@ -144,12 +148,14 @@ public class CartServiceImpl implements CartService
 	@Override
 	public Cart addAppointment(Appointment appointment)
 	{
-
 		Cart cart = getCart();
 
 		cart.setDate(appointment.getDate());
-		cart.setStartHour(appointment.getStartHour());
-		cart.setEndHour(appointment.getEndHour());
+
+		Long availabilityId = appointment.getAvailabilityId();
+		Availability availability =  availabilityReposiroty.findOne(availabilityId);
+		cart.setStartHour(availability.getStartHour());
+		cart.setEndHour(availability.getEndHour());
 
 		return cartRepository.save(cart);
 	}

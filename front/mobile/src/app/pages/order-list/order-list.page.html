@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>order-list</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list *ngIf="orders?.orderList">
+    <ion-item *ngFor="let order of orders.orderList">
+      <ion-toggle value="{{order.id}}"></ion-toggle>
+      <ion-label>{{order.id}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

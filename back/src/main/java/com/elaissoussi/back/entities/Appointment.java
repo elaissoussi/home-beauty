@@ -5,28 +5,28 @@ import java.util.Date;
 
 public class Appointment implements Serializable
 {
-    private int startHour;
-    private int endHour;
     private Date date;
+    private int zipCode;
+    private Long availabilityId;
 
-    public int getStartHour()
+    public Long getAvailabilityId()
     {
-        return startHour;
+        return availabilityId;
     }
 
-    public void setStartHour(int startHour)
+    public void setAvailabilityId(Long availabilityId)
     {
-        this.startHour = startHour;
+        this.availabilityId = availabilityId;
     }
 
-    public int getEndHour()
+    public int getZipCode()
     {
-        return endHour;
+        return zipCode;
     }
 
-    public void setEndHour(int endHour)
+    public void setZipCode(int zipCode)
     {
-        this.endHour = endHour;
+        this.zipCode = zipCode;
     }
 
     public Date getDate()

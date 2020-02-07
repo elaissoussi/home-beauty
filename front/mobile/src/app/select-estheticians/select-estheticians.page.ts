@@ -18,59 +18,51 @@ import { JsonConvert, Any } from "json2typescript";
 
 
 export class SelectEstheticiansPage {
- 
+
   estheticianList: EstheticianList = undefined;
-  
 
-  constructor(private appointement: AppointementService, private router: Router,
-    private route: ActivatedRoute, private plt: Platform,private http: HttpClient) {
-
-      this.esthdisp();
+  constructor(private appointementService: AppointementService, private router: Router,
+    private route: ActivatedRoute, private plt: Platform, private http: HttpClient) {
+    this.getAvailableEstheticians();
   }
 
-  
-esthdisp(){
-   this.plt.ready().then(() => {
-    let id = parseInt(this.route.snapshot.paramMap.get('id'));
+  getAvailableEstheticians() {
+    this.plt.ready().then(() => {
 
-    this.appointement.getEstheticianAvailabilitiesTime(id).subscribe(
+      let id = parseInt(this.route.snapshot.paramMap.get('id'));
 
-      response => {
-        this.estheticianList = this.convert(response);
-      
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      this.appointementService.getAvailabileEstheticians(id).subscribe(
 
-  })
+        response => {
+          this.estheticianList = this.convert(response);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    })
 
 
-}
+  }
 
-FilterJSONData(ev :any){
-   
-let searchValue : string = ev.target.value;
+  filterAvailableEstheticians(ev: any) {
 
-    if(searchValue == null) {
-      return ;
+    let searchValue: string = ev.target.value;
+
+    if (searchValue == null) {
+      return;
     }
-    console.log(searchValue);
-    if(searchValue == "") {
- 
-      
-       return this.esthdisp();
+
+    if (searchValue == "") {
+      return this.getAvailableEstheticians();
     }
 
     let items = this.estheticianList.estheticianlist.filter((item => {
       return (item.firstName.toLowerCase().indexOf(searchValue.toLowerCase()) > -1);
-      }));
+    }));
 
-   console.log(items);
-   this.estheticianList.estheticianlist = items;
-   
-}
+    this.estheticianList.estheticianlist = items;
+  }
 
   convert(estheticianJSON: Any): EstheticianList {
 
@@ -85,26 +77,23 @@ let searchValue : string = ev.target.value;
     return estheticianList;
   }
 
-  openPayment(id:number){
+  addEsthetician(id: number) {
 
-    this.http.post<any>(`${API_URL}/checkout//addEsthetician/${id}`,{id})
-    .subscribe(
-      response => {
-            
-        console.log(response)
-     
-         },
-      error   => {
-        console.log(error);
-    });
-    
-    
+    this.http.post<any>(`${API_URL}/checkout/addEsthetician/${id}`, { id })
+      .subscribe(
+        response => {
+          console.log(response)
+        },
+        error => {
+          console.log(error);
+        });
+
     this.router.navigate([`/payment/${id}`]);
-  
-   }
 
-   
+  }
 
-  
+
+
+
 
 }

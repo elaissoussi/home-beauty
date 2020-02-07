@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>confirmation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding *ngIf="cart?.entries">
+  <ion-grid>
+    
+    <ion-row>
+      <ion-col>
+        <div>
+          cart id
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          {{cart.id}}
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <div>
+          cart entries
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          <ion-list >
+            <ion-item *ngFor="let cartEntry of cart.entries">
+              <ion-label> product : {{cartEntry.product.name}} </ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-button expand="block" (click)="placeOrder()">Place Order</ion-button>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>
