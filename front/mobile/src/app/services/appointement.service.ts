@@ -12,7 +12,7 @@ import { map } from 'rxjs/operators';
 })
 export class AppointementService {
 
-  public page : Number = 0;
+  public page : number = 0;
 
   constructor(private http: HttpClient, private datePipe: DatePipe) { }
 

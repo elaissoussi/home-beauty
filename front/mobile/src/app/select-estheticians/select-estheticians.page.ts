@@ -19,9 +19,9 @@ import { JsonConvert, Any } from "json2typescript";
 
 export class SelectEstheticiansPage {
   esths = [];
-  maximumpage=3;
+  maximumpage = 3;
   estheticianList: EstheticianList = undefined;
-  
+
 
   constructor(private appointementService: AppointementService, private router: Router,
     private route: ActivatedRoute, private plt: Platform, private http: HttpClient) {
@@ -35,19 +35,19 @@ export class SelectEstheticiansPage {
 
       this.appointementService.getAvailabileEstheticians(id).subscribe(
 
-      response => {
-        this.estheticianList = this.convert(response);
-        this.esths=this.esths.concat(response['results']);
-        if(event){
-          event.target.complete();
+        response => {
+          this.estheticianList = this.convert(response);
+          this.esths = this.esths.concat(response['results']);
+          if (event) {
+            //event.target.complete();
+          }
+        },
+        error => {
+          console.log(error);
         }
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      );
 
-  })
+    })
 
 
   }
@@ -100,13 +100,15 @@ export class SelectEstheticiansPage {
   }
 
 
-
-   loadMore (event) {
-    this.appointement.loadmore();
-    this.esthdisp(event)
+  loadMore(event) {
+    this.appointementService.loadmore();
+    
+    /*
+    this.getAvailableEstheticians(event)
     if(this.appointement.page===this.maximumpage){
-event.target.disabled=true;
+        event.target.disabled=true;
     }
+    */
   }
 
 }
