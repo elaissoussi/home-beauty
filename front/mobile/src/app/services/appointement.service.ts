@@ -12,6 +12,8 @@ import { map } from 'rxjs/operators';
 })
 export class AppointementService {
 
+  public page : Number = 0;
+
   constructor(private http: HttpClient, private datePipe: DatePipe) { }
 
   getEstheticianAvailabilities(zipcode: number, date: Date): Observable<any> {
@@ -49,5 +51,9 @@ export class AppointementService {
       console.log((<Error>e));
     }
     return availabilityList;
+  }
+
+  loadmore () {
+    this.page++;
   }
 }

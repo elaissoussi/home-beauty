@@ -6,7 +6,7 @@
     <ion-title>Selctionné un esthetician</ion-title>
   </ion-toolbar>
 
-
+ 
 </ion-header>
 
 <ion-content padding>
@@ -43,9 +43,11 @@
         </ion-item-options>
       </ion-item-sliding>
 
-    </ion-item>
-
+        </ion-item>
+  
   </ion-list>
-
-
+      
+  <ion-infinite-scroll threshold="25%" (ionInfinite)="loadMore($event)" >
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading Users..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
