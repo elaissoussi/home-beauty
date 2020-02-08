@@ -5,11 +5,6 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthenticationService } from './services/authentication.service';
 import { Router } from '@angular/router';
-import { HomePage } from './pages/menu/home/home.page';
-import { homedir } from 'os';
-import { Button } from 'protractor';
-//import { BackgroundMode } from '@ionic-native/background-mode/ngx';
-//import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -17,27 +12,26 @@ import { Button } from 'protractor';
 })
 export class AppComponent {
   
-
   public pages = [
       {
         title:'Acceuil',
         url:'/home'
       },
       {
-        title:'Aide',
+        title:'Coiffure',
+        url:'/home/haircare'
+      },
+      {
+        title:'Mon compte',
         url:'/home/aide'
       },
       {
-        title:'Paiment',
-        url:'/home/paiment'
+        title:'Mes Commandes',
+        url:'/order-list'
       },
       {
-        title:'Paramètres',
-        url:'/home/parametres'
-      },
-      {
-        title:'Coiffure',
-        url:'/home/haircare'
+        title:'Aide',
+        url:'/home/aide'
       }
   ];
 

@@ -27,7 +27,7 @@ public class OrderServiceImpl implements OrderService
         Order order = new Order();
 
         order.setCustomer(cart.getCustomer());
-        order.setEsthetician(cart.getEsthestian());
+        order.setEsthetician(cart.getEsthetician());
         order.setDate(cart.getDate());
         order.setStartHour(cart.getStartHour());
         order.setEndHour(cart.getEndHour());

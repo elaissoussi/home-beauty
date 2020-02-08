@@ -7,8 +7,10 @@ import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @org.springframework.stereotype.Service("cartService")
@@ -112,6 +114,8 @@ public class CartServiceImpl implements CartService
 			cart.setEntries(Collections.singletonList(newEntry));
 		}
 
+		calculateCart(cart);
+
 		return cartRepository.save(cart);
 	}
 
@@ -176,9 +180,25 @@ public class CartServiceImpl implements CartService
 
 		Esthetician esthetician = estheticianRepository.findOne(estheticianId);
 		Cart cart = getCart();
-		cart.setEsthestian(esthetician);
+		cart.setEsthetician(esthetician);
 
 		return cartRepository.save(cart);
+	}
+
+	@Override
+	public void calculateCart(Cart cart)
+	{
+		if (Objects.nonNull(cart) && !CollectionUtils.isEmpty(cart.getEntries()))
+		{
+			int cartTotal = cart.getEntries().stream().mapToInt(e ->
+			{
+				BigDecimal price = e.getService().getPrice();
+				BigDecimal entrySum = price.multiply(BigDecimal.valueOf(e.getQuantity()));
+				return entrySum.intValue();
+			}).sum();
+
+			cart.setTotal(cartTotal);
+		}
 	}
 
 }

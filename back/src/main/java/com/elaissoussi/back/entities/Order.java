@@ -23,10 +23,8 @@ public class Order
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private Long id;
 
-
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Customer customer;
-
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Esthetician esthetician;
@@ -36,6 +34,8 @@ public class Order
 	private int endHour;
 
 	private Date date;
+
+	private int total;
 
 	@OneToMany(mappedBy = "order",
 			   cascade = CascadeType.ALL, 
@@ -106,5 +106,15 @@ public class Order
 
 	public void setEsthetician(Esthetician esthetician) {
 		this.esthetician = esthetician;
+	}
+
+	public int getTotal()
+	{
+		return total;
+	}
+
+	public void setTotal(int total)
+	{
+		this.total = total;
 	}
 }

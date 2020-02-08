@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>confirmation</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -10,7 +13,7 @@
     <ion-row>
       <ion-col>
         <div>
-          cart id
+          Code de la commande
         </div>
       </ion-col>
       <ion-col>
@@ -19,18 +22,48 @@
         </div>
       </ion-col>
     </ion-row>
+    
+    <ion-row>
+      <ion-col>
+        <div>
+          Date de la commande
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          {{cart.date}} 
+        </div>
+        <div>
+          {{cart.startHour}}-{{cart.endHour}}
+        </div>
+      </ion-col>
+    </ion-row>
 
     <ion-row>
       <ion-col>
         <div>
-          cart entries
+          Esthetician
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          {{cart.esthetician.firstName}}
+          {{cart.esthetician.lastName}}
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <div>
+          Services de la commande
         </div>
       </ion-col>
       <ion-col>
         <div>
           <ion-list >
             <ion-item *ngFor="let cartEntry of cart.entries">
-              <ion-label> product : {{cartEntry.product.name}} </ion-label>
+              <ion-label>{{cartEntry.product.name}} </ion-label>
             </ion-item>
           </ion-list>
         </div>
@@ -38,7 +71,20 @@
     </ion-row>
 
     <ion-row>
-      <ion-button expand="block" (click)="placeOrder()">Place Order</ion-button>
+      <ion-col>
+        <div>
+          Total de la commande
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          {{cart.total}} euro
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-button (click)="placeOrder()">Payer votre Commander</ion-button>
     </ion-row>
   </ion-grid>
   

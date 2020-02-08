@@ -17,4 +17,6 @@ public interface CartService
 	Cart addPaymentInfo(PaymentInfo paymentInfo);
 
 	Cart addEsthetician(Long estheticianId);
+
+	void calculateCart(Cart cart);
 }

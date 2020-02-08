@@ -28,15 +28,26 @@ public class Cart
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Customer customer;
 
-	@JsonIgnore
 	@ManyToOne(fetch=FetchType.LAZY)
-	private Esthetician esthestian;
+	private Esthetician esthetician;
 
 	private int startHour;
 
 	private int endHour;
 
 	private Date date;
+
+	private int total;
+
+	public int getTotal()
+	{
+		return total;
+	}
+
+	public void setTotal(int total)
+	{
+		this.total = total;
+	}
 
 	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<CartEntry> entries;
@@ -72,16 +83,6 @@ public class Cart
 	public void setEntries(List<CartEntry> entries)
 	{
 		this.entries = entries;
-	}
-
-	public Esthetician getEsthestian()
-	{
-		return esthestian;
-	}
-
-	public void setEsthestian(Esthetician esthestian)
-	{
-		this.esthestian = esthestian;
 	}
 
 	public int getStartHour()
@@ -122,5 +123,16 @@ public class Cart
 	public void setPayementInfo(PaymentInfo payementInfo)
 	{
 		this.payementInfo = payementInfo;
+	}
+
+
+	public Esthetician getEsthetician()
+	{
+		return esthetician;
+	}
+
+	public void setEsthetician(Esthetician esthetician)
+	{
+		this.esthetician = esthetician;
 	}
 }

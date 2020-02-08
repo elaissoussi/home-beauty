@@ -57,7 +57,7 @@ public class CheckoutController
 			return null;
 		}
 
-		if (cart.getEsthestian() == null)
+		if (cart.getEsthetician() == null)
 		{
 			return null;
 		}
