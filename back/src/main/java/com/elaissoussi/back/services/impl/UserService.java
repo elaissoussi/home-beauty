@@ -10,4 +10,6 @@ public interface UserService
 	String getCurrentUser();
 
 	Customer getCurrentCustomer();
+
+	Customer getAnonymousCustomer();
 }

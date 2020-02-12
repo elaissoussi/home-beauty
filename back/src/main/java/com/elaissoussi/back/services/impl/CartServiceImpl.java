@@ -59,7 +59,6 @@ public class CartServiceImpl implements CartService
 	@Override
 	public Cart updateCart(Long serviceId, int quantity)
 	{
-
 		Cart cart = getCart();
 		Service service = serviceRepository.findOne(serviceId);
 
@@ -72,7 +71,6 @@ public class CartServiceImpl implements CartService
 		// update cart quantity
 		if (!CollectionUtils.isEmpty(cart.getEntries()) && service != null)
 		{
-
 			Optional<CartEntry> entry = cart.getEntries().stream()
 					.filter(e -> e.getService().getId().equals(service.getId())).findFirst();
 
@@ -99,9 +97,7 @@ public class CartServiceImpl implements CartService
 			}
 		} else
 		{
-			// Create a new cart
-
-			// customer
+			// New cart
 			String customerEmail = userService.getCurrentUser();
 			Customer customer = customerRepository.findByEmail(customerEmail);
 			cart.setCustomer(customer);
@@ -122,13 +118,11 @@ public class CartServiceImpl implements CartService
 	@Override
 	public Cart removeFromCart(Long serviceId)
 	{
-
 		Cart cart = getCart();
 		Service service = serviceRepository.findOne(serviceId);
 
 		if (!CollectionUtils.isEmpty(cart.getEntries()) && service != null)
 		{
-
 			Optional<CartEntry> entry = cart.getEntries().stream()
 					.filter(e -> e.getService().getId().equals(service.getId())).findFirst();
 
@@ -170,7 +164,7 @@ public class CartServiceImpl implements CartService
 		paymentInfoRepository.save(paymentInfo);
 		
 		Cart cart = getCart();
-		cart.setPayementInfo(paymentInfo);
+		cart.setPaymentInfo(paymentInfo);
 		
 		return cartRepository.save(cart);
 	}

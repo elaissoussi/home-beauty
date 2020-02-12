@@ -2,15 +2,20 @@ package com.elaissoussi.back.services.impl;
 
 import com.elaissoussi.back.entities.Customer;
 import com.elaissoussi.back.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService
 {
+	@Value("anonymous.email")
+	private String anonymousEmail;
+
 	@Resource
 	UserRepository userRepository;
 
@@ -27,7 +32,7 @@ public class UserServiceImpl implements UserService
 		{
 			return getAuthentication().getName();
 		}
-		return "";
+		return getAnonymousCustomer().getEmail();
 	}
 
 	@Override
@@ -35,5 +40,11 @@ public class UserServiceImpl implements UserService
 	{
 		String userEmail = getCurrentUser();
 		return (Customer) userRepository.findByEmail(userEmail);
+	}
+
+	@Override
+	public Customer getAnonymousCustomer()
+	{
+		return (Customer) userRepository.findByEmail(anonymousEmail);
 	}
 }

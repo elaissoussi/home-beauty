@@ -2,6 +2,7 @@ import { JsonObject, JsonProperty} from "json2typescript";
 import { CartEntry } from './CartEntry';
 import { Esthetician } from './Esthetician';
 import { DateConverter } from './DateConverter';
+import { PaymentInfo } from './PaymentInfo';
 
 @JsonObject("cart")
 export class Cart{
@@ -23,6 +24,9 @@ export class Cart{
 
     @JsonProperty("esthetician", Esthetician)
     esthetician : Esthetician = undefined;
+
+    @JsonProperty("paymentInfo", PaymentInfo)
+    paymentInfo : PaymentInfo = undefined;
 
     @JsonProperty("entries", [CartEntry])
     entries : CartEntry[] = undefined

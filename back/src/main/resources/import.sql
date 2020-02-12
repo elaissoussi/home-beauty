@@ -1,3 +1,7 @@
+
+// -- Anonymous account
+INSERT INTO customers (ID, EMAIL) VALUES (1, 'anonymous@homebeauty.com');
+
 -- Service HAIR / MEN
 INSERT INTO services (ID, NAME,SERVICE_TYPE, CUSTOMER_TYPE, PRICE) VALUES (1, 'Shampoing','HAIR','MEN', 10);
 INSERT INTO services (ID, NAME,SERVICE_TYPE, CUSTOMER_TYPE, PRICE) VALUES (2, 'Coupe','HAIR','MEN', 10);
