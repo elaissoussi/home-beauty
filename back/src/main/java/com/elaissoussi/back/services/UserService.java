@@ -1,4 +1,4 @@
-package com.elaissoussi.back.services.impl;
+package com.elaissoussi.back.services;
 
 import com.elaissoussi.back.entities.Customer;
 import org.springframework.security.core.Authentication;

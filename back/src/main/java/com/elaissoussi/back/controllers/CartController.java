@@ -2,14 +2,8 @@ package com.elaissoussi.back.controllers;
 
 import javax.annotation.Resource;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.elaissoussi.back.entities.Appointment;
 import com.elaissoussi.back.entities.Cart;
 import com.elaissoussi.back.services.CartService;
 
@@ -17,8 +11,6 @@ import com.elaissoussi.back.services.CartService;
 @RequestMapping(value = "/cart")
 public class CartController
 {
-        String string ="^[0-9]{4}$";
-
         @Resource
         CartService cartService;
 
@@ -28,9 +20,21 @@ public class CartController
             return cartService.getCart();
         }
 
+        @GetMapping("/{cartId}")
+        Cart getCart( Long cartId)
+        {
+                return cartService.getCart(cartId);
+        }
+
         @PostMapping("/updateCart")
         Cart addToCart(@RequestParam("service") Long serviceId, @RequestParam("quantity") int quantity)
         {
-            return cartService.updateCart(serviceId, quantity);
+            return cartService.updateCart(null, serviceId, quantity);
+        }
+
+        @PutMapping("/{cartId}")
+        Cart updateCart(Long cartId , @RequestParam("service") Long serviceId, @RequestParam("quantity") int quantity)
+        {
+                return cartService.updateCart(cartId, serviceId, quantity);
         }
 }

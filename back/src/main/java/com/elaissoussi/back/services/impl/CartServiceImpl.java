@@ -3,15 +3,13 @@ package com.elaissoussi.back.services.impl;
 import com.elaissoussi.back.entities.*;
 import com.elaissoussi.back.repositories.*;
 import com.elaissoussi.back.services.CartService;
+import com.elaissoussi.back.services.UserService;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @org.springframework.stereotype.Service("cartService")
 @Transactional
@@ -40,7 +38,7 @@ public class CartServiceImpl implements CartService
 	PaymentInfoRepository paymentInfoRepository;
 
 	@Resource
-	AvailabilityReposiroty availabilityReposiroty;
+	AvailabilityRepository availabilityRepository;
 
 	
 	@Override
@@ -49,23 +47,33 @@ public class CartServiceImpl implements CartService
 		String customerEmail = userService.getCurrentUser();
 
 		Cart cart = cartRepository.findCartByCustomer(customerEmail);
-		if (cart == null)
+		if (Objects.isNull(cart))
 		{
-			cart = new Cart();
+			cart = cartRepository.save(new Cart());
 		}
 		return cart;
 	}
 
 	@Override
-	public Cart updateCart(Long serviceId, int quantity)
+	public Cart getCart(Long cartId)
 	{
-		Cart cart = getCart();
+		if(Objects.isNull(cartId)){
+			return getCart();
+		}
+
+		return cartRepository.findOne(cartId);
+	}
+
+	@Override
+	public Cart updateCart(Long cartId, Long serviceId, int quantity)
+	{
+		Cart cart = getCart(cartId);
 		Service service = serviceRepository.findOne(serviceId);
 
 		// remove from cart
 		if (quantity == 0)
 		{
-			return removeFromCart(serviceId);
+			return removeFromCart(cart, serviceId);
 		}
 
 		// update cart quantity
@@ -107,7 +115,9 @@ public class CartServiceImpl implements CartService
 			newEntry.setQuantity(quantity);
 			newEntry.setCart(cart);
 
-			cart.setEntries(Collections.singletonList(newEntry));
+			List<CartEntry> entries = new ArrayList<>();
+			entries.add(newEntry);
+			cart.setEntries(entries);
 		}
 
 		calculateCart(cart);
@@ -116,9 +126,8 @@ public class CartServiceImpl implements CartService
 	}
 
 	@Override
-	public Cart removeFromCart(Long serviceId)
+	public Cart removeFromCart(Cart cart, Long serviceId)
 	{
-		Cart cart = getCart();
 		Service service = serviceRepository.findOne(serviceId);
 
 		if (!CollectionUtils.isEmpty(cart.getEntries()) && service != null)
@@ -151,7 +160,7 @@ public class CartServiceImpl implements CartService
 		cart.setDate(appointment.getDate());
 
 		Long availabilityId = appointment.getAvailabilityId();
-		Availability availability =  availabilityReposiroty.findOne(availabilityId);
+		Availability availability =  availabilityRepository.findOne(availabilityId);
 		cart.setStartHour(availability.getStartHour());
 		cart.setEndHour(availability.getEndHour());
 

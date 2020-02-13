@@ -12,7 +12,7 @@ import com.elaissoussi.back.entities.PaymentInfo;
 import com.elaissoussi.back.services.CartService;
 import com.elaissoussi.back.services.OrderService;
 import com.elaissoussi.back.services.PaymentService;
-import com.elaissoussi.back.services.impl.UserService;
+import com.elaissoussi.back.services.UserService;
 
 @RestController
 @RequestMapping("/checkout")

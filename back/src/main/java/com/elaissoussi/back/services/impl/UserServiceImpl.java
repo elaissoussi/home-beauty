@@ -1,23 +1,27 @@
 package com.elaissoussi.back.services.impl;
 
 import com.elaissoussi.back.entities.Customer;
+import com.elaissoussi.back.repositories.CustomerRepository;
 import com.elaissoussi.back.repositories.UserRepository;
+import com.elaissoussi.back.services.UserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService
 {
-	@Value("anonymous.email")
+	@Value("${anonymous.email}")
 	private String anonymousEmail;
 
 	@Resource
 	UserRepository userRepository;
+
+	@Resource
+	CustomerRepository customerRepository;
 
 	@Override
 	public Authentication getAuthentication()
@@ -45,6 +49,6 @@ public class UserServiceImpl implements UserService
 	@Override
 	public Customer getAnonymousCustomer()
 	{
-		return (Customer) userRepository.findByEmail(anonymousEmail);
+		return customerRepository.findByEmail(anonymousEmail);
 	}
 }

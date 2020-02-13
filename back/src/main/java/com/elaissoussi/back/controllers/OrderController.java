@@ -4,7 +4,7 @@ import com.elaissoussi.back.entities.Customer;
 import com.elaissoussi.back.entities.Order;
 import com.elaissoussi.back.entities.OrderList;
 import com.elaissoussi.back.services.OrderService;
-import com.elaissoussi.back.services.impl.UserService;
+import com.elaissoussi.back.services.UserService;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -1,5 +1,5 @@
 <ion-app>
-  <ion-split-pane *ngIf="authService.isUserLoggedIn()">
+  <ion-split-pane>
     <ion-menu contentId="content">
 
       <ion-header>
@@ -29,5 +29,5 @@
 
     <ion-router-outlet id="content" main></ion-router-outlet>
   </ion-split-pane>
-  <ion-router-outlet *ngIf="!authService.isUserLoggedIn()"></ion-router-outlet>
+  <ion-router-outlet></ion-router-outlet>
 </ion-app>

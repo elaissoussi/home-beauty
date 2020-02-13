@@ -8,9 +8,11 @@ public interface CartService
 {
 	Cart getCart();
 
-	Cart updateCart(Long serviceId, int quantity);
+	Cart getCart(Long cartId);
 
-	Cart removeFromCart(Long serviceId);
+	Cart updateCart(Long cartId, Long serviceId, int quantity);
+
+	Cart removeFromCart(Cart cart, Long serviceId);
 
 	Cart addAppointment(Appointment app);
 

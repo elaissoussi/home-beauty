@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.elaissoussi.back.services.impl.UserService;
+import com.elaissoussi.back.services.UserService;
 
 @RestController
 @RequestMapping("/users")

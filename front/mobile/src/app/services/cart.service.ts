@@ -27,7 +27,7 @@ export class CartService {
 
   getProductsCartNumber(cart : Cart) : number {
       var totalItems = 0 ; 
-      if(cart)
+      if(cart && cart.entries)
       {
           cart.entries.forEach(e => {
           totalItems += e.quantity;
@@ -38,7 +38,7 @@ export class CartService {
 
   getTotalCart(cart : Cart) : number{
     let totalCart = 0 ; 
-    if(cart)
+    if(cart && cart.entries)
     {
         cart.entries.forEach(e => {
           totalCart += e.product.price * e.quantity ; 

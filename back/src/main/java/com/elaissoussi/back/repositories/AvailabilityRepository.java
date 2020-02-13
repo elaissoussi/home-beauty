@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.elaissoussi.back.entities.Availability;
 
-@Repository("availabilityReposiroty")
-public interface AvailabilityReposiroty extends PagingAndSortingRepository<Availability, Long> {
+@Repository("availabilityRepository")
+public interface AvailabilityRepository extends PagingAndSortingRepository<Availability, Long> {
     
 	@Query("SELECT a FROM Availability a WHERE a.dayOfWeak =:dayOfWeak AND a.startHour =:startHour AND a.endHour =:endHour ")
 	List<Availability> findAvailabilitiesBy(@Param("dayOfWeak") int dayOfWeak, @Param("startHour") int startHour, @Param("endHour")  int endHour);

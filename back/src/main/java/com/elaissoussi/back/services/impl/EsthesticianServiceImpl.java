@@ -9,13 +9,12 @@ import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.elaissoussi.back.repositories.AvailabilityRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import com.elaissoussi.back.entities.Availability;
 import com.elaissoussi.back.entities.Esthetician;
-import com.elaissoussi.back.repositories.AvailabilityReposiroty;
 import com.elaissoussi.back.repositories.EstheticianRepository;
 import com.elaissoussi.back.services.EsthesticianService;
 
@@ -26,7 +25,7 @@ public class EsthesticianServiceImpl implements EsthesticianService
 	EstheticianRepository estheticianRepository;
 
 	@Resource
-	AvailabilityReposiroty availabilityReposiroty;
+	AvailabilityRepository availabilityRepository;
 
 	@Override
 	public List<Availability> getAvailabilities(int zipCode, Date date)
@@ -48,7 +47,7 @@ public class EsthesticianServiceImpl implements EsthesticianService
 	@Override
 	public List<Esthetician> getEstheticiansByAvailability(Long avalibilityId)
 	{
-		Availability availability = availabilityReposiroty.findOne(avalibilityId);
+		Availability availability = availabilityRepository.findOne(avalibilityId);
 
 		if (availability != null)
 		{
@@ -56,7 +55,7 @@ public class EsthesticianServiceImpl implements EsthesticianService
 			int startHour = availability.getStartHour();
 			int endHour = availability.getEndHour();
 
-			List<Availability> availabilities = availabilityReposiroty.findAvailabilitiesBy(dayOfWeak, startHour,
+			List<Availability> availabilities = availabilityRepository.findAvailabilitiesBy(dayOfWeak, startHour,
 					endHour);
 
 			if (!CollectionUtils.isEmpty(availabilities))
