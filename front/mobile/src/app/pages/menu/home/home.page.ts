@@ -3,7 +3,7 @@ import { HTTP } from '@ionic-native/http/ngx';
 import { Storage } from '@ionic/storage';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { NavParams } from '@ionic/angular';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,14 +13,19 @@ import { NavParams } from '@ionic/angular';
 export class HomePage {
 
 
-  constructor(private http: HTTP,private authService:AuthenticationService,private storage: Storage) {
+  constructor(private router : Router,private http: HTTP,private authService:AuthenticationService,private storage: Storage) {
 
   }
   logout(){
     this.authService.logout();
   }
  
+  customer(){
+    this.router.navigate([`/service`]);
+  }
 
-
+  estheticien(){
+    this.router.navigate([`../signup`]);
+  }
 
 }

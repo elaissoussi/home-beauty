@@ -2,7 +2,7 @@ import { User, UserType } from './../../user.model';
 import { Component, OnInit } from '@angular/core';
 //import { AuthenticationService } from 'src/app/services/authentication.service';
 import { SignupService } from 'src/app/services/signup.service'
-//import { NavController, AlertController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 import {FormBuilder, FormGroup, Validators,FormControl, AbstractControl } from '@angular/forms';
 import { MustMatch } from 'src/app/_helpers/must-match/validator';
 import { Router } from '@angular/router';
@@ -60,7 +60,7 @@ export class SignupPage implements OnInit {
 
   }
 
-  constructor(private signupservice:SignupService,private router:Router,public formBuilder : FormBuilder) { 
+  constructor(private signupservice:SignupService,private router:Router,public formBuilder : FormBuilder,private storage : Storage) { 
 
    this.signupForm = this.formBuilder.group({
       firstName: new FormControl('',Validators.compose([Validators.required])) ,
@@ -80,17 +80,17 @@ export class SignupPage implements OnInit {
       ])),
       phoneNumber: new FormControl('',Validators.compose([Validators.required])),
       confirmPassword: new FormControl('',Validators.compose([Validators.required])),
-      type: ['', Validators.required],
+      //type: ['', Validators.required],
    }, {
     validator: MustMatch('password', 'confirmPassword')
 });
     }
    
-public type :string;
+//public type :string;
   //public customer:boolean;
 onSignUp() {
   
-    if(this.type==="customer"){
+   /* if(this.type==="customer"){
 
     //  this.esthetician=false;
   this.signupservice.signupCust(this.email, this.password,this.lastName,this.firstName,this.phoneNumber)
@@ -107,21 +107,25 @@ onSignUp() {
      console.log("Customers bien enregistrer");
     } 
    else
-   {
+   {*/
       // this.customer=false;
      this.signupservice.signupEsth(this.email, this.password,this.lastName,this.firstName,this.phoneNumber)
       .subscribe(
         data => {
-          console.log(data);
-          this.router.navigate(['followed-signup']);
+          console.log(data.id);
+          this.router.navigate(['/followed-signup']);
+           console.log("Esthetician bien enregistrer");
+           this.storage.set('idest', data.id);
+
+          
         },
         error => {
           console.log(error);
-      
+          console.log("Esthetician n'est pas enregistrer");
         } 
       )
-      console.log("Esthetician bien enregistrer");
-    }
+     
+    //}
   
 }
 

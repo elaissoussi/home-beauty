@@ -22,22 +22,36 @@
         <ion-row>
           <ion-col>
          
-          <a  routerLink="/home/haircare"><img src="assets/home/1.jpg"> </a>
+            <!--<a href="/service">Vous étes un client</a>
+            <a expand="full"  color="dark" routerLink="/service"><img src="assets/home/1.jpg"> </a>-->
+            <ion-button size="large" expand="full" (click)="customer()" fill="outline"  color="dark">Vous êtes un client </ion-button>
+
+         
          
           </ion-col>
         </ion-row>
+
+        <ion-row>
+          <ion-col>
+         
+          
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+         
+          
+          </ion-col>
+        </ion-row>
+
         <ion-row>
             <ion-col>
                 
-            <a  href=""> <img src="assets/home/2.jpg"></a>
+              <ion-button size="large" fill="outline" (click)="estheticien()" expand="full" color="dark">Vous êtes un estheticien</ion-button>
             </ion-col>
           </ion-row>
-          <ion-row>
-              <ion-col>
-                  
-              <a  href=""> <img src="assets/home/3.jpg"></a>
-              </ion-col>
-            </ion-row>
+          
     </ion-grid>
 
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import {map} from 'rxjs/operators';
-
+//import { Storage } from '@ionic/storage';
 import { API_URL, AUTHENTICATED_USER, TOKEN} from './../app.constants';
 
 @Injectable({
@@ -54,7 +54,7 @@ export class SignupService {
                // sessionStorage.setItem(ID_USER, );
                // return to login page
                // sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
-               sessionStorage.set('idEsth',data.id);
+              // sessionStorage.set('idEsth',data.id);
                 return data;
               
               }

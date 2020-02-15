@@ -47,10 +47,10 @@ export class FollowedSignupPage implements OnInit {
 
     ) {
     
-   this.storage.get('idEsth').then((idest) => {
-     this.userId=idest;
-    console.log('Your Id is', idest);
-  });
+      this.storage.get('idest').then((idesth) => {
+        this.userId=idesth;
+        console.log('Your Id is', idesth);
+      });
   }
 
   //idEsthetic:number = idesthetician;
