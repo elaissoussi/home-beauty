@@ -11,7 +11,7 @@
 </ion-header>
 
 <ion-content padding>
-
+ 
     <form (ngSubmit)="onSignUp()">
        
         <ion-list >
@@ -34,13 +34,22 @@
     </form>
     <div *ngIf="showAvailibilities">
     <form (ngSubmit)="sendAvailabilities()">
-      <div>
-      
+        <ion-row >
+            <ion-col>
+                
+            </ion-col>   
+          </ion-row> 
+      <ion-row >
+        <ion-col>
             <ion-label position="floating">Votre horaire de disponibilité</ion-label>
-          
-         </div> 
+        </ion-col>   
+      </ion-row> 
        
-
+      <ion-row >
+          <ion-col>
+              
+          </ion-col>   
+        </ion-row> 
         <div *ngFor="let cat of availabilities" class="category-block">
    
             <ion-row no-padding class="category-banner">

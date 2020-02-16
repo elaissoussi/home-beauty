@@ -36,8 +36,7 @@ export class SignupService {
   
   
     signupEsth(email,password,firstName,lastName,phoneNumber){
-      //http://localhost:8080/customers/sign-up
-      //http://localhost:8080/estheticians/sign-up
+
       
         return this.http.post<any>(
           `${API_URL}/estheticians/sign-up`,{
@@ -55,6 +54,10 @@ export class SignupService {
                // return to login page
                // sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
               // sessionStorage.set('idEsth',data.id);
+
+        
+              sessionStorage.setItem(TOKEN, data.headers.get('Authorization'));
+             
                 return data;
               
               }
@@ -63,17 +66,16 @@ export class SignupService {
         }
   
   
-        signupEsthZipcode(zipCode,userId){
-        
-          let headers = new HttpHeaders().set('Content-Type', 'application/json');
+        signupEsthZipcode(userId,zipCode){
+          /*let headers = new HttpHeaders().set('Content-Type', 'application/json');
            headers = headers.set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYmRvQGFiZG8uY29tIiwiZXhwIjoxNTY0OTY0MTUyfQ.tlMiM7FtL6sg-E0LiwiKVp8-o7RrjxbVyqs536r6OKfn-r0IVhysOSchilPUImEaK46QHOPDqn__JJOX_WySFQ');
-            
-          return this.http.post<any>(
-              `${API_URL}/addresses/${userId}`,{zipCode,userId},{headers})
+           */
+           return this.http.post<any>(
+              `${API_URL}/addresses/${userId}`,{zipCode})
               .pipe(
                 map(
                   data => {
-                  
+                  console.log(data);
                     return data;
                   
                   }
@@ -85,28 +87,21 @@ export class SignupService {
       
   
   
-            sendAvailabilities(esthAvai) {
-  
+    
+
+      followedSignup(id,avail){
+        return this.http.post<any>(
+          `${API_URL}/availabilities/${id}`,{avail})
+        
+          .pipe(
+           map(
+
+             data => {
+                console.log(data);
+                return data;
               
-          
-          let headers = new HttpHeaders().set('Content-Type', 'application/json');
-          headers = headers.set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhaG1hZEBhaG1hZC5jb20iLCJleHAiOjE1NjUxMzQ0MDJ9.eWYoqJ114Ci5JEiw41oKgNoer9e-sSbgazNT0poAkEIfDrf38F6OT8WSaj2Civg1yMsuyjJUv_63XZciF-EzIg');
-    
-          console.log(esthAvai);
-          
-          return this.http.post<any>(
-            `${API_URL}/availabilities/229376`,{esthAvai},{headers})
-          
-            .pipe(
-              map(
-                data => {
-                 
-                  return data;
-                
-                }
-              )
-            );
-       
-    
-      }
+              },
+           ));
+         }
+
 }

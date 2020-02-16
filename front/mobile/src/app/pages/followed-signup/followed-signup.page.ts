@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { SignupService } from 'src/app/services/signup.service';
 import { Storage } from '@ionic/storage';
-import { API_URL } from 'src/app/app.constants';
-import {map} from 'rxjs/operators';
-import { isDeepStrictEqual } from 'util';
-import { Route, Router } from '@angular/router';
-import { HTTP } from '@ionic-native/http/ngx';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { API_URL,AUTHENTICATED_USER, TOKEN } from 'src/app/app.constants';
+import {  Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-followed-signup',
   templateUrl: './followed-signup.page.html',
@@ -22,6 +21,7 @@ export class FollowedSignupPage implements OnInit {
       hours : [ 
           { val: '7-8', isChecked: false },
           { val: '8-9', isChecked: false },
+          { val: '9-10', isChecked: false },
           { val: '9-10', isChecked: false }
     ]
     },
@@ -32,6 +32,7 @@ export class FollowedSignupPage implements OnInit {
       hours: [ 
           { val: '7-8', isChecked: false },
           { val: '8-9', isChecked: false },
+          { val: '9-10', isChecked: false },
           { val: '9-10', isChecked: false }
     ]
     }
@@ -41,11 +42,9 @@ export class FollowedSignupPage implements OnInit {
 
   public userId;
   showAvailibilities:boolean =true;
-  constructor(private authservice : AuthenticationService,
-    private storage: Storage,private router: Router,
-    public http: HttpClient,
-
-    ) {
+  constructor(private authservice : AuthenticationService, private storage: Storage,private router: Router,public http: HttpClient,
+                private signupservice : SignupService
+          ) {
     
       this.storage.get('idest').then((idesth) => {
         this.userId=idesth;
@@ -53,33 +52,9 @@ export class FollowedSignupPage implements OnInit {
       });
   }
 
-  //idEsthetic:number = idesthetician;
-public pro;
 
-/*sendAvailabilities2() {
-    
-  let estheticianAvailabilities =[];
-  for (var availability of this.availabilities) {
-    for( var hour of availability.hours){
-    if(hour.isChecked){
-    var av = {"dayOfWeak" :availability.id , "startHour" : hour.val.substring(0,1),"endHour" : hour.val.substring(2)};
-    estheticianAvailabilities.push(av);
-          }
-        }
-    }
 
-  this.authservice.sendAvailabilities(estheticianAvailabilities)
-      .subscribe(
-        data => {
-          console.log(data);
-          //this.router.navigate(['home']);
-        },
-        error => {
-          console.log(error);
-      
-        }
-      )
-    }*/
+  
 
   sendAvailabilities() {
 
@@ -93,28 +68,19 @@ public pro;
                   }
                 }
             }
-      
-      let headers = new HttpHeaders().set('Content-Type', 'application/json');
-      headers = headers.set('Authorization', 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYmRvQGFiZG8uY29tIiwiZXhwIjoxNTY0OTY0MTUyfQ.tlMiM7FtL6sg-E0LiwiKVp8-o7RrjxbVyqs536r6OKfn-r0IVhysOSchilPUImEaK46QHOPDqn__JJOX_WySFQ');
-
-      console.log(estheticianAvailabilities);
-      
-      return this.http.post<any>(
-        `${API_URL}/availabilities/229376`,{estheticianAvailabilities},{headers})
-      
+        this.signupservice.followedSignup(this.userId, estheticianAvailabilities)
         .subscribe(
-         
-            data => {
-              console.log(this.userId);
-              return data;
-            
-            },
-            error => {
-              console.log(error);
-          
-            }
-          
-        );
+          response => {
+          console.log(response);
+           // this.router.navigate(['home']);
+            //this.invalidLogin = false;
+          },
+          error => {
+            console.log(error);
+           // this.invalidLogin = true;
+           // alert("l\'email ou le mot de passe incorrect");
+          }
+        )
    
 
   }
@@ -126,9 +92,6 @@ public pro;
     spaceBetween: 10,
     centeredSlides: true
   };
-  /*
- */
- 
 
    
   zipCode:number;
@@ -139,19 +102,19 @@ public pro;
 
   onSignUp() {
     
-  /*
-  this.authservice.signupEsthZipcode(this.zipCode,this.userId)
+  
+  this.signupservice.signupEsthZipcode(this.userId,this.zipCode)
       .subscribe(
         data => {
           console.log(data);
-          this.router.navigate(['home']);
+         // this.router.navigate(['home']);
         },
         error => {
           console.log(error);
       
         }
       )
-      */
+    
     }
     
    
