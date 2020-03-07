@@ -17,10 +17,10 @@ export class AppComponent {
         title:'Acceuil',
         url:'/home'
       },
-      {
+      /*{
         title:'Coiffure',
         url:'/home/haircare'
-      },
+      },*/
       {
         title:'Mon compte',
         url:'/home/aide'

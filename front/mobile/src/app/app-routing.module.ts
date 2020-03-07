@@ -14,7 +14,12 @@ const routes: Routes = [
   },
 
   {
-    path: 'home', //canActivate: [AuthGuardService],
+    path: 'home',
+    loadChildren: './home/home.module#HomePageModule'
+  },
+
+   {
+   path: 'home', //canActivate: [AuthGuardService],
     children: [
       {
         path: '',
@@ -50,7 +55,9 @@ const routes: Routes = [
   { path: 'order-detail/:id', loadChildren: './pages/order-detail/order-detail.module#OrderDetailPageModule' },
   { path: 'order-list', loadChildren: './pages/order-list/order-list.module#OrderListPageModule' },
   { path: 'confirmation', loadChildren: './pages/confirmation/confirmation.module#ConfirmationPageModule' },
-  { path: 'service', loadChildren: './service/service.module#ServicePageModule' }
+  //{ path: 'service', loadChildren: './service/service.module#ServicePageModule' },
+  { path: 'service', loadChildren: './pages/service/service.module#ServicePageModule' }
+
 
 
 ];

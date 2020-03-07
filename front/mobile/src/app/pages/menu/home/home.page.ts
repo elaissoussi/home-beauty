@@ -21,7 +21,7 @@ export class HomePage {
   }
  
   customer(){
-    this.router.navigate([`/service`]);
+    this.router.navigate([`../service`]);
   }
 
   estheticien(){

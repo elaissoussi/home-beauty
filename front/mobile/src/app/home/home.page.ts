@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-//import { AngularFirebase,FirebaseListObservable } from 'angularfire2';
+import { HTTP } from '@ionic-native/http/ngx';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,9 +11,19 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-hide (){
+  constructor(private router : Router,private http: HTTP,private authService:AuthenticationService) {
 
-  
+  }
 
-}
+  logout(){
+    this.authService.logout();
+  }
+ 
+  customer(){
+    this.router.navigate([`/service`]);
+  }
+
+  estheticien(){
+   // this.router.navigate([`.././pages/signup`]);
+  }
 }
