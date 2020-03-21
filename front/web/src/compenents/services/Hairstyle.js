@@ -4,34 +4,43 @@ import femme from '../../image/femme.png';
 import enfant from '../../image/children.jpg';
 import axios from 'axios';
 class Hairstyle extends Component {
-     state ={
+    constructor(){
+        super();
+        axios.get(`http://localhost:8080/services/type/HAIR`)
+        .then(res => {
+         // const hairetype = res.data;
+          this.setState({ hairetype:res.data });
+        
+          console.log(res.data)
+        })
 
-       
-        varH:0,
-        varF:0,
-        varE:0,
-        hairetype:[]
-       
-    };
-    // Get Type Product
-    getHaircaireProducts = () => { 
-       // return this.httpClient.get(`${API_URL}/services/type/HAIR`);
-       axios.get(`http://localhost:8080/services/type/HAIR`)
-      .then(res => {
-        const hairetype = res.data;
-        this.setState({ hairetype });
-      
-        console.log(hairetype)
-      })
+        this. state ={
+            varH:0,
+            varF:0,
+            varE:0,
+            hairetype:[],
+            disabled:true
+        };
+    }
+   
+   
+
+      handelchange =() =>{
+          if(this.state.varH>0){
+            this.setState({
+                    disabled:false
+             })
+          }
       }
 
     decrementH = () => {
         this.setState({
            
                  varH:this.state.varH -1
-           
+               
            
         });
+        
     }
 
     incrementH = () => {
@@ -40,6 +49,8 @@ class Hairstyle extends Component {
                 varH:this.state.varH +1
          
         });
+
+
     }
 
     decrementF = () => {
@@ -74,7 +85,7 @@ class Hairstyle extends Component {
         });
     }
     render() {
-       const data = [
+     /*  const data = [
             {
               category: 'Homme',
               products: [
@@ -97,7 +108,7 @@ class Hairstyle extends Component {
                 { id: 6, name: 'Coupe ', price: '8',image:'assets/Coiffure/coupenormal.jpg' }
               ]
             }
-          ];
+          ];*/
         return (
             <div className="row">
            
@@ -108,15 +119,7 @@ class Hairstyle extends Component {
                     <div className="col">
                         <div className="text-center">
                             <h2>-- Comment ça marche --</h2>
-
-                            <button type="button" onClick={this.getHaircaireProducts} className="btn btn-success">Test</button>
-                            {
-                                //this.state.hairetype
-                               // this.state.persons.map(person => <li>{person.name}</li>)
-                               //getHaircaireProducts
-                              
-                            }
-                            _______________________
+                             _______________________
                             
                         </div>
 
@@ -162,43 +165,38 @@ class Hairstyle extends Component {
                             <img src={homme} className="img-thumbnail"/>
                         </div>
                         <div>
-                             <button type="button" onClick={this.decrementH} className="btn btn-danger">-</button>
+                             <button type="button" disabled={this.state.disabled }  onClick={this.decrementH} className="btn btn-danger">-</button>
                                  {" " + this.state.varH + " "}
-                            <button type="button" onClick={this.incrementH} className="btn btn-success">+</button>
+                            <button type="button" onClick={this.incrementH} onChange={this.handelchange} className="btn btn-success">+</button>
                         </div>
                        
                        <div>
                            <h4>Homme</h4>
                        </div>
                       
-                       {
-                           /*data.map(function(pos){
-                                return (<p>{pos.category}</p>)
-                             
-                            })*/
-                        }
+                      
 
-                        {
-                           /* 
-                            data.map(pos=>{
-                             if(pos.category==="Homme"){
+                        {      
+                            
+                           this.state.hairetype.map(pos=>
+                            
+                            {
+                             if(pos.name==="MEN"){
                                  let result="";
-                                    for (let product of pos.products) {
+                                    for (let service of pos.services) {
                               
-                                       result += <p>{product.id},{product.name} , {product.price}</p>;
+                                       result += <p>{service.id},{service.name} , {service.price}</p>;
                                     }
                                     console.log(result);
                                     return result; 
                                 }
-                            })
-                            
-                               
-                               
-                            */
-                            
+                                console.log(pos)
+                            }
+                            )
                         }
+                        { console.log("1:",this.state.hairetype)}
                        
-                       
+                       //
                         </div>
 
                     </div>
