@@ -4,9 +4,10 @@ import { AppointementService } from '../services/appointement.service';
 import { API_URL } from './../app.constants';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { Platform } from '@ionic/angular';
+import { Platform, PopoverController } from '@ionic/angular';
 import { EstheticianList } from '../models/EstheticianList';
 import { JsonConvert, Any } from "json2typescript";
+import { PopoverPage } from '../popover/popover.page';
 
 
 
@@ -24,7 +25,7 @@ export class SelectEstheticiansPage {
 
 
   constructor(private appointementService: AppointementService, private router: Router,
-    private route: ActivatedRoute, private plt: Platform, private http: HttpClient) {
+    private route: ActivatedRoute, private plt: Platform, private http: HttpClient,private popover : PopoverController) {
     this.getAvailableEstheticians();
   }
 
@@ -109,6 +110,17 @@ export class SelectEstheticiansPage {
         event.target.disabled=true;
     }
     */
+  }
+
+  async OpenPopover(ev:Event){
+    const popver = await this.popover.create({
+      component: PopoverPage,
+      event: ev,
+      translucent: true
+     
+    });
+    popver.present();
+
   }
 
 }

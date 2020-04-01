@@ -4,7 +4,16 @@
         <ion-back-button defaultHref="/home/haircare"></ion-back-button>
       </ion-buttons>
       <ion-title>Mon Panier</ion-title>
+
+      
+    <ion-buttons slot="end">
+      <ion-button (click)="OpenPopover($event)" >
+      
+        <ion-icon slot="icon-only" name="more" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
     </ion-toolbar>
+
 </ion-header>
    
   <ion-content>

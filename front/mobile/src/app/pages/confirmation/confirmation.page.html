@@ -1,9 +1,16 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-back-button defaultHref="/payment/1"></ion-back-button>
     </ion-buttons>
     <ion-title>Confirmation de la commande</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="OpenPopover($event)" >
+      
+        <ion-icon slot="icon-only" name="more" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

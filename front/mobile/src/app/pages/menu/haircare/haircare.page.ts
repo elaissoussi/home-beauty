@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { HaircaireService } from 'src/app/services/haircaire.service';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
-import { Platform } from '@ionic/angular';
+import { Platform, PopoverController } from '@ionic/angular';
 import { Product } from 'src/app/models/Product'
 import { Category } from 'src/app/models/Category';
+import { PopoverPage } from 'src/app/popover/popover.page';
 
 @Component({
   selector: 'app-haircare',
@@ -29,7 +30,8 @@ export class HaircarePage {
   constructor(private haircareService: HaircaireService, 
               private cartService: CartService, 
               private router: Router, 
-              private plt :Platform ) {
+              private plt :Platform,
+              private popover:PopoverController ) {
                 
                 this.plt.ready().then(() => 
                 {
@@ -83,5 +85,19 @@ export class HaircarePage {
   {
    this.router.navigate(['cart']);
   }
-  
+
+  openservice() 
+  {
+   this.router.navigate(['service']);
+  }
+  async OpenPopover(ev:Event){
+    const popver = await this.popover.create({
+      component: PopoverPage,
+      event: ev,
+      translucent: true
+     
+    });
+    popver.present();
+
+  }
 }

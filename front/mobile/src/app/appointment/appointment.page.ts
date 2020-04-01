@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppointementService } from '../services/appointement.service';
 import { AvailabilityList } from '../models/AvailabilityList';
+import { PopoverController } from '@ionic/angular';
+import { PopoverPage } from '../popover/popover.page';
 
 @Component({
   selector: 'app-appointment',
@@ -23,7 +25,7 @@ export class AppointmentPage {
   key: string = "items";
   myDate: string = new Date().toISOString();
 
-  constructor(private router: Router, private appointmentService: AppointementService) { }
+  constructor(private router: Router, private appointmentService: AppointementService,private popover:PopoverController) { }
 
   listEstheticianAvailabilities() {
 
@@ -56,5 +58,15 @@ export class AppointmentPage {
 
   }
 
+  async OpenPopover(ev:Event){
+    const popver = await this.popover.create({
+      component: PopoverPage,
+      event: ev,
+      translucent: true
+     
+    });
+    popver.present();
+
+  }
 
 }

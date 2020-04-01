@@ -3,7 +3,7 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-menu-button></ion-menu-button>
+            <ion-back-button (click)="openservice()"></ion-back-button>
         </ion-buttons>
       <ion-title>
         Coiffure
@@ -14,8 +14,19 @@
           <ion-icon slot="icon-only" name="cart"></ion-icon>
         </ion-button>
       </ion-buttons>
+
+    <ion-buttons slot="end">
+          <ion-button (click)="OpenPopover($event)" >
+          
+            <ion-icon slot="icon-only" name="more" ></ion-icon>
+          </ion-button>
+        </ion-buttons>
+
+       <!--   <button ion-button icon-only (click)="OpenPopover($event)">
+          <ion-icon name="more"></ion-icon>
+        </button>-->
     </ion-toolbar>
-  </ion-header>
+  </ion-header> 
    
   <ion-content *ngIf="products">
     <div *ngFor="let cat of products" class="category-block">

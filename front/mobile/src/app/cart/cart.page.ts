@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Platform } from '@ionic/angular';
+import { Platform, PopoverController } from '@ionic/angular';
 import { CartService } from '../services/cart.service';
 import { Router } from '@angular/router';
 import { Cart } from '../models/Cart';
 import { CartEntry } from '../models/CartEntry';
+import { PopoverPage } from '../popover/popover.page';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class CartPage {
   // total cart
   total : number = 0;
  
-  constructor(private cartService: CartService, private plt :Platform, private router: Router) {
+  constructor(private cartService: CartService, private plt :Platform, private router: Router,private popover:PopoverController) {
     this.plt.ready().then(() => 
                 {
                   this.cartService.getCart().subscribe(
@@ -48,5 +49,16 @@ export class CartPage {
 
   openappointment(){
     this.router.navigate(['appointment']);
+  }
+
+  async OpenPopover(ev:Event){
+    const popver = await this.popover.create({
+      component: PopoverPage,
+      event: ev,
+      translucent: true
+     
+    });
+    popver.present();
+
   }
 }

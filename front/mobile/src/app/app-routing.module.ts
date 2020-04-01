@@ -57,6 +57,8 @@ const routes: Routes = [
   { path: 'confirmation', loadChildren: './pages/confirmation/confirmation.module#ConfirmationPageModule' },
   //{ path: 'service', loadChildren: './service/service.module#ServicePageModule' },
   { path: 'service', loadChildren: './pages/service/service.module#ServicePageModule' }
+  //{ path: 'popover', loadChildren: './popover/popover.module#PopoverPageModule' }
+
 
 
 

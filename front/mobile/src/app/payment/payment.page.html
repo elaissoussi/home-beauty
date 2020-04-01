@@ -4,7 +4,15 @@
         <ion-back-button defaultHref="/select-estheticians/1"></ion-back-button>
       </ion-buttons>
   <ion-title>Payment</ion-title>
+  <ion-buttons slot="end">
+    <ion-button (click)="OpenPopover($event)" >
+    
+      <ion-icon slot="icon-only" name="more" ></ion-icon>
+    </ion-button>
+  </ion-buttons>
 </ion-toolbar>
+
+
 </ion-header>
 
 <ion-content padding>

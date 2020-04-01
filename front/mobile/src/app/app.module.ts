@@ -3,6 +3,8 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './services/token.interceptor';
 
+import { PopoverPageModule } from './popover/popover.module';
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -34,6 +36,7 @@ import { DatePipe } from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    PopoverPageModule,
     IonicStorageModule.forRoot()
     ],
   

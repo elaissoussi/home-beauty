@@ -3,7 +3,8 @@ import { OrderService } from 'src/app/services/order.service';
 import { Order } from 'src/app/models/Order';
 import { CartService } from 'src/app/services/cart.service';
 import { Cart } from 'src/app/models/Cart';
-import { Platform } from '@ionic/angular';
+import { Platform, PopoverController } from '@ionic/angular';
+import { PopoverPage } from 'src/app/popover/popover.page';
 
 @Component({
   selector: 'app-confirmation',
@@ -17,7 +18,7 @@ export class ConfirmationPage {
 
   constructor(private orderService: OrderService,
     private cartService: CartService,
-    private plt: Platform) {
+    private plt: Platform,private popover:PopoverController) {
 
     this.plt.ready().then(() => {
       this.cartService.getCart().subscribe(
@@ -42,5 +43,16 @@ export class ConfirmationPage {
       }
     );
   };
+
+  async OpenPopover(ev:Event){
+    const popver = await this.popover.create({
+      component: PopoverPage,
+      event: ev,
+      translucent: true
+     
+    });
+    popver.present();
+
+  }
 
 }
