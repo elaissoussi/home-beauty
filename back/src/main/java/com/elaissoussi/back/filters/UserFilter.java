@@ -2,6 +2,7 @@ package com.elaissoussi.back.filters;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +23,14 @@ public class UserFilter implements Filter
     {
         final HttpServletRequest httpRequest = (HttpServletRequest) request;
         final String clientId = httpRequest.getHeader(CLIENT_ID);
-        userInfo.setClientId(clientId);
+
+        if (!StringUtils.isEmpty(clientId))
+        {
+            userInfo.setClientId(clientId);
+        } else
+        {
+            userInfo.setClientId("anonymous@homebeauty.com");
+        }
 
         chain.doFilter(request, response);
     }
