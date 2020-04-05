@@ -25,7 +25,7 @@ const routes: Routes = [
         path: '',
         loadChildren: './pages/menu/home/home.module#HomePageModule'
       },
-      {
+      { 
         path: 'aide',
         loadChildren: './pages/menu/aide/aide.module#AidePageModule'
       },
