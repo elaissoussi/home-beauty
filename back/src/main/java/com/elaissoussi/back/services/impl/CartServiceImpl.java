@@ -1,6 +1,7 @@
 package com.elaissoussi.back.services.impl;
 
 import com.elaissoussi.back.entities.*;
+import com.elaissoussi.back.filters.UserInfo;
 import com.elaissoussi.back.repositories.*;
 import com.elaissoussi.back.services.CartService;
 import com.elaissoussi.back.services.UserService;
@@ -39,7 +40,6 @@ public class CartServiceImpl implements CartService
 
 	@Resource
 	AvailabilityRepository availabilityRepository;
-
 	
 	@Override
 	public Cart getCart()

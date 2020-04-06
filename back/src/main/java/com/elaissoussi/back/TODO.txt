@@ -1,0 +1,12 @@
+the application is stateless => no state => requests are independantes
+
+-> send client id in each request header
+
+-> send cartId as request params
+
+// once a client is on the services pages
+
+we create a id => uuid => and we send it in the header
+
+
+window.device.uuid

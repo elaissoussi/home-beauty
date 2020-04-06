@@ -1,6 +1,7 @@
 package com.elaissoussi.back.services.impl;
 
 import com.elaissoussi.back.entities.Customer;
+import com.elaissoussi.back.filters.UserInfo;
 import com.elaissoussi.back.repositories.CustomerRepository;
 import com.elaissoussi.back.repositories.UserRepository;
 import com.elaissoussi.back.services.UserService;
@@ -14,41 +15,53 @@ import javax.annotation.Resource;
 @Service
 public class UserServiceImpl implements UserService
 {
-	@Value("${anonymous.email}")
-	private String anonymousEmail;
+    @Resource
+    UserRepository userRepository;
 
-	@Resource
-	UserRepository userRepository;
+    @Resource
+    CustomerRepository customerRepository;
 
-	@Resource
-	CustomerRepository customerRepository;
+    @Resource
+    UserInfo userInfo;
 
-	@Override
-	public Authentication getAuthentication()
-	{
-		return SecurityContextHolder.getContext().getAuthentication();
-	}
+    @Override
+    public Authentication getAuthentication()
+    {
+        return SecurityContextHolder.getContext().getAuthentication();
+    }
 
-	@Override
-	public String getCurrentUser()
-	{
-		if (getAuthentication() != null)
-		{
-			return getAuthentication().getName();
-		}
-		return getAnonymousCustomer().getEmail();
-	}
+    @Override
+    public String getCurrentUser()
+    {
+        // authenticated user
+        if (getAuthentication() != null)
+        {
+            return getAuthentication().getName();
+        }
+        // Anonymous user
+        {
+            return getAnonymousCustomer().getEmail();
+        }
+    }
 
-	@Override
-	public Customer getCurrentCustomer()
-	{
-		String userEmail = getCurrentUser();
-		return (Customer) userRepository.findByEmail(userEmail);
-	}
+    @Override
+    public Customer getCurrentCustomer()
+    {
+        String userEmail = getCurrentUser();
+        return (Customer) userRepository.findByEmail(userEmail);
+    }
 
-	@Override
-	public Customer getAnonymousCustomer()
-	{
-		return customerRepository.findByEmail(anonymousEmail);
-	}
+    @Override
+    public Customer getAnonymousCustomer()
+    {
+        final String clientId = userInfo.getClientId();
+        Customer customer = (Customer) userRepository.findByEmail(clientId);
+        if (customer == null)
+        {
+            customer = new Customer();
+            customer.setEmail(clientId);
+            userRepository.save(customer);
+        }
+        return customer;
+    }
 }
