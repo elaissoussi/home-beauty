@@ -1,9 +1,9 @@
-import { AuthGuardService } from './services/auth-guard.service';
+import { AuthGuardService } from 'src/app/pages/services/auth-guard.service';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { TokenInterceptor } from './services/token.interceptor';
+import { TokenInterceptor } from 'src/app/pages/services/token.interceptor';
 
-import { PopoverPageModule } from './popover/popover.module';
+import { PopoverPageModule } from 'src/app/pages/customers/popover/popover.module';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';

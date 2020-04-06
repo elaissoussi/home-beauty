@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from 'src/app/services/authentication.service';
-import { SignupService } from 'src/app/services/signup.service';
+import { AuthenticationService } from 'src/app/pages/services/authentication.service';
+import { SignupService } from 'src/app/pages/services/signup.service';
 import { Storage } from '@ionic/storage';
 import { API_URL,AUTHENTICATED_USER, TOKEN } from 'src/app/app.constants';
 import {  Router } from '@angular/router';

@@ -1,7 +1,7 @@
 import { User, UserType } from './../../user.model';
 import { Component, OnInit } from '@angular/core';
 //import { AuthenticationService } from 'src/app/services/authentication.service';
-import { SignupService } from 'src/app/services/signup.service'
+import { SignupService } from 'src/app/pages/services/signup.service'
 import { Storage } from '@ionic/storage';
 import {FormBuilder, FormGroup, Validators,FormControl, AbstractControl } from '@angular/forms';
 import { MustMatch } from 'src/app/_helpers/must-match/validator';

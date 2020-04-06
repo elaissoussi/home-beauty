@@ -1,30 +1,30 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuardService } from './services/auth-guard.service';
+import { AuthGuardService } from './pages/services/auth-guard.service';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'pages/home', pathMatch: 'full' },
   {
     path: 'login',
     loadChildren: './pages/login/login.module#loginPageModule'
   },
-  {
+  /*{
     path: 'inscription',
     loadChildren: './pages/inscription/inscription.module#InscriptionPageModule'
-  },
+  },*/
 
   {
     path: 'home',
-    loadChildren: './home/home.module#HomePageModule'
+    loadChildren: './pages/home/home.module#HomePageModule'
   },
 
-   {
+  /* {
    path: 'home', //canActivate: [AuthGuardService],
     children: [
       {
         path: '',
         loadChildren: './pages/menu/home/home.module#HomePageModule'
-      },
+      }, 
       { 
         path: 'aide',
         loadChildren: './pages/menu/aide/aide.module#AidePageModule'
@@ -42,21 +42,29 @@ const routes: Routes = [
         loadChildren: './pages/menu/haircare/haircare.module#HaircarePageModule'
       }
     ]
+  },*/
+  { 
+    path: 'aide',
+    loadChildren: './pages/aide/aide.module#AidePageModule'
+  },
+  {
+    path: 'haircare',
+    loadChildren: './pages/customers/haircare/haircare.module#HaircarePageModule'
   },
   {
     path: 'cart',
-    loadChildren: './cart/cart.module#CartPageModule'
+    loadChildren: './pages/customers/cart/cart.module#CartPageModule'
   },
-  { path: 'appointment', loadChildren: './appointment/appointment.module#AppointmentPageModule' },
+  { path: 'appointment', loadChildren: './pages/customers/appointment/appointment.module#AppointmentPageModule' },
   { path: 'signup', loadChildren: './pages/signup/signup.module#SignupPageModule' },
   { path: 'followed-signup', loadChildren: './pages/followed-signup/followed-signup.module#FollowedSignupPageModule' },
-  { path: 'select-estheticians/:id', loadChildren: './select-estheticians/select-estheticians.module#SelectEstheticiansPageModule' },
-  { path: 'payment/:id', loadChildren: './payment/payment.module#PaymentPageModule' },
-  { path: 'order-detail/:id', loadChildren: './pages/order-detail/order-detail.module#OrderDetailPageModule' },
-  { path: 'order-list', loadChildren: './pages/order-list/order-list.module#OrderListPageModule' },
-  { path: 'confirmation', loadChildren: './pages/confirmation/confirmation.module#ConfirmationPageModule' },
+  { path: 'select-estheticians/:id', loadChildren: './pages/customers/select-estheticians/select-estheticians.module#SelectEstheticiansPageModule' },
+  { path: 'payment/:id', loadChildren: './pages/customers/payment/payment.module#PaymentPageModule' },
+  { path: 'order-detail/:id', loadChildren: './pages/customers/order-detail/order-detail.module#OrderDetailPageModule' },
+  { path: 'order-list', loadChildren: './pages/customers/order-list/order-list.module#OrderListPageModule' },
+  { path: 'confirmation', loadChildren: './pages/customers/confirmation/confirmation.module#ConfirmationPageModule' },
   //{ path: 'service', loadChildren: './service/service.module#ServicePageModule' },
-  { path: 'service', loadChildren: './pages/service/service.module#ServicePageModule' }
+  { path: 'service', loadChildren: './pages/customers/service/service.module#ServicePageModule' }
   //{ path: 'popover', loadChildren: './popover/popover.module#PopoverPageModule' }
 
 
