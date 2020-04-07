@@ -11,11 +11,11 @@ export class SignupService {
 
   constructor(private http: HttpClient) { }
 
-  signupCust(email,password,firstName,lastName,phoneNumber){
+  signupCust(password,firstName,lastName,phoneNumber){
     return this.http.post<any>(
       `${API_URL}/customers/sign-up`,
       {
-        email,
+       // email,
         password,
         firstName,
         lastName,
@@ -23,7 +23,7 @@ export class SignupService {
       }).pipe(
         map(
           response => {
-            sessionStorage.setItem(AUTHENTICATED_USER, email);
+           // sessionStorage.setItem(AUTHENTICATED_USER, email);
             // return to login page
             // sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
             return response;
@@ -35,13 +35,13 @@ export class SignupService {
     }
   
   
-    signupEsth(email,password,firstName,lastName,phoneNumber){
+    signupEsth(password,firstName,lastName,phoneNumber){
 
       
         return this.http.post<any>(
           `${API_URL}/estheticians/sign-up`,{
           
-            email,
+          //  email,
             password,
             firstName,
             lastName,
@@ -49,14 +49,14 @@ export class SignupService {
           }).pipe(
             map(
               data => {
-                sessionStorage.setItem(AUTHENTICATED_USER, email);
+                //sessionStorage.setItem(AUTHENTICATED_USER, email);
                // sessionStorage.setItem(ID_USER, );
                // return to login page
                // sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
               // sessionStorage.set('idEsth',data.id);
 
         
-              sessionStorage.setItem(TOKEN, data.headers.get('Authorization'));
+              //sessionStorage.setItem(TOKEN, data.headers.get('Authorization'));
              
                 return data;
               

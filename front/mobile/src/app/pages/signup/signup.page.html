@@ -3,7 +3,7 @@
         
       
           <ion-buttons slot="start">
-            <ion-back-button defaultHref="login"></ion-back-button>
+            <ion-back-button defaultHref="home"></ion-back-button>
           </ion-buttons>
         
       <ion-title>Inscription</ion-title>
@@ -55,7 +55,7 @@
     
       </ion-item>
 
-      <div classe="error-messages">
+      <!--<div classe="error-messages">
           <ng-container *ngFor="let error of error_messages.phoneNumber">
             <div class="error-messages" *ngIf="signupForm.get('phoneNumber').hasError(error.type) && (signupForm.get('phoneNumber').derty || signupForm.get('phoneNumber').touched)">
               {{error.message}}
@@ -77,7 +77,7 @@
               {{error.message}}
             </div>
           </ng-container>
-        </div>
+        </div>-->
  
       <ion-item>
         <ion-label position="floating">Mot de passe</ion-label>

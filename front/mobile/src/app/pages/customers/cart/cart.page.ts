@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Cart } from '../models/Cart';
 import { CartEntry } from '../models/CartEntry';
 import { PopoverPage } from '../popover/popover.page';
+//import { HaircarePage } from '../haircare/haircare.page'
 
 
 @Component({
@@ -19,7 +20,8 @@ export class CartPage {
 
   // total cart
   total : number = 0;
- 
+ //
+ cartProductsNumber : number  = 0
   constructor(private cartService: CartService, private plt :Platform, private router: Router,private popover:PopoverController) {
     this.plt.ready().then(() => 
                 {
@@ -40,13 +42,27 @@ export class CartPage {
       response => {
         this.cart = this.cartService.convert(response);
         this.total = this.cartService.getTotalCart(this.cart); 
+        //this.haircaire.refreshCart();
       },
       error => {
         console.log(error);
       });
   }
 
-
+  refreshCart()
+  {
+    this.cartService.getCart().subscribe(
+      response => 
+      {
+        let cart = this.cartService.convert(response);
+        this.cartProductsNumber = this.cartService.getProductsCartNumber(cart);
+      },
+      error => 
+      {
+        console.log(error);
+      }
+    );
+  }
   openappointment(){
     this.router.navigate(['appointment']);
   }

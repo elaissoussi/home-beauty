@@ -24,6 +24,6 @@ export class HomePage {
   }
 
   estheticien(){
-   // this.router.navigate([`.././pages/signup`]);
+   this.router.navigate([`signup`]);
   }
 }

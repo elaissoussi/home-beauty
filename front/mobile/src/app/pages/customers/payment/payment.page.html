@@ -53,8 +53,102 @@
         <ion-input  type="text" name="cvv" [(ngModel)]="cardCVC" placeholder="ex: 123"></ion-input>
       </ion-item>
    
-    <ion-button color="success"  type="submit" expand="block" style="width:100%;" >Valider</ion-button>
-								
+    <ion-button color="success"  (click)="pay()" expand="block" style="width:100%;" >Valider</ion-button>
+
+    <!--############################ -->
+
+    <!--############################-*ngIf="cart?.entries"-->
+<ion-item *ngIf="affcon">
+  <ion-grid *ngIf="cart?.entries">
+    
+    <ion-row>
+      <ion-col>
+        <div>
+          Code de la commande :
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          {{cart.id}}
+        </div>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col>
+        <div>
+          Date de la commande
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          {{cart.date | date: 'dd/MM/yyyy'}} {{cart.startHour}}h-{{cart.endHour}}h
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <div>
+          Esthetician :
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          {{cart.esthetician.firstName}}
+          {{cart.esthetician.lastName}}
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <div>
+          Services de la commande
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          <ion-list >
+            <ion-item *ngFor="let cartEntry of cart.entries">
+              <ion-label>{{cartEntry.product.name}} </ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <div>
+          Total de la commande
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          {{cart.total}} euro
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <div>
+          Paiement info :
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          {{cardHolderName}}
+        </div>
+        <div>
+          {{cardNumber}}
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-button expand="block" (click)="placeOrder()">Payer votre Commander</ion-button>
+  </ion-grid>
+  </ion-item>						
   </form>
 
 </ion-content>

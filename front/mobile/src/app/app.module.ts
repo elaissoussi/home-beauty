@@ -4,6 +4,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from 'src/app/pages/services/token.interceptor';
 
 import { PopoverPageModule } from 'src/app/pages/customers/popover/popover.module';
+//import { HaircarePageModule } from 'src/app/pages/customers/haircare/haircare.module';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -27,6 +28,7 @@ import { DatePipe } from '@angular/common';
   entryComponents: [],
   exports: [
     FormsModule,
+    
     ReactiveFormsModule
   ],
   imports: [
@@ -37,6 +39,7 @@ import { DatePipe } from '@angular/common';
     ReactiveFormsModule,
     HttpClientModule,
     PopoverPageModule,
+    
     IonicStorageModule.forRoot()
     ],
   

@@ -30,12 +30,12 @@ export class SignupPage implements OnInit {
   signupForm:FormGroup;
 
   error_messages = {
-    'email': [
+  /*  'email': [
       { type: 'required', message : 'L\'email est obligatoire' },
       { type: 'minLength', message : 'La longueur de l\'email doit être plus longue ou égale à 6 caractères' },
       { type: 'maxLenght', message : 'La longueur de l\'email doit être inférieure ou égale à 50 caractères' },
       { type: 'pattern', message : 'Veuillez entrer une adresse email' }
-    ],
+    ],*/
     'password':[
       { type: 'required', message : 'Le mot de passe est obligatoire' },
       { type: 'minLength', message : 'La longueur de mot de passe doit être plus longue ou égale à 6 caractères' },
@@ -71,13 +71,13 @@ export class SignupPage implements OnInit {
           Validators.minLength(6),
           Validators.maxLength(30)
       ])),
-      email: new FormControl('',Validators.compose([
+     /* email: new FormControl('',Validators.compose([
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
         Validators.minLength(6),
         Validators.maxLength(50)
 
-      ])),
+      ])),*/
       phoneNumber: new FormControl('',Validators.compose([Validators.required])),
       confirmPassword: new FormControl('',Validators.compose([Validators.required])),
       //type: ['', Validators.required],
@@ -108,12 +108,12 @@ onSignUp() {
     } 
    else
    {*/
-      // this.customer=false;
-     this.signupservice.signupEsth(this.email, this.password,this.lastName,this.firstName,this.phoneNumber)
+      // this.customer=false;   this.email,
+     this.signupservice.signupEsth( this.password,this.lastName,this.firstName,this.phoneNumber)
       .subscribe(
         data => {
           console.log(data.id);
-          this.router.navigate(['/followed-signup']);
+          this.router.navigate(['followed-signup']);
            console.log("Esthetician bien enregistrer");
            this.storage.set('idest', data.id);
 

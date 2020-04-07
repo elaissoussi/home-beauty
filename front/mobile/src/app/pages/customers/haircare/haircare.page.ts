@@ -32,7 +32,7 @@ export class HaircarePage {
               private router: Router, 
               private plt :Platform,
               private popover:PopoverController ) {
-                
+                this.refreshCart()
                 this.plt.ready().then(() => 
                 {
 
@@ -40,6 +40,7 @@ export class HaircarePage {
                     response => {
                                  this.products = this.haircareService.convert(response).categories;
                                  this.refreshCart()
+                                 console.log(this.products);
                                 },
                     error    => {
                                     console.log(error);
@@ -83,13 +84,11 @@ export class HaircarePage {
   // redirect to cart page
   openCart() 
   {
+    this.refreshCart()
    this.router.navigate(['cart']);
   }
 
-  openservice() 
-  {
-   this.router.navigate(['service']);
-  }
+
   async OpenPopover(ev:Event){
     const popver = await this.popover.create({
       component: PopoverPage,

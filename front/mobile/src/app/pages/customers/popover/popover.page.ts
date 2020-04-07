@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavParams,PopoverController } from '@ionic/angular';
+import { PopoverController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class PopoverPage implements OnInit {
 
-  constructor(private navParams: NavParams, private popover :PopoverController,private router:Router) { }
+  constructor( private popover :PopoverController,private router:Router) { }
 
   ngOnInit() {
   }
