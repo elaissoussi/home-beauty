@@ -16,68 +16,17 @@
 </ion-header>
 
 <ion-content padding>
+
+<ion-item *ngIf="cart?.entries">
+
   <form (ngSubmit)="pay()">
 
-      <ion-item>
-          <ion-label  position="floating">Nom du titulaire: </ion-label>
-          <ion-input  type="text" name="namecard" [(ngModel)]="cardHolderName" placeholder="Ex: Elkhdim Abdelilah"></ion-input>
-        </ion-item>
+  <ion-grid>
   
-      <ion-item>
-        <ion-label  position="floating">Type de la carte: </ion-label>
-        <ion-input  type="text" name="namecard" [(ngModel)]="cardType" placeholder="Ex: VISA"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label  position="floating">Numéro de Carte de Crédit: </ion-label>
-        <ion-input  type="text" name="numcard" [(ngModel)]="cardNumber" placeholder="Ex: 123456789"></ion-input>
-      </ion-item>
-
-
-      <ion-item>
-          <ion-label  position="floating">Expération: </ion-label>
-          <ion-datetime display-format="MM/YYYY" 
-                      pickerFormat="MM/YYYY" 
-                      name="date" 
-                      [(ngModel)]="cardExpirationDate" 
-                      [min]="myDate"
-                      
-                      placeholder="ex: 01/2020"
-          >
-        </ion-datetime>
-        </ion-item>
-     
-
-      <ion-item>
-        <ion-label  position="floating">CVV: </ion-label>
-        <ion-input  type="text" name="cvv"  [(ngModel)]="cardCVC" placeholder="ex: 123"></ion-input>
-      </ion-item>
-   
-    <ion-button color="success"  (click)="pay()"  expand="block" style="width:100%;" >Valider</ion-button>
-
-    <!--############################ -->
-
-    <!--############################-*ngIf="cart?.entries"-->
-<ion-item *ngIf="affcon">
-  <ion-grid *ngIf="cart?.entries">
-    
     <ion-row>
       <ion-col>
         <div>
-          Code de la commande :
-        </div>
-      </ion-col>
-      <ion-col>
-        <div>
-          {{cart.id}}
-        </div>
-      </ion-col>
-    </ion-row>
-    
-    <ion-row>
-      <ion-col>
-        <div>
-          Date de la commande
+          Date et l'heure de service :
         </div>
       </ion-col>
       <ion-col>
@@ -104,7 +53,7 @@
     <ion-row>
       <ion-col>
         <div>
-          Services de la commande
+          Services :
         </div>
       </ion-col>
       <ion-col>
@@ -121,7 +70,7 @@
     <ion-row>
       <ion-col>
         <div>
-          Total de la commande
+          Total TTC :
         </div>
       </ion-col>
       <ion-col>
@@ -131,24 +80,46 @@
       </ion-col>
     </ion-row>
 
-    <ion-row>
-      <ion-col>
-        <div>
-          Paiement info :
-        </div>
-      </ion-col>
-      <ion-col>
-        <div>
-          {{cardHolderName}}
-        </div>
-        <div>
-          {{cardNumber}}
-        </div>
-      </ion-col>
-    </ion-row>
-    <ion-button expand="block" (click)="placeOrder()">Payer votre Commander</ion-button>
   </ion-grid>
-  </ion-item>						
+
+    <ion-item>
+        <ion-label  position="floating">Nom du titulaire: </ion-label>
+        <ion-input  type="text" name="namecard" [(ngModel)]="cardHolderName" placeholder="Ex: Elkhdim Abdelilah"></ion-input>
+      </ion-item>
+
+    <ion-item>
+      <ion-label  position="floating">Type de la carte: </ion-label>
+      <ion-input  type="text" name="namecard" [(ngModel)]="cardType" placeholder="Ex: VISA"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label  position="floating">Numéro de Carte de Crédit: </ion-label>
+      <ion-input  type="text" name="numcard" [(ngModel)]="cardNumber" placeholder="Ex: 123456789"></ion-input>
+    </ion-item>
+
+
+    <ion-item>
+        <ion-label  position="floating">Expération: </ion-label>
+        <ion-datetime display-format="MM/YYYY" 
+                    pickerFormat="MM/YYYY" 
+                    name="date" 
+                    [(ngModel)]="cardExpirationDate" 
+                    [min]="myDate"
+                    
+                    placeholder="ex: 01/2020"
+        >
+      </ion-datetime>
+      </ion-item>
+   
+    <ion-item>
+      <ion-label  position="floating">CVV: </ion-label>
+      <ion-input  type="text" name="cvv"  [(ngModel)]="cardCVC" placeholder="ex: 123"></ion-input>
+    </ion-item>
+ 
+  <ion-button color="success" type="submit" expand="block" style="width:100%;" >Payer votre Commander<</ion-button>
   </form>
+
+</ion-item>						
+  
 
 </ion-content>

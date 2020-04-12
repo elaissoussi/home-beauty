@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
 
-import { API_URL, AUTHENTICATED_USER, TOKEN} from 'src/app/app.constants';
+import { API_URL, AUTHENTICATED_USER, TOKEN, CLIENT_ID} from 'src/app/app.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +41,14 @@ logout(){
 
 getAuthenticatedUser() {
   return sessionStorage.getItem(AUTHENTICATED_USER);
+}
+
+getClientId() {
+  return sessionStorage.getItem(CLIENT_ID);
+}
+
+setClientId(clientId : string){
+  sessionStorage.setItem(CLIENT_ID, clientId);
 }
 
 getAuthenticatedToken() {

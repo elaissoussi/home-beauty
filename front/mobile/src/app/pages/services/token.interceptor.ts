@@ -8,23 +8,30 @@ import { Injectable } from '@angular/core';
 })
 export class TokenInterceptor  implements HttpInterceptor{
 
-  constructor(
-// tslint:disable-next-line: no-shadowed-variable
-    private AuthenticationService: AuthenticationService
-  ) { }
+  constructor(private authenticationService: AuthenticationService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler){
   
-    const AuthHeaderString = this.AuthenticationService.getAuthenticatedToken();
-    const email = this.AuthenticationService.getAuthenticatedUser()
+    const AuthHeaderString = this.authenticationService.getAuthenticatedToken();
+    const email = this.authenticationService.getAuthenticatedUser();
+    const clientId = this.authenticationService.getClientId();
 
     if(AuthHeaderString && email) { 
       request = request.clone({
         setHeaders : {
-            Authorization : AuthHeaderString
+            Authorization : AuthHeaderString,
+            clientId : clientId
           }
         }) ;
     }
+    else if(clientId){
+      request = request.clone({
+        setHeaders : {
+            clientId : clientId
+          }
+        }) ;
+    }
+
     return next.handle(request);
   }
 }
