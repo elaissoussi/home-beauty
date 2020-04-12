@@ -9,6 +9,7 @@ import { Order } from 'src/app/pages/customers/models/Order';
 import { CartService } from 'src/app/pages/services/cart.service';
 import { Cart } from 'src/app/pages/customers/models/Cart';
 
+
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.page.html',
@@ -56,7 +57,7 @@ export class PaymentPage {
         data => {
           console.log(data);
           this.affcon=true;
-         this.router.navigate([`/confirmation`]);
+         //this.router.navigate([`/confirmation`]);
        
         },
         error => {
