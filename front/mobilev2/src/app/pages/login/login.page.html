@@ -1,0 +1,94 @@
+<!--<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-menu-button>
+            
+          </ion-menu-button>
+    
+        </ion-buttons>
+    <ion-title>Connexion</ion-title>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-content padding>
+
+	<ion-slides>
+		<ion-slide>
+			<img src="assets/login/1.png">
+		</ion-slide>
+		<ion-slide>
+				<img src="assets/login/2.png">
+		</ion-slide>
+		<ion-slide>
+				<img src="assets/login/3.png">
+		</ion-slide>
+	</ion-slides>
+
+	<ion-grid>
+			<ion-row>
+				<ion-col>
+					<h1>Connexion</h1>
+						<form name="myform" [formGroup]="loginForm">
+								<ion-item>
+									<ion-label [ngStyle]="{'color': borderColor}" position="floating">Adresse Email</ion-label>
+									<ion-input formControlName="email" type="text" name="email" [(ngModel)]="email"></ion-input>
+								</ion-item>
+
+								<div classe="error-messages">
+									<ng-container *ngFor="let error of error_messages.email">
+										<div class="error-messages" *ngIf="loginForm.get('email').hasError(error.type) && (loginForm.get('email').derty || loginForm.get('email').touched)">
+											{{error.message}}
+										</div>
+									</ng-container>
+								</div>
+							
+								<ion-item>
+									<ion-label [ngStyle]="{'color': borderColor}" position="floating">Mot de passe</ion-label>
+									<ion-input  formControlName="password" type="password" name="password" [(ngModel)]="password"></ion-input>
+								</ion-item>
+							
+								<div classe="error-messages">
+										<ng-container *ngFor="let error of error_messages.password">
+											<div class="error-messages" *ngIf="loginForm.get('password').hasError(error.type) && (loginForm.get('password').derty || loginForm.get('password').touched)">
+												{{error.message}}
+											</div>
+	
+										</ng-container>
+	
+									</div>
+								<ion-button color="success" [disabled]="!loginForm.valid" (click)="handleJWTAuthLogin()" expand="block" style="width:100%;" >Connexion</ion-button>
+								<!--
+
+									
+								-->
+								<br><br>
+							</form>
+								<a href="#">Oublié le mot de passe?</a>
+				</ion-col>
+			</ion-row>
+				<ion-row>
+				<ion-col>
+						<h1>Inscription</h1>
+					<p>	Appuyer sur la boutton <b>INSCRIPTION</b> pour creer un nouveau compte</p>
+						<br>
+						<ion-button style="width:100%;" routerLink="/signup">Inscription</ion-button>
+						<p class="ins">
+						En appuyant sur Inscription, vous acceptez nos Conditions générales, 
+						notre Politique d’utilisation des données et notre Politique d’utilisation des cookies. 
+						Vous recevrez peut-être des notifications par texto de notre part et vous pouvez à tout moment vous désabonner.
+						</p>
+					</ion-col>
+				
+			</ion-row>
+			</ion-grid>
+
+
+
+
+  <!-- The world is your oyster. -->
+  <!-- <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p> -->
+</ion-content>
+
+
+	
+

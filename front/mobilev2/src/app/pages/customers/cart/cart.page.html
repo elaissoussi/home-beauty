@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+     
+        <ion-back-button defaultHref="/haircare"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Mon Panier</ion-title>
+
+      
+    <ion-buttons slot="end">
+      <ion-button (click)="OpenPopover($event)" >
+      
+        <ion-icon slot="icon-only" name="more" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    </ion-toolbar>
+
+</ion-header>
+   
+  <ion-content>
+    <ion-list *ngIf="cart?.entries">
+     
+      <ion-item *ngFor="let e of cart.entries" lines="inset">
+        {{ e.quantity }} x {{ e.product.name }} 
+        <ion-label text-right>{{e.quantity * e.product.price}} Euro</ion-label>
+        <ion-icon slot="end" name="trash"  (click)="removeFromCart(e)"></ion-icon>
+      </ion-item>
+
+      <ion-item class="total">
+        Total: <span slot="end">{{ total }} Euro</span>
+      </ion-item>
+
+      <ion-button expand="block" (click)="openappointment()">Passer Ma commande</ion-button>
+
+    </ion-list>
+  
+    
+  </ion-content>

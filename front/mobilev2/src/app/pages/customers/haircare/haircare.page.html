@@ -1,0 +1,60 @@
+
+
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/service"></ion-back-button>
+        </ion-buttons>
+      <ion-title>
+        Coiffure
+      </ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="openCart()">
+          <ion-badge *ngIf="cartProductsNumber > 0">{{ cartProductsNumber }}</ion-badge>
+          <ion-icon slot="icon-only" name="cart"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+
+    <ion-buttons slot="end">
+          <ion-button (click)="OpenPopover($event)" >
+          
+            <ion-icon slot="icon-only" name="more" ></ion-icon>
+          </ion-button>
+        </ion-buttons>
+
+    </ion-toolbar>
+  </ion-header> 
+   
+  <ion-content *ngIf="products">
+    <div *ngFor="let cat of products" class="category-block">
+   
+      <ion-row no-padding class="category-banner">
+        <ion-col text-left button tappable (click)="cat.expanded = !cat.expanded" align-self-center>
+          {{ cat.name }}
+        </ion-col>
+      </ion-row>
+   
+      <ion-slides [options]="sliderConfig">
+        <ion-slide *ngFor="let product of cat.products">
+          <div *ngIf="cat.expanded">
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title> 
+                  
+                  {{ product.name }} - {{ product.price }} Euro 
+                
+                </ion-card-title>
+                <ion-card-content>
+                  <img src="https://via.placeholder.com/300x300">
+                  
+                </ion-card-content>
+                <ion-button expand="full" (click)="addProduct(product)">Ajouter</ion-button>
+                  
+              </ion-card-header>
+            </ion-card>
+          </div> 
+        </ion-slide>
+      </ion-slides>
+   
+    </div>
+  </ion-content>

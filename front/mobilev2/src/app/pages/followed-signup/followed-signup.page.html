@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar >
+      
+    
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="signup"></ion-back-button>
+        </ion-buttons>
+      
+    <ion-title>Inscription</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+ 
+    <form (ngSubmit)="onSignUp()">
+       
+        <ion-list >
+          <ion-item >
+            <ion-label position="floating">Votre code postal</ion-label>
+            <ion-input  type="number" [(ngModel)]="zipCode" [ngModelOptions]="{standalone: true}" ></ion-input>
+          </ion-item>
+         
+          
+        </ion-list>
+        
+        
+
+    <ion-input type="hidden"  [(ngModel)]="user_id" [ngModelOptions]="{standalone: true}" value="{{idesthetician}}"></ion-input>
+      <ion-button color="success" (click)="showDaysAndTimes()"  style="width:100%;" type="submit"   >Valider</ion-button>
+      
+      
+      
+      
+    </form>
+    <div *ngIf="showAvailibilities">
+    <form (ngSubmit)="sendAvailabilities()">
+        <ion-row >
+            <ion-col>
+                
+            </ion-col>   
+          </ion-row> 
+      <ion-row >
+        <ion-col>
+            <ion-label position="floating">Votre horaire de disponibilité</ion-label>
+        </ion-col>   
+      </ion-row> 
+       
+      <ion-row >
+          <ion-col>
+              
+          </ion-col>   
+        </ion-row> 
+        <div *ngFor="let cat of availabilities" class="category-block">
+   
+            <ion-row no-padding class="category-banner">
+              <ion-col text-left button tappable (click)="cat.expanded = !cat.expanded" align-self-center>
+                {{ cat.Days }}
+              </ion-col>
+            </ion-row>
+         
+      
+              <div *ngFor="let av of cat.hours">
+                <div *ngIf="cat.expanded">
+                
+                  <ion-item>
+                        {{ av.val }}  <ion-toggle slot="end" (ionChange)="av.isChecked" [(ngModel)]="av.isChecked" [ngModelOptions]="{standalone: true}" ></ion-toggle>
+                    </ion-item>
+                 
+                </div> 
+              </div>
+            
+         
+          </div>
+          <ion-button style="width:100%;" type="submit"  >Valider</ion-button>
+
+    </form>
+  </div>
+</ion-content>

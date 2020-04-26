@@ -1,0 +1,125 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="/select-estheticians/1"></ion-back-button>
+      </ion-buttons>
+  <ion-title>Payment</ion-title>
+  <ion-buttons slot="end">
+    <ion-button (click)="OpenPopover($event)" >
+    
+      <ion-icon slot="icon-only" name="more" ></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+
+</ion-header>
+
+<ion-content padding>
+
+<ion-item *ngIf="cart?.entries">
+
+  <form (ngSubmit)="pay()">
+
+  <ion-grid>
+  
+    <ion-row>
+      <ion-col>
+        <div>
+          Date et l'heure de service :
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          {{cart.date | date: 'dd/MM/yyyy'}} {{cart.startHour}}h-{{cart.endHour}}h
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <div>
+          Esthetician :
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          {{cart.esthetician.firstName}}
+          {{cart.esthetician.lastName}}
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <div>
+          Services :
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          <ion-list >
+            <ion-item *ngFor="let cartEntry of cart.entries">
+              <ion-label>{{cartEntry.product.name}} </ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <div>
+          Total TTC :
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          {{cart.total}} euro
+        </div>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+    <ion-item>
+        <ion-label  position="floating">Nom du titulaire: </ion-label>
+        <ion-input  type="text" name="namecard" [(ngModel)]="cardHolderName" placeholder="Ex: Elkhdim Abdelilah"></ion-input>
+      </ion-item>
+
+    <ion-item>
+      <ion-label  position="floating">Type de la carte: </ion-label>
+      <ion-input  type="text" name="namecard" [(ngModel)]="cardType" placeholder="Ex: VISA"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label  position="floating">Numéro de Carte de Crédit: </ion-label>
+      <ion-input  type="text" name="numcard" [(ngModel)]="cardNumber" placeholder="Ex: 123456789"></ion-input>
+    </ion-item>
+
+
+    <ion-item>
+        <ion-label  position="floating">Expération: </ion-label>
+        <ion-datetime display-format="MM/YYYY" 
+                    pickerFormat="MM/YYYY" 
+                    name="date" 
+                    [(ngModel)]="cardExpirationDate" 
+                    [min]="myDate"
+                    
+                    placeholder="ex: 01/2020"
+        >
+      </ion-datetime>
+      </ion-item>
+   
+    <ion-item>
+      <ion-label  position="floating">CVV: </ion-label>
+      <ion-input  type="text" name="cvv"  [(ngModel)]="cardCVC" placeholder="ex: 123"></ion-input>
+    </ion-item>
+ 
+  <ion-button color="success" type="submit" expand="block" style="width:100%;" >Payer votre Commander<</ion-button>
+  </form>
+
+</ion-item>						
+  
+
+</ion-content>

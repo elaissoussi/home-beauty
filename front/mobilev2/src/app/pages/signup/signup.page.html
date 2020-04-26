@@ -1,0 +1,132 @@
+<ion-header>
+    <ion-toolbar>
+        
+      
+          <ion-buttons slot="start">
+            <ion-back-button defaultHref="home"></ion-back-button>
+          </ion-buttons>
+        
+      <ion-title>Inscription</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <!--
+    [formGroup]="signupForm" 
+    [(ngModel)]="registerCredentials.type"
+    formControlName="lastname" 
+    [formGroup]="signupForm" #registerForm="ngForm"
+  -->
+  <ion-content padding>
+    <form (ngSubmit)="onSignUp()" [formGroup]="signupForm">
+      <ion-item>
+        <ion-label position="floating">Nom</ion-label>
+       
+        <ion-input type="text"  formControlName="lastName" name="lastName" [(ngModel)]="lastName" ></ion-input>
+        
+       <!--formControlName="firstName1"-->
+      </ion-item>
+      
+      <div classe="error-messages">
+          <ng-container *ngFor="let error of error_messages.lastName">
+            <div class="error-messages" *ngIf="signupForm.get('lastName').hasError(error.type) && (signupForm.get('lastName').derty || signupForm.get('lastName').touched)">
+              {{error.message}}
+            </div>
+          </ng-container>
+        </div>
+    
+      
+      <ion-item>
+        <ion-label position="floating">Prenom</ion-label>
+        <ion-input  type="text"  [(ngModel)]="firstName" name="firstName" formControlName="firstName"></ion-input>
+    
+      </ion-item>
+
+      <div classe="error-messages">
+          <ng-container *ngFor="let error of error_messages.firstName">
+            <div class="error-messages" *ngIf="signupForm.get('firstName').hasError(error.type) && (signupForm.get('firstName').derty || signupForm.get('firstName').touched)">
+              {{error.message}}
+            </div>
+          </ng-container>
+        </div>
+    
+     
+      <ion-item>
+        <ion-label position="floating">Numéro de téléphone</ion-label>
+        <ion-input  type="number" [(ngModel)]="phoneNumber" formControlName="phoneNumber"></ion-input>
+    
+      </ion-item>
+
+      <!--<div classe="error-messages">
+          <ng-container *ngFor="let error of error_messages.phoneNumber">
+            <div class="error-messages" *ngIf="signupForm.get('phoneNumber').hasError(error.type) && (signupForm.get('phoneNumber').derty || signupForm.get('phoneNumber').touched)">
+              {{error.message}}
+            </div>
+          </ng-container>
+        </div>
+ 
+       <ion-item>
+        <ion-label position="floating">Adresse Email</ion-label>
+        <ion-input  type="text"  [(ngModel)]="email"  formControlName="email" >  </ion-input>
+      
+      </ion-item>
+
+    
+
+      <div classe="error-messages">
+          <ng-container *ngFor="let error of error_messages.email">
+            <div class="error-messages" *ngIf="signupForm.get('email').hasError(error.type) && (signupForm.get('email').derty || signupForm.get('email').touched)">
+              {{error.message}}
+            </div>
+          </ng-container>
+        </div>-->
+ 
+      <ion-item>
+        <ion-label position="floating">Mot de passe</ion-label>
+        <ion-input type="password" [(ngModel)]="password" formControlName="password" ></ion-input>
+   
+      </ion-item>
+      <div classe="error-messages">
+          <ng-container *ngFor="let error of error_messages.password">
+            <div class="error-messages" *ngIf="signupForm.get('password').hasError(error.type) && (signupForm.get('password').derty || signupForm.get('password').touched)">
+              {{error.message}}
+            </div>
+          </ng-container>
+        </div>
+
+
+      <ion-item>
+        <ion-label position="floating">Confirmer mot de passe</ion-label>
+        <ion-input  type="password" [(ngModel)]="confirmPassword" formControlName="confirmPassword"></ion-input>
+    
+      </ion-item>
+    
+      <div classe="error-messages">
+          <ng-container *ngFor="let error of error_messages.confirmPassword">
+            <div class="error-messages" *ngIf="signupForm.get('confirmPassword').hasError(error.type) && (signupForm.get('confirmPassword').derty || signupForm.get('confirmPassword').touched)">
+              {{error.message}}
+            </div>
+          </ng-container>
+        </div>
+  
+     <!--  <ion-list >
+          <ion-radio-group [(ngModel)]="type" formControlName="type" name="type" >
+            <ion-item>
+              <ion-label>Inscrire tant que client</ion-label>
+              <ion-radio  value="customer"  checked></ion-radio>
+            </ion-item>
+            <ion-item>
+              <ion-label>Inscrire tant que estheticians</ion-label>
+              <ion-radio  value="esthetician" ></ion-radio>
+            </ion-item>
+        </ion-radio-group>
+      </ion-list>-->
+      <!-- 
+      -->
+      <!--[disabled]="!signupForm.valid"
+
+      -->
+  
+    <ion-button color="success" style="width:100%;" type="submit" [disabled]="!signupForm.valid"  >Inscription</ion-button>
+
+  </form>
+  </ion-content>
+  

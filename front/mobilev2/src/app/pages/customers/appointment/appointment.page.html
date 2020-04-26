@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/cart"></ion-back-button>
+        </ion-buttons>
+    <ion-title>appointment</ion-title>
+      
+    <ion-buttons slot="end">
+      <ion-button (click)="OpenPopover($event)" >
+      
+        <ion-icon slot="icon-only" name="more" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  
+  <!-- Search component-->
+  <ion-list>
+    
+    <ion-item>
+        <ion-label  position="floating">Donner votre code postal</ion-label>
+        <ion-input  type="text" name="zipcode" [(ngModel)]="zipcode"></ion-input>
+    </ion-item>
+    
+     <ion-item>
+        <ion-label>Date</ion-label>
+        <ion-datetime display-format="MM/DD/YYYY" 
+                      pickerFormat="MM/DD/YYYY" 
+                      name="date" [(ngModel)]="date" [min]="myDate"
+                    
+        >
+        </ion-datetime>
+                      
+    </ion-item>
+   
+
+  <!--  
+     <ion-item>
+      <ion-input  type="date" name="date" [(ngModel)]="date"></ion-input>
+  </ion-item>
+    
+    <ion-item>
+   <ion-radio-group>
+        <ion-list>
+              <ion-list-header>
+                <ion-label>Sex d'ehstetician</ion-label>
+              </ion-list-header>
+        <ion-item>
+            <ion-radio slot="start" value="import" checked></ion-radio>
+            <ion-label>N'import</ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-radio slot="start" value="Homme" ></ion-radio>
+           <ion-label>Homme</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-radio slot="start" value="Femme" ></ion-radio>
+          <ion-label>Femme</ion-label>
+        </ion-item>
+      </ion-list>
+
+      </ion-radio-group>
+    </ion-item>
+       <button class="item-cover disable-hover item-cover-ios item-cover-default item-cover-default-ios" disable-activated="" ion-button="item-cover" role="checkbox" type="button"  aria-checked="true" aria-labelledby="lbl-6" aria-disabled="false"></button>
+    
+      -->
+
+     
+     
+      <ion-button expand="block" (click)="listEstheticianAvailabilities()" >Valider</ion-button>
+  </ion-list>
+
+ 
+
+  <ion-list *ngIf="availabilityList?.availabilityList">
+          <ion-item *ngFor="let a of availabilityList.availabilityList">
+              <ion-toggle [(ngModel)]="radioButtonValues[a.id]" [(ngModel)]="isChecked" (ionChange)="openSelectEsth(a.id)" slot="start" value="{{a.id}}" ></ion-toggle>
+            <ion-label>{{a.startHour}} - {{a.endHour}}</ion-label>
+          </ion-item>
+  </ion-list>
+       
+</ion-content>
