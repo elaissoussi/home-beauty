@@ -1,60 +1,41 @@
-
 <ion-header>
-
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
 
-
 <ion-content padding>
-	
-	<ion-toolbar color="primary" >
+  <ion-card class="ion-text-center">
+    <ion-card-header>
+      <ion-card-title>Home Beauty</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Bienvenue à l'application Home-Beauty.</p>
+      <p>Nous offrons 2 services : les clients et les esthestiens !</p>
+      <p>Merci de click sur le button qui correspond à votre profile</p>
+    </ion-card-content>
+  </ion-card>
 
-  Home Beauty
-   </ion-toolbar>
-		
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button shape="round" fill="outline" expand="full" (click)="customer()">Vous êtes un client</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button shape="round" fill="outline" expand="full" (click)="estheticien()">Vous êtes un estheticien</ion-button>
+      </ion-col>
+    </ion-row>
 
-    <ion-grid>
-        <ion-row>
-          <ion-col>
-         
-            <!--<a href="/service">Vous étes un client</a>
-            <a expand="full"  color="dark" routerLink="/service"><img src="assets/home/1.jpg"> </a>-->
-            <ion-button size="large" expand="full" (click)="customer()" fill="outline"  color="dark">Vous êtes un client </ion-button>
-
-         
-         
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col>
-         
-          
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col>
-         
-          
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-            <ion-col>
-                
-              <ion-button size="large" fill="outline" (click)="estheticien()" expand="full" color="dark">Vous êtes un estheticien</ion-button>
-            </ion-col>
-          </ion-row>
-          
-    </ion-grid>
-
-
-
-
+  </ion-grid>
 </ion-content>
 
 <ion-footer>
 
-
-	
 </ion-footer>
