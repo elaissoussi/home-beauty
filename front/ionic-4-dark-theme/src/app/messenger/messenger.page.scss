@@ -1,0 +1,57 @@
+.messages{
+    
+}
+
+.chat-message{
+
+}
+
+
+.your-chats{
+   float:right;
+    right:0px;
+}
+
+.your-chat-message{
+background-color: rgb(49, 96, 248) !important;
+
+
+
+}
+
+
+.messagebox{
+    position:fixed;
+    bottom:10px;
+    left:10px;
+
+  float:center;
+    padding:none;
+
+
+}
+
+
+.messageWindow{
+    position:fixed;
+    left:5px;
+   
+ 
+
+}
+
+
+
+
+
+ion-input{
+    width: 400px !important;
+ 
+}
+
+.messageSend{
+    position:fixed;
+    right:0px;
+    width:auto;
+    height:auto;
+}
