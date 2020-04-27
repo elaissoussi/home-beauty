@@ -39,7 +39,6 @@ import { PopoverPageModule } from 'src/app/pages/customers/popover/popover.modul
   providers: [
     StatusBar,
     SplashScreen,
-    AuthGuardService,
     DatePipe,
     HTTP,
     UniqueDeviceID,
