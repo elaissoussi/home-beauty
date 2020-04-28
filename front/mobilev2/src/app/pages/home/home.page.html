@@ -1,30 +1,23 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-menu-button>
+      </ion-menu-button>
     </ion-buttons>
-    <ion-title>
-      Home
-    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <ion-card class="ion-text-center">
     <ion-card-header>
-      <ion-card-title>Home Beauty</ion-card-title>
+      <ion-card-title>Home Beauty Service Coiffure</ion-card-title>
     </ion-card-header>
-    <ion-card-content>
-      <p>Bienvenue à l'application Home-Beauty.</p>
-      <p>Nous offrons 2 services : les clients et les esthestiens !</p>
-      <p>Merci de click sur le button qui correspond à votre profile</p>
-    </ion-card-content>
   </ion-card>
 
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-button shape="round" fill="outline" expand="full" (click)="customer()">Vous êtes un client</ion-button>
+        <ion-button shape="round" fill="outline" expand="full" [routerLink]="['/haircare']" >Vous êtes un client</ion-button>
       </ion-col>
     </ion-row>
     <ion-row>

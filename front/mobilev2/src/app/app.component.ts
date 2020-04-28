@@ -11,7 +11,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 })
 export class AppComponent {
 
-  public pages = [
+  public menuItems = [
     {
       title:'Acceuil',
       url:'/home'
@@ -26,5 +26,10 @@ export class AppComponent {
     this.initializeApp();
   }
 
-  initializeApp() {}
+  initializeApp() {
+    this.platform.ready().then(() => {
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+    });
+  }
 }
