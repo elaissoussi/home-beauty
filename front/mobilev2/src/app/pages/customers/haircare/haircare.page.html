@@ -39,6 +39,7 @@
           <p>{{ product.name }} - {{ product.price }} EURO</p>
 
           <img src="https://via.placeholder.com/300x300">
+          <ion-button shape="round" fill="outline"  expand="full" routerLink="/product-detail/{{product.id}}">detail produit</ion-button>
           <ion-button shape="round" fill="outline"  expand="full" (click)="addProduct(product)">Ajouter au Panier</ion-button>
         </ion-card-content>
       </ion-card>

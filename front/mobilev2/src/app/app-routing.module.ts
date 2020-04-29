@@ -58,7 +58,11 @@ const routes: Routes = [
   {
     path: 'services',
     loadChildren: './pages/customers/service/service.module#ServicePageModule'
-  }
+  },
+  {
+    path: 'product-detail/:id',
+    loadChildren: './pages/product-detail/product-detail.module#ProductDetailPageModule'
+  },
 
 ];
 
