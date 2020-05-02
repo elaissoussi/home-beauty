@@ -8,8 +8,7 @@ script: cd back && mvn clean install
 deploy:
  skip_cleanup: true
  provider: heroku
- api-key: 
-  secure: 0abc069c-7eb1-4c94-8a41-6a406968616d
+ api-key : 0abc069c-7eb1-4c94-8a41-6a406968616d
  app: home-beauty
 
 
