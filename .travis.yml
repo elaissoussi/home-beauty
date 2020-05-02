@@ -6,6 +6,7 @@ jdk:
 script: cd back && mvn clean install
 
 deploy:
+ skip_cleanup: true
  provider: heroku
  api-key: 
   secure: df305c9d-9501-4be1-b2fd-66ae0555b05f
