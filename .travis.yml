@@ -5,13 +5,11 @@ jdk:
 
 script: cd back && mvn clean install
 
-
 deploy:
  provider: heroku
  api-key: 
   secure: df305c9d-9501-4be1-b2fd-66ae0555b05f
-  app: home-beauty
-
+ app: home-beauty
 
 
 notification:
